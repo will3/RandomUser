@@ -6,6 +6,12 @@ target 'RandomUser' do
   use_frameworks!
 
   # Pods for RandomUser
+  pod 'Alamofire'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxFeedback', '~> 3.0'
+  pod 'Kingfisher'
+  pod 'RxDataSources', '~> 4.0'
 
   target 'RandomUserTests' do
     inherit! :search_paths
