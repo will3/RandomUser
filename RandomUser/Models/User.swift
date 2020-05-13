@@ -9,7 +9,7 @@
 import Foundation
 
 struct User : Encodable, Decodable {
-    let id: String
+    let username: String
     let title: String
     let gender: String
     let firstName: String

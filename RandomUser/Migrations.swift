@@ -15,7 +15,7 @@ class Migrations {
         if db.userVersion == 0 {
             let users = Table("users")
             
-            let id = Expression<String>("id")
+            let username = Expression<String>("username")
             let gender = Expression<String>("gender")
             let title = Expression<String>("title")
             let firstName = Expression<String>("firstName")
@@ -24,7 +24,7 @@ class Migrations {
             let thumbImageUrl = Expression<Date>("thumbImageUrl")
             
             try db.run(users.create { t in
-                t.column(id, primaryKey: true)
+                t.column(username, primaryKey: true)
                 t.column(gender)
                 t.column(title)
                 t.column(firstName)

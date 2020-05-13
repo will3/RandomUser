@@ -15,7 +15,7 @@ class UserMapper {
         let address = "\(street), \(location.city), \(location.state), \(location.country)"
 
         return User(
-            id: "\(user.id.name ?? "")|\(user.id.value ?? "")",
+            username: user.login.username,
             title: user.name.title,
             gender: user.gender,
             firstName: user.name.first,

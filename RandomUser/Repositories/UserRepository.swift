@@ -29,8 +29,8 @@ class UserRepository {
         for item in items {
             queue.async {
                 do {
-                    if try db.scalar(users.filter(id == item.id).count) > 0 {
-                        try db.run(users.filter(id == item.id).update(item))
+                    if try db.scalar(users.filter(id == item.username).count) > 0 {
+                        try db.run(users.filter(id == item.username).update(item))
                     } else {
                         try db.run(users.insert(item))
                     }
