@@ -28,6 +28,7 @@ extension UIScrollView {
 class ListViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
+    let refreshControl = UIRefreshControl()
 
     let userService = UserService()
     let disposeBag = DisposeBag()
@@ -48,9 +49,10 @@ class ListViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.addSubview(refreshControl)
         tableView.register(UINib(nibName: "ListViewCell", bundle: nil), forCellReuseIdentifier: "ListViewCell")
         
-        let loadNextPageTrigger: (Driver<ListViewState>) -> Signal<()> =  { state in
+        let loadNextPageTrigger: (Driver<ListViewState>) -> Signal<()> = { state in
             self.tableView.rx.contentOffset.asDriver()
                        .withLatestFrom(state)
                        .flatMap { state in
@@ -62,7 +64,11 @@ class ListViewController: UIViewController, UITableViewDelegate {
 
         let inputFeedbackLoop: (Driver<ListViewState>) -> Signal<ListViewCommand> = { state in
             let loadNextPage = loadNextPageTrigger(state).map { _ in ListViewCommand.loadNextPage }
-            return loadNextPage
+            let refresh = self.refreshControl.rx
+                .controlEvent(.valueChanged)
+                .asSignal()
+                .map { _ in ListViewCommand.refresh }
+            return Signal.merge(loadNextPage, refresh)
         }
 
         let searchPerformerFeedback: (Driver<ListViewState>) -> Signal<ListViewCommand> = react(
@@ -83,7 +89,7 @@ class ListViewController: UIViewController, UITableViewDelegate {
                     .asSignal(onErrorJustReturn: .failure(.networkError))
                     .map(ListViewCommand.responseReceived)
             }
-        
+
         let state = Driver.system(
             initialState: ListViewState.initial,
             reduce: ListViewState.reduce,
@@ -93,6 +99,11 @@ class ListViewController: UIViewController, UITableViewDelegate {
             .map { $0.results }
             .map { [SectionModel(model: "Results", items: $0)] }
             .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+
+        state
+            .map { $0.refreshing }
+            .drive(refreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
     }
 }

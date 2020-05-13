@@ -11,6 +11,7 @@ import Foundation
 enum ListViewCommand {
     case loadNextPage
     case responseReceived(GetUsersResponse)
+    case refresh
 }
 
 struct ListViewState {
@@ -19,6 +20,7 @@ struct ListViewState {
     var shouldLoadNextPage = true
     var nextPage: Int? = 1
     var failure: GetUsersError?
+    var refreshing = false
 }
 
 extension ListViewState: Mutable { }
@@ -40,9 +42,18 @@ extension ListViewState {
                     $0.nextPage = nextPage
                     $0.shouldLoadNextPage = false
                     $0.failure = nil
+                    $0.refreshing = false
                 }
             case let .failure(error):
                 return state.mutate { $0.failure = error }
+            }
+        case .refresh:
+            return state.mutate {
+                $0.results = [User]()
+                $0.nextPage = 1
+                $0.shouldLoadNextPage = true
+                $0.failure = nil
+                $0.refreshing = true
             }
         }
     }
