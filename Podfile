@@ -12,6 +12,8 @@ target 'RandomUser' do
   pod 'RxFeedback', '~> 3.0'
   pod 'Kingfisher'
   pod 'RxDataSources', '~> 4.0'
+  pod 'SQLite.swift', '~> 0.12.0'
+  pod 'ReachabilitySwift'
 
   target 'RandomUserTests' do
     inherit! :search_paths

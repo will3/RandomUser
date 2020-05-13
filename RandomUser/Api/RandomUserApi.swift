@@ -11,10 +11,10 @@ import Alamofire
 import RxSwift
 
 enum RandomUserApiError : Error {
-    case networkError
+    case malformedJson
 }
 
-typealias RandomUserApiResponse = Result<(results: [User], nextPage: Int?), RandomUserApiError>
+typealias RandomUserApiResponse = Result<(results: [RUUser], nextPage: Int?), RandomUserApiError>
 
 class RandomUserApi {
     let seed = 1337
@@ -29,7 +29,7 @@ class RandomUserApi {
     }
 
     func getUsers(take: Int = 10, page: Int = 1) -> Observable<RandomUserApiResponse> {
-        
+
         var components = URLComponents(string: "https://randomuser.me/api")!
         components.queryItems = [
             URLQueryItem(name: "seed", value: "\(seed)"),
@@ -42,7 +42,9 @@ class RandomUserApi {
             .retry(3)
             .observeOn(backgroundWorkScheduler)
             .map { (r, data) -> RandomUserApiResponse in
-                let welcome = try JSONDecoder().decode(Welcome.self, from: data)
+                guard let welcome = try? JSONDecoder().decode(RUWelcome.self, from: data) else {
+                    return .failure(.malformedJson)
+                }
                 return .success((results: welcome.results, nextPage: welcome.info.page + 1))
             }
     }

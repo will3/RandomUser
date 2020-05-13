@@ -4,6 +4,7 @@ PODS:
   - Kingfisher (5.14.0):
     - Kingfisher/Core (= 5.14.0)
   - Kingfisher/Core (5.14.0)
+  - ReachabilitySwift (5.0.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -17,36 +18,45 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
+  - SQLite.swift (0.12.2):
+    - SQLite.swift/standard (= 0.12.2)
+  - SQLite.swift/standard (0.12.2)
 
 DEPENDENCIES:
   - Alamofire
   - Kingfisher
+  - ReachabilitySwift
   - RxCocoa
   - RxDataSources (~> 4.0)
   - RxFeedback (~> 3.0)
   - RxSwift
+  - SQLite.swift (~> 0.12.0)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
     - Alamofire
     - Differentiator
     - Kingfisher
+    - ReachabilitySwift
     - RxCocoa
     - RxDataSources
     - RxFeedback
     - RxRelay
     - RxSwift
+    - SQLite.swift
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Kingfisher: 7b64389a43139c903ec434788344c288217c792d
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxFeedback: 4260d8dad5bba28b182c0b9ff5bce68c260de183
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
 
-PODFILE CHECKSUM: 170ee91b73019f07a8017d0d2fb338d4c8764ea0
+PODFILE CHECKSUM: 1491802f8ce78ca049d51c3795ca1de461b2e2b8
 
 COCOAPODS: 1.9.1

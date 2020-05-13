@@ -10,7 +10,7 @@ import Foundation
 
 enum ListViewCommand {
     case loadNextPage
-    case responseReceived(RandomUserApiResponse)
+    case responseReceived(GetUsersResponse)
 }
 
 struct ListViewState {
@@ -18,7 +18,7 @@ struct ListViewState {
     var results = [User]()
     var shouldLoadNextPage = true
     var nextPage: Int? = 1
-    var failure: RandomUserApiError?
+    var failure: GetUsersError?
 }
 
 extension ListViewState: Mutable { }

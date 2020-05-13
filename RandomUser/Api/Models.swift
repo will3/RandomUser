@@ -6,65 +6,65 @@
 import Foundation
 
 // MARK: - Welcome
-struct Welcome: Codable {
-    let results: [User]
-    let info: Info
+struct RUWelcome: Codable {
+    let results: [RUUser]
+    let info: RUInfo
 }
 
 // MARK: - Info
-struct Info: Codable {
+struct RUInfo: Codable {
     let seed: String
     let results, page: Int
     let version: String
 }
 
 // MARK: - User
-struct User: Codable {
+struct RUUser: Codable {
     let gender: String
-    let name: Name
-    let location: Location
+    let name: RUName
+    let location: RULocation
     let email: String
-    let login: Login
-    let dob, registered: Dob
+    let login: RULogin
+    let dob, registered: RUDob
     let phone, cell: String
-    let id: ID
-    let picture: Picture
+    let id: RUID
+    let picture: RUPicture
     let nat: String
 }
 
 // MARK: - Dob
-struct Dob: Codable {
+struct RUDob: Codable {
     let date: String
     let age: Int
 }
 
 // MARK: - ID
-struct ID: Codable {
+struct RUID: Codable {
     let name, value: String?
 }
 
 // MARK: - Location
-struct Location: Codable {
-    let street: Street
+struct RULocation: Codable {
+    let street: RUStreet
     let city, state, country: String
     let postcode: StringOrInt
-    let coordinates: Coordinates
-    let timezone: Timezone
+    let coordinates: RUCoordinates
+    let timezone: RUTimezone
 }
 
 // MARK: - Coordinates
-struct Coordinates: Codable {
+struct RUCoordinates: Codable {
     let latitude, longitude: String
 }
 
 // MARK: - Street
-struct Street: Codable {
+struct RUStreet: Codable {
     let number: Int
     let name: String
 }
 
 // MARK: - Timezone
-struct Timezone: Codable {
+struct RUTimezone: Codable {
     let offset, timezoneDescription: String
 
     enum CodingKeys: String, CodingKey {
@@ -74,18 +74,18 @@ struct Timezone: Codable {
 }
 
 // MARK: - Login
-struct Login: Codable {
+struct RULogin: Codable {
     let uuid, username, password, salt: String
     let md5, sha1, sha256: String
 }
 
 // MARK: - Name
-struct Name: Codable {
+struct RUName: Codable {
     let title, first, last: String
 }
 
 // MARK: - Picture
-struct Picture: Codable {
+struct RUPicture: Codable {
     let large, medium, thumbnail: String
 }
 

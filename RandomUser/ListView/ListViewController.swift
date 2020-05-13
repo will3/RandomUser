@@ -29,17 +29,18 @@ class ListViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
 
-    let api = RandomUserApi()
+    let userService = UserService()
     let disposeBag = DisposeBag()
     let loadThreshold = 20.0
     let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, User>>(
         configureCell: { (_, tableView, indexPath, user: User) in
             let cell = tableView.dequeueReusableCell(withIdentifier: "ListViewCell")! as! ListViewCell
-            cell.nameLabel.text = "\(user.name.first) \(user.name.last)"
-            cell.ageLabel.text = "\(user.dob.age)"
-            cell.locationLabel.text = "In \(user.location.city)"
-            let image = URL(string: user.picture.large)
+            cell.nameLabel.text = "\(user.firstName) \(user.lastName)"
+            let age = DateUtils.calcAge(birthday: user.dob)
+            cell.ageLabel.text = "\(age)"
+            let image = URL(string: user.thumbImageUrl)
             cell.profileImageView.kf.setImage(with: image)
+            cell.locationLabel.text = user.address
 
             return cell
         })
@@ -58,12 +59,12 @@ class ListViewController: UIViewController, UITableViewDelegate {
                                : Signal.empty()
                        }
                }
-        
+
         let inputFeedbackLoop: (Driver<ListViewState>) -> Signal<ListViewCommand> = { state in
             let loadNextPage = loadNextPageTrigger(state).map { _ in ListViewCommand.loadNextPage }
             return loadNextPage
         }
-        
+
         let searchPerformerFeedback: (Driver<ListViewState>) -> Signal<ListViewCommand> = react(
             request: { (state) in
                 RandomUserQuery(nextPage: state.nextPage, shouldLoadNextPage: state.shouldLoadNextPage)
@@ -77,9 +78,9 @@ class ListViewController: UIViewController, UITableViewDelegate {
                     return Signal.empty()
                 }
                 
-                return self.api
+                return self.userService
                     .getUsers(take: 10, page: nextPage)
-                    .asSignal(onErrorJustReturn: .failure(RandomUserApiError.networkError))
+                    .asSignal(onErrorJustReturn: .failure(.networkError))
                     .map(ListViewCommand.responseReceived)
             }
         
