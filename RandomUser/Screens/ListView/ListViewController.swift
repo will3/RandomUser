@@ -77,11 +77,17 @@ class ListViewController: UIViewController, UITableViewDelegate {
                 index: $0.selectedIndex,
                 profiles: $0.results,
                 openProfileCount: $0.openProfileCount,
-                nextPage: $0.nextPage) })
+                nextPage: $0.nextPage,
+                filter: $0.filter) })
             { (query) -> Signal<ListViewCommand> in
                 guard let index = query.index else { return Signal.empty() }
                 return ProfileViewController
-                    .prompt(from: self, index: index, profiles: query.profiles, nextPage: query.nextPage)
+                    .prompt(
+                        from: self,
+                        index: index,
+                        profiles: query.profiles,
+                        nextPage: query.nextPage,
+                        filter: query.filter)
                     .flatMapLatest { vc -> Observable<ListViewCommand> in
                         return Observable.just(ListViewCommand.closedProfileView)
                     }

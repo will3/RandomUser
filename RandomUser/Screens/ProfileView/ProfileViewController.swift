@@ -44,11 +44,12 @@ extension ProfileViewController {
         from: UIViewController,
         index: Int,
         profiles: [User],
-        nextPage: Int?
+        nextPage: Int?,
+        filter: Filter
         ) -> Observable<ProfileViewController?> {
         return Observable.create { observer in
             let vc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-            vc.setup(profiles: profiles, index: index, nextPage: nextPage)
+            vc.setup(profiles: profiles, index: index, nextPage: nextPage, filter: filter)
             vc.modalPresentationStyle = .fullScreen
             from.present(vc, animated: true, completion: nil)
             
@@ -68,11 +69,12 @@ class ProfileViewController: UIViewController {
     let userService = UserService()
     let swipeView = ProfileSwipeView()
     
-    func setup(profiles: [User], index: Int, nextPage: Int?) {
+    func setup(profiles: [User], index: Int, nextPage: Int?, filter: Filter) {
         initial = initial.mutate {
             $0.profiles = profiles
             $0.index = index
             $0.nextPage = nextPage
+            $0.filter = filter
         }
     }
 

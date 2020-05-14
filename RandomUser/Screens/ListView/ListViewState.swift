@@ -60,6 +60,7 @@ struct OpenProfileQuery: Equatable {
     let profiles: [User]
     let openProfileCount: Int
     let nextPage: Int?
+    let filter: Filter
 }
 
 struct GetUsersQuery: Equatable {
