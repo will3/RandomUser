@@ -79,9 +79,9 @@ class ProfileViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        self.view.addSubview(swipeView)
+        view.addSubview(swipeView)
         swipeView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self.view.safeAreaLayoutGuide)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
 
         let bindUI: (Driver<ProfileViewState>) -> Signal<ProfileViewCommand> = bind(self) { me, state in

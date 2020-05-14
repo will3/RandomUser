@@ -48,19 +48,6 @@ extension Gender {
     }
 }
 
-extension Gender {
-    func format() -> String {
-        switch self {
-        case .male:
-            return "Male"
-        case .female:
-            return "Female"
-        case .both:
-            return "Both"
-        }
-    }
-}
-
 class FilterViewController : UIViewController, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var doneButton: UIBarButtonItem!

@@ -12,6 +12,8 @@
 		BE190C4B246DDFD5009EEC42 /* ProfileSwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */; };
 		BE190C4D246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */; };
 		BE190C4F246DECD4009EEC42 /* User+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4E246DECD4009EEC42 /* User+Format.swift */; };
+		BE190C54246E0733009EEC42 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C53246E0733009EEC42 /* ContainerViewController.swift */; };
+		BE190C58246E0D0D009EEC42 /* Gender+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C57246E0D0D009EEC42 /* Gender+Format.swift */; };
 		BE1CBDBB246D24010047D4A9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDBA246D24010047D4A9 /* ProfileViewController.swift */; };
 		BE1CBDBE246D24170047D4A9 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1CBDBD246D24170047D4A9 /* ProfileView.xib */; };
 		BE1CBDC1246D24BE0047D4A9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDC0246D24BE0047D4A9 /* ProfileView.swift */; };
@@ -72,6 +74,8 @@
 		BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSwipeView.swift; sourceTree = "<group>"; };
 		BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileSwipeView+Reactive.swift"; sourceTree = "<group>"; };
 		BE190C4E246DECD4009EEC42 /* User+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Format.swift"; sourceTree = "<group>"; };
+		BE190C53246E0733009EEC42 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		BE190C57246E0D0D009EEC42 /* Gender+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gender+Format.swift"; sourceTree = "<group>"; };
 		BE1CBDBA246D24010047D4A9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BE1CBDBD246D24170047D4A9 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		BE1CBDC0246D24BE0047D4A9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -143,6 +147,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE190C52246E0724009EEC42 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				BE190C53246E0733009EEC42 /* ContainerViewController.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
 		BE1CBDBC246D24060047D4A9 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +218,7 @@
 				BE470815246C9B4000275736 /* Migrations.swift */,
 				BE1CBDC3246D31840047D4A9 /* Bundle+Factory.swift */,
 				BE190C4E246DECD4009EEC42 /* User+Format.swift */,
+				BE190C57246E0D0D009EEC42 /* Gender+Format.swift */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -276,6 +289,7 @@
 		BE470818246CC29400275736 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				BE190C52246E0724009EEC42 /* Container */,
 				BE1CBDBC246D24060047D4A9 /* ProfileView */,
 				BE470820246CCCF900275736 /* FilterView */,
 				BE277F10246B7F51001D73F2 /* ListView */,
@@ -613,6 +627,7 @@
 				BE47081C246CC2C900275736 /* FilterFab.swift in Sources */,
 				BE47082E246D177600275736 /* FilterCell.swift in Sources */,
 				BE74EF71246C71E90050526C /* UserRepository.swift in Sources */,
+				BE190C54246E0733009EEC42 /* ContainerViewController.swift in Sources */,
 				BE190C4D246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift in Sources */,
 				BE277EDC246B6A2D001D73F2 /* AppDelegate.swift in Sources */,
 				BE74EF7C246C7A690050526C /* Models.swift in Sources */,
@@ -626,6 +641,7 @@
 				BE1CBDC1246D24BE0047D4A9 /* ProfileView.swift in Sources */,
 				BE74EF80246C7B1E0050526C /* User.swift in Sources */,
 				BE74EF6E246C6EF50050526C /* ListViewState.swift in Sources */,
+				BE190C58246E0D0D009EEC42 /* Gender+Format.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
