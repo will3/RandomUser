@@ -24,13 +24,13 @@ class UserRepository {
 
     func saveUsers(db: Connection, items: [User]) throws {
         let users = Table("users")
-        let id = Expression<String>("id")
+        let username = Expression<String>("username")
 
         for item in items {
             queue.async {
                 do {
-                    if try db.scalar(users.filter(id == item.username).count) > 0 {
-                        try db.run(users.filter(id == item.username).update(item))
+                    if try db.scalar(users.filter(username == item.username).count) > 0 {
+                        try db.run(users.filter(username == item.username).update(item))
                     } else {
                         try db.run(users.insert(item))
                     }
