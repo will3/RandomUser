@@ -13,6 +13,7 @@ import Kingfisher
 import RxCocoa
 import RxFeedback
 import RxDataSources
+import SnapKit
 
 struct RandomUserQuery: Equatable {
     let nextPage: Int?;
@@ -51,6 +52,13 @@ class ListViewController: UIViewController, UITableViewDelegate {
 
         tableView.addSubview(refreshControl)
         tableView.register(UINib(nibName: "ListViewCell", bundle: nil), forCellReuseIdentifier: "ListViewCell")
+
+        let fab = Bundle.main.loadNibNamed("FilterFab", owner: nil, options: nil)![0] as! FilterFab
+        view.addSubview(fab)
+        fab.snp.makeConstraints { (make) in
+            make.right.equalTo(view.snp.right).offset(-24)
+            make.bottom.equalTo(view.snp.bottom).offset(-24)
+        }
         
         let loadNextPageTrigger: (Driver<ListViewState>) -> Signal<()> = { state in
             self.tableView.rx.contentOffset.asDriver()

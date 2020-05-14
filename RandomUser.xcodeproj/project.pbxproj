@@ -22,6 +22,8 @@
 		BE47080D246C7D7800275736 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE47080C246C7D7800275736 /* UserMapper.swift */; };
 		BE470813246C80B400275736 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE470812246C80B400275736 /* UserService.swift */; };
 		BE470816246C9B4000275736 /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE470815246C9B4000275736 /* Migrations.swift */; };
+		BE47081C246CC2C900275736 /* FilterFab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE47081B246CC2C900275736 /* FilterFab.swift */; };
+		BE47081E246CC2D400275736 /* FilterFab.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE47081D246CC2D400275736 /* FilterFab.xib */; };
 		BE74EF6A246C6D120050526C /* Mutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF69246C6D120050526C /* Mutable.swift */; };
 		BE74EF6E246C6EF50050526C /* ListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF6D246C6EF50050526C /* ListViewState.swift */; };
 		BE74EF71246C71E90050526C /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF70246C71E90050526C /* UserRepository.swift */; };
@@ -74,6 +76,8 @@
 		BE47080C246C7D7800275736 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		BE470812246C80B400275736 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BE470815246C9B4000275736 /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
+		BE47081B246CC2C900275736 /* FilterFab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterFab.swift; sourceTree = "<group>"; };
+		BE47081D246CC2D400275736 /* FilterFab.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterFab.xib; sourceTree = "<group>"; };
 		BE74EF69246C6D120050526C /* Mutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mutable.swift; sourceTree = "<group>"; };
 		BE74EF6D246C6EF50050526C /* ListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewState.swift; sourceTree = "<group>"; };
 		BE74EF70246C71E90050526C /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -140,12 +144,13 @@
 		BE277EDA246B6A2D001D73F2 /* RandomUser */ = {
 			isa = PBXGroup;
 			children = (
+				BE470819246CC2A000275736 /* Components */,
+				BE470818246CC29400275736 /* Screens */,
 				BE470811246C80AA00275736 /* Services */,
 				BE47080B246C7D6E00275736 /* Mappers */,
 				BE74EF7E246C7B140050526C /* Models */,
 				BE74EF6F246C71DA0050526C /* Repositories */,
 				BE277F14246B897A001D73F2 /* Api */,
-				BE277F10246B7F51001D73F2 /* ListView */,
 				BE277EDB246B6A2D001D73F2 /* AppDelegate.swift */,
 				BE277EDD246B6A2D001D73F2 /* SceneDelegate.swift */,
 				BE277EE4246B6A2E001D73F2 /* Assets.xcassets */,
@@ -219,6 +224,31 @@
 				BE470812246C80B400275736 /* UserService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		BE470818246CC29400275736 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				BE277F10246B7F51001D73F2 /* ListView */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		BE470819246CC2A000275736 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BE47081A246CC2A700275736 /* FilterFab */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BE47081A246CC2A700275736 /* FilterFab */ = {
+			isa = PBXGroup;
+			children = (
+				BE47081B246CC2C900275736 /* FilterFab.swift */,
+				BE47081D246CC2D400275736 /* FilterFab.xib */,
+			);
+			path = FilterFab;
 			sourceTree = "<group>";
 		};
 		BE74EF6F246C71DA0050526C /* Repositories */ = {
@@ -371,6 +401,7 @@
 			files = (
 				BE277EE8246B6A2E001D73F2 /* LaunchScreen.storyboard in Resources */,
 				BE277F1C246BB8DA001D73F2 /* ListViewCell.xib in Resources */,
+				BE47081E246CC2D400275736 /* FilterFab.xib in Resources */,
 				BE277EE5246B6A2E001D73F2 /* Assets.xcassets in Resources */,
 				BE277F0F246B7DD6001D73F2 /* ListView.xib in Resources */,
 			);
@@ -506,6 +537,7 @@
 				BE277EE0246B6A2D001D73F2 /* ListViewController.swift in Sources */,
 				BE470816246C9B4000275736 /* Migrations.swift in Sources */,
 				BE47080D246C7D7800275736 /* UserMapper.swift in Sources */,
+				BE47081C246CC2C900275736 /* FilterFab.swift in Sources */,
 				BE74EF71246C71E90050526C /* UserRepository.swift in Sources */,
 				BE277EDC246B6A2D001D73F2 /* AppDelegate.swift in Sources */,
 				BE74EF7C246C7A690050526C /* Models.swift in Sources */,

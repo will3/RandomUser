@@ -18,6 +18,7 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
+  - SnapKit (5.0.1)
   - SQLite.swift (0.12.2):
     - SQLite.swift/standard (= 0.12.2)
   - SQLite.swift/standard (0.12.2)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - RxDataSources (~> 4.0)
   - RxFeedback (~> 3.0)
   - RxSwift
+  - SnapKit (~> 5.0.0)
   - SQLite.swift (~> 0.12.0)
 
 SPEC REPOS:
@@ -43,6 +45,7 @@ SPEC REPOS:
     - RxFeedback
     - RxRelay
     - RxSwift
+    - SnapKit
     - SQLite.swift
 
 SPEC CHECKSUMS:
@@ -55,8 +58,9 @@ SPEC CHECKSUMS:
   RxFeedback: 4260d8dad5bba28b182c0b9ff5bce68c260de183
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
 
-PODFILE CHECKSUM: 1491802f8ce78ca049d51c3795ca1de461b2e2b8
+PODFILE CHECKSUM: 4a78343b13359066ec58dfdafc33f30b31551d0f
 
 COCOAPODS: 1.9.1
