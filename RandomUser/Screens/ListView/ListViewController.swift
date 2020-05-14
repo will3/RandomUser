@@ -15,11 +15,6 @@ import RxFeedback
 import RxDataSources
 import SnapKit
 
-struct RandomUserQuery: Equatable {
-    let nextPage: Int?;
-    let shouldLoadNextPage: Bool;
-}
-
 extension UIScrollView {
     func  isNearBottomEdge(edgeOffset: CGFloat = 20.0) -> Bool {
         return self.contentOffset.y + self.frame.size.height + edgeOffset > self.contentSize.height
@@ -47,71 +42,99 @@ class ListViewController: UIViewController, UITableViewDelegate {
             return cell
         })
     
+    lazy var filterButton = {
+        Bundle.main.loadNibNamed("FilterFab", owner: nil, options: nil)![0] as! FilterFab
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.addSubview(refreshControl)
         tableView.register(UINib(nibName: "ListViewCell", bundle: nil), forCellReuseIdentifier: "ListViewCell")
 
-        let fab = Bundle.main.loadNibNamed("FilterFab", owner: nil, options: nil)![0] as! FilterFab
-        view.addSubview(fab)
-        fab.snp.makeConstraints { (make) in
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+
+        view.addSubview(filterButton)
+        filterButton.snp.makeConstraints { (make) in
             make.right.equalTo(view.snp.right).offset(-24)
             make.bottom.equalTo(view.snp.bottom).offset(-24)
         }
-        
-        let loadNextPageTrigger: (Driver<ListViewState>) -> Signal<()> = { state in
-            self.tableView.rx.contentOffset.asDriver()
-                       .withLatestFrom(state)
-                       .flatMap { state in
-                        return self.tableView.isNearBottomEdge(edgeOffset: 20.0) && !state.shouldLoadNextPage
-                               ? Signal.just(())
-                               : Signal.empty()
-                       }
-               }
 
-        let inputFeedbackLoop: (Driver<ListViewState>) -> Signal<ListViewCommand> = { state in
-            let loadNextPage = loadNextPageTrigger(state).map { _ in ListViewCommand.loadNextPage }
-            let refresh = self.refreshControl.rx
-                .controlEvent(.valueChanged)
-                .asSignal()
-                .map { _ in ListViewCommand.refresh }
-            return Signal.merge(loadNextPage, refresh)
-        }
-
-        let searchPerformerFeedback: (Driver<ListViewState>) -> Signal<ListViewCommand> = react(
-            request: { (state) in
-                RandomUserQuery(nextPage: state.nextPage, shouldLoadNextPage: state.shouldLoadNextPage)
-            })
+        let loadUsers: (Driver<ListViewState>) -> Signal<ListViewCommand> = react(
+            request: { $0.getUsersQuery })
             { (query) -> Signal<ListViewCommand> in
                 if !query.shouldLoadNextPage {
                     return Signal.empty()
                 }
-                
+
                 guard let nextPage = query.nextPage else {
                     return Signal.empty()
                 }
-                
+
                 return self.userService
-                    .getUsers(take: 10, page: nextPage)
+                    .getUsers(take: 10, page: nextPage, gender: query.gender)
                     .asSignal(onErrorJustReturn: .failure(.networkError))
                     .map(ListViewCommand.responseReceived)
             }
 
-        let state = Driver.system(
+        let bindUI: (Driver<ListViewState>) -> Signal<ListViewCommand> = bind(self) { me, state in
+            let subscriptions = [
+                state
+                    .map { $0.results }
+                    .map { [SectionModel(model: "Results", items: $0)] }
+                    .drive(me.tableView.rx.items(dataSource: me.dataSource)),
+                state
+                    .map { $0.refreshing }
+                    .drive(me.refreshControl.rx.isRefreshing)
+            ]
+
+            let loadNextPage: Signal<ListViewCommand> = me.tableView.rx.contentOffset.asDriver()
+                .flatMap { _ in
+                    return me.tableView.isNearBottomEdge(edgeOffset: 20.0)
+                    ? Signal.just(())
+                        : Signal.empty() }
+                .map { _ in ListViewCommand.loadNextPage }
+
+            let pullToRefresh = me.refreshControl.rx
+                .controlEvent(.valueChanged)
+                .asSignal()
+                .map { _ in ListViewCommand.refresh }
+
+            let changeFilter = me.filterButton.button.rx.controlEvent(.touchUpInside)
+                .asSignal()
+                .withLatestFrom(state)
+                .flatMapLatest {
+                    state in FilterViewController.prompt(from: me, filter: state.filter)
+                    .flatMapLatest { fv -> Observable<ListViewCommand> in
+                        guard let fv = fv, let filter = fv.filter.value else {
+                            return Observable.empty()
+                        }
+                        if !fv.filterChanged {
+                            return Observable.empty()
+                        }
+                        return Observable.just(ListViewCommand.changeFilter(filter))
+                    }
+                    .asSignal(onErrorSignalWith: Signal.empty())
+                }
+
+            let events: [Signal<ListViewCommand>] = [
+                loadNextPage,
+                pullToRefresh,
+                changeFilter
+            ]
+
+            return Bindings(subscriptions: subscriptions, events: events)
+        }
+
+        Driver.system(
             initialState: ListViewState.initial,
             reduce: ListViewState.reduce,
-            feedback: searchPerformerFeedback, inputFeedbackLoop)
-        
-        state
-            .map { $0.results }
-            .map { [SectionModel(model: "Results", items: $0)] }
-            .drive(tableView.rx.items(dataSource: dataSource))
+            feedback: bindUI, loadUsers)
+            .drive()
             .disposed(by: disposeBag)
+    }
 
-        state
-            .map { $0.refreshing }
-            .drive(refreshControl.rx.isRefreshing)
-            .disposed(by: disposeBag)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }

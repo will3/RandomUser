@@ -8,10 +8,25 @@
 
 import Foundation
 
+enum Gender {
+    case male
+    case female
+    case both
+}
+
+struct Filter: Equatable {
+    var gender: Gender
+}
+
+extension Filter: Mutable {
+}
+
 enum ListViewCommand {
     case loadNextPage
     case responseReceived(GetUsersResponse)
     case refresh
+    case presentFilter
+    case changeFilter(Filter)
 }
 
 struct ListViewState {
@@ -21,6 +36,24 @@ struct ListViewState {
     var nextPage: Int? = 1
     var failure: GetUsersError?
     var refreshing = false
+    var filter: Filter
+
+    var getUsersQuery: GetUsersQuery {
+        return GetUsersQuery(
+            nextPage: nextPage,
+            shouldLoadNextPage: shouldLoadNextPage,
+            gender: filter.gender)
+    }
+
+    init() {
+        filter = Filter(gender: .female)
+    }
+}
+
+struct GetUsersQuery: Equatable {
+    let nextPage: Int?;
+    let shouldLoadNextPage: Bool;
+    let gender: Gender;
 }
 
 extension ListViewState: Mutable { }
@@ -55,6 +88,17 @@ extension ListViewState {
                 $0.failure = nil
                 $0.refreshing = true
             }
+        case .changeFilter(let filter):
+            print("change filter \(filter)")
+            return state.mutate {
+                $0.filter = filter
+                $0.results = [User]()
+                $0.nextPage = 1
+                $0.shouldLoadNextPage = true
+                $0.failure = nil
+            }
+        default:
+            return state
         }
     }
 }

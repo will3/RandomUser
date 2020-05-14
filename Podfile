@@ -15,6 +15,7 @@ target 'RandomUser' do
   pod 'SQLite.swift', '~> 0.12.0'
   pod 'ReachabilitySwift'
   pod 'SnapKit', '~> 5.0.0'
+  pod 'RxViewController'
 
   target 'RandomUserTests' do
     inherit! :search_paths

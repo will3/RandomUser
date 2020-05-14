@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterViewController" customModule="RandomUser" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="URS-Xl-KoP" id="2mr-Hh-Acb"/>
+                <outlet property="doneButton" destination="V1j-0c-aGM" id="T3e-QV-mYh"/>
+                <outlet property="tableView" destination="MWi-AE-TqP" id="b3i-Lj-6rF"/>
+                <outlet property="view" destination="iN0-l3-epB" id="ach-wI-ed0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCg-6a-BCx">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <items>
+                        <barButtonItem title="Cancel" id="URS-Xl-KoP"/>
+                        <barButtonItem systemItem="flexibleSpace" id="fTJ-oa-dSg"/>
+                        <barButtonItem title="Done" id="V1j-0c-aGM"/>
+                    </items>
+                </toolbar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MWi-AE-TqP">
+                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MWi-AE-TqP" secondAttribute="bottom" id="4ru-oa-j7c"/>
+                <constraint firstAttribute="trailing" secondItem="MWi-AE-TqP" secondAttribute="trailing" id="8bJ-QW-Geq"/>
+                <constraint firstItem="XCg-6a-BCx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Bd8-R9-WZv"/>
+                <constraint firstItem="XCg-6a-BCx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="IWB-48-fZz"/>
+                <constraint firstItem="XCg-6a-BCx" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="dDh-Fh-24K"/>
+                <constraint firstItem="MWi-AE-TqP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="moI-zd-Tsz"/>
+                <constraint firstItem="MWi-AE-TqP" firstAttribute="top" secondItem="XCg-6a-BCx" secondAttribute="bottom" id="vYE-rz-a6g"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
+        </view>
+    </objects>
+</document>

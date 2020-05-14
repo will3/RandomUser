@@ -28,13 +28,14 @@ class RandomUserApi {
         backgroundWorkScheduler = OperationQueueScheduler(operationQueue: operationQueue)
     }
 
-    func getUsers(take: Int = 10, page: Int = 1) -> Observable<RandomUserApiResponse> {
+    func getUsers(take: Int = 10, page: Int = 1, gender: String?) -> Observable<RandomUserApiResponse> {
 
         var components = URLComponents(string: "https://randomuser.me/api")!
         components.queryItems = [
-            URLQueryItem(name: "seed", value: "\(seed)"),
+            // URLQueryItem(name: "seed", value: "\(seed)"),
             URLQueryItem(name: "results", value: "\(take)"),
-            URLQueryItem(name: "page", value: "\(page)")]
+            URLQueryItem(name: "page", value: "\(page)"),
+            URLQueryItem(name: "gender", value: gender)]
         let url = components.url!
 
         return URLSession.shared.rx

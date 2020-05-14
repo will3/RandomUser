@@ -23,20 +23,25 @@ class UserService {
     let repository = UserRepository()
     let reachability = try! Reachability()
     let connectionFactory = ConnectionFactory()
-    func getUsers(take: Int = 10, page: Int = 1) -> Observable<GetUsersResponse> {
+    func getUsers(take: Int = 10, page: Int = 1, gender: Gender) -> Observable<GetUsersResponse> {
         let db = try! self.connectionFactory.create()
         if reachability.connection == .unavailable {
             let count = (try? self.repository.countUsers(db: db)) ?? 0
             if (take * (page - 1) >= count) {
                 return Observable.just(.success(([User](), nil)))
             }
-            let users = (try? self.repository.getUsers(db: db, limit: take, offset: take * (page - 1)))
+
+            let users = (try? self.repository.getUsers(
+                db: db,
+                limit: take,
+                offset: take * (page - 1),
+                gender: gender.formatQuery()))
                 ?? [User]()
             return Observable.just(.success((users, page + 1)))
         }
 
         return api
-            .getUsers(take: take, page: page)
+            .getUsers(take: take, page: page, gender: gender.formatQuery())
             .map { (r) -> GetUsersResponse in
                 switch r {
                 case let .success(results, nextPage):
@@ -46,6 +51,19 @@ class UserService {
                 case let .failure(err):
                     return .failure(.apiError(err))
             }
+        }
+    }
+}
+
+extension Gender {
+    func formatQuery() -> String? {
+        switch self {
+        case .male:
+            return "male"
+        case .female:
+            return "female"
+        case .both:
+            return nil
         }
     }
 }

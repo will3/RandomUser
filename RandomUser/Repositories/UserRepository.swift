@@ -46,10 +46,18 @@ class UserRepository {
         return try db.scalar(users.count)
     }
 
-    func getUsers(db: Connection, limit: Int, offset: Int) throws -> [User] {
+    func getUsers(db: Connection, limit: Int, offset: Int, gender: String?) throws -> [User] {
         let users = Table("users")
-        let query = users
-            .limit(limit, offset: offset)
+        let genderEx = Expression<String>("gender")
+
+        var query = users
+
+        if let gender = gender {
+            query = query.filter(genderEx == gender)
+        }
+
+        query = query.limit(limit, offset: offset)
+
         let rows = try db.prepare(query)
             
         return try rows.map({ (row) -> User in
