@@ -27,6 +27,8 @@ enum ListViewCommand {
     case refresh
     case presentFilter
     case changeFilter(Filter)
+    case openProfile(Int)
+    case closedProfileView
 }
 
 struct ListViewState {
@@ -37,6 +39,8 @@ struct ListViewState {
     var failure: GetUsersError?
     var refreshing = false
     var filter: Filter
+    var selectedIndex: Int?
+    var openProfileCount = 0
 
     var getUsersQuery: GetUsersQuery {
         return GetUsersQuery(
@@ -48,6 +52,14 @@ struct ListViewState {
     init() {
         filter = Filter(gender: .female)
     }
+}
+
+// TODO optimize Equatable
+struct OpenProfileQuery: Equatable {
+    let index: Int?
+    let profiles: [User]
+    let openProfileCount: Int
+    let nextPage: Int?
 }
 
 struct GetUsersQuery: Equatable {
@@ -96,6 +108,11 @@ extension ListViewState {
                 $0.nextPage = 1
                 $0.shouldLoadNextPage = true
                 $0.failure = nil
+            }
+        case .openProfile(let index):
+            return state.mutate {
+                $0.selectedIndex = index
+                $0.openProfileCount = $0.openProfileCount + 1
             }
         default:
             return state

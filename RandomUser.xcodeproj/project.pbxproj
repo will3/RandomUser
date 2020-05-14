@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		8F5CB5C5B7D4A592FE9A54D6 /* Pods_RandomUserTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6363370DE6E6487E13C5E4E6 /* Pods_RandomUserTests.framework */; };
 		9DC7A2D816BB1BC9BB49C58B /* Pods_RandomUser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E47D9275035A780304E2FB3 /* Pods_RandomUser.framework */; };
+		BE190C4B246DDFD5009EEC42 /* ProfileSwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */; };
+		BE190C4D246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */; };
+		BE190C4F246DECD4009EEC42 /* User+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4E246DECD4009EEC42 /* User+Format.swift */; };
+		BE1CBDBB246D24010047D4A9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDBA246D24010047D4A9 /* ProfileViewController.swift */; };
+		BE1CBDBE246D24170047D4A9 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1CBDBD246D24170047D4A9 /* ProfileView.xib */; };
+		BE1CBDC1246D24BE0047D4A9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDC0246D24BE0047D4A9 /* ProfileView.swift */; };
+		BE1CBDC4246D31840047D4A9 /* Bundle+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDC3246D31840047D4A9 /* Bundle+Factory.swift */; };
+		BE1CBDC6246D3E4B0047D4A9 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1CBDC5246D3E4B0047D4A9 /* ProfileViewController.xib */; };
 		BE277EDC246B6A2D001D73F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EDB246B6A2D001D73F2 /* AppDelegate.swift */; };
 		BE277EDE246B6A2D001D73F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EDD246B6A2D001D73F2 /* SceneDelegate.swift */; };
 		BE277EE0246B6A2D001D73F2 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EDF246B6A2D001D73F2 /* ListViewController.swift */; };
@@ -61,6 +69,14 @@
 		5F2D3BF4E2FA0739AD393A2F /* Pods-RandomUserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUserTests.debug.xcconfig"; path = "Target Support Files/Pods-RandomUserTests/Pods-RandomUserTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6363370DE6E6487E13C5E4E6 /* Pods_RandomUserTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RandomUserTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E2FFE7E91E7DCDA07F115DC /* Pods_RandomUser_RandomUserUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RandomUser_RandomUserUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSwipeView.swift; sourceTree = "<group>"; };
+		BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileSwipeView+Reactive.swift"; sourceTree = "<group>"; };
+		BE190C4E246DECD4009EEC42 /* User+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Format.swift"; sourceTree = "<group>"; };
+		BE1CBDBA246D24010047D4A9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BE1CBDBD246D24170047D4A9 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		BE1CBDC0246D24BE0047D4A9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		BE1CBDC3246D31840047D4A9 /* Bundle+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Factory.swift"; sourceTree = "<group>"; };
+		BE1CBDC5246D3E4B0047D4A9 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		BE277ED8246B6A2D001D73F2 /* RandomUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE277EDB246B6A2D001D73F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE277EDD246B6A2D001D73F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +143,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE1CBDBC246D24060047D4A9 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				BE1CBDBF246D24AE0047D4A9 /* Views */,
+				BE1CBDBA246D24010047D4A9 /* ProfileViewController.swift */,
+				BE1CBDC5246D3E4B0047D4A9 /* ProfileViewController.xib */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		BE1CBDBF246D24AE0047D4A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE1CBDBD246D24170047D4A9 /* ProfileView.xib */,
+				BE1CBDC0246D24BE0047D4A9 /* ProfileView.swift */,
+				BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */,
+				BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BE277ECF246B6A2D001D73F2 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +204,8 @@
 				BE74EF69246C6D120050526C /* Mutable.swift */,
 				BE74EF81246C7B730050526C /* DateUtils.swift */,
 				BE470815246C9B4000275736 /* Migrations.swift */,
+				BE1CBDC3246D31840047D4A9 /* Bundle+Factory.swift */,
+				BE190C4E246DECD4009EEC42 /* User+Format.swift */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -237,6 +276,7 @@
 		BE470818246CC29400275736 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				BE1CBDBC246D24060047D4A9 /* ProfileView */,
 				BE470820246CCCF900275736 /* FilterView */,
 				BE277F10246B7F51001D73F2 /* ListView */,
 			);
@@ -427,10 +467,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE1CBDC6246D3E4B0047D4A9 /* ProfileViewController.xib in Resources */,
 				BE277EE8246B6A2E001D73F2 /* LaunchScreen.storyboard in Resources */,
 				BE277F1C246BB8DA001D73F2 /* ListViewCell.xib in Resources */,
 				BE470824246CCD1300275736 /* FilterView.xib in Resources */,
 				BE47081E246CC2D400275736 /* FilterFab.xib in Resources */,
+				BE1CBDBE246D24170047D4A9 /* ProfileView.xib in Resources */,
 				BE47082D246D177600275736 /* FilterCell.xib in Resources */,
 				BE277EE5246B6A2E001D73F2 /* Assets.xcassets in Resources */,
 				BE277F0F246B7DD6001D73F2 /* ListView.xib in Resources */,
@@ -567,15 +609,21 @@
 				BE277EE0246B6A2D001D73F2 /* ListViewController.swift in Sources */,
 				BE470816246C9B4000275736 /* Migrations.swift in Sources */,
 				BE47080D246C7D7800275736 /* UserMapper.swift in Sources */,
+				BE1CBDBB246D24010047D4A9 /* ProfileViewController.swift in Sources */,
 				BE47081C246CC2C900275736 /* FilterFab.swift in Sources */,
 				BE47082E246D177600275736 /* FilterCell.swift in Sources */,
 				BE74EF71246C71E90050526C /* UserRepository.swift in Sources */,
+				BE190C4D246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift in Sources */,
 				BE277EDC246B6A2D001D73F2 /* AppDelegate.swift in Sources */,
 				BE74EF7C246C7A690050526C /* Models.swift in Sources */,
+				BE1CBDC4246D31840047D4A9 /* Bundle+Factory.swift in Sources */,
 				BE470822246CCD0A00275736 /* FilterViewController.swift in Sources */,
+				BE190C4B246DDFD5009EEC42 /* ProfileSwipeView.swift in Sources */,
 				BE74EF6A246C6D120050526C /* Mutable.swift in Sources */,
+				BE190C4F246DECD4009EEC42 /* User+Format.swift in Sources */,
 				BE277EDE246B6A2D001D73F2 /* SceneDelegate.swift in Sources */,
 				BE277F1E246BBBAC001D73F2 /* ListViewCell.swift in Sources */,
+				BE1CBDC1246D24BE0047D4A9 /* ProfileView.swift in Sources */,
 				BE74EF80246C7B1E0050526C /* User.swift in Sources */,
 				BE74EF6E246C6EF50050526C /* ListViewState.swift in Sources */,
 			);

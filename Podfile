@@ -16,6 +16,7 @@ target 'RandomUser' do
   pod 'ReachabilitySwift'
   pod 'SnapKit', '~> 5.0.0'
   pod 'RxViewController'
+  pod 'RxKingfisher'
 
   target 'RandomUserTests' do
     inherit! :search_paths

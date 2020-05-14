@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FilterFab : UIView {
+class FilterFab: UIView {
     @IBOutlet var button: UIButton!
 
     override func awakeFromNib() {

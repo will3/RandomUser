@@ -21,12 +21,12 @@ enum FilterRow {
 extension FilterViewController {
     static func prompt(from: UIViewController, filter: Filter) -> Observable<FilterViewController?> {
         return Observable.create { observer in
-            let filterView = FilterViewController(nibName: "FilterView", bundle: nil)
-            filterView.filter.accept(filter)
-            from.present(filterView, animated: true, completion: nil)
+            let vc = FilterViewController(nibName: "FilterView", bundle: nil)
+            vc.filter.accept(filter)
+            from.present(vc, animated: true, completion: nil)
 
-            let dispose = filterView.rx.viewWillDisappear.bind { [weak filterView] _ in
-                observer.on(.next(filterView))
+            let dispose = vc.rx.viewWillDisappear.bind { [weak vc] _ in
+                observer.on(.next(vc))
                 observer.onCompleted()
             }
             

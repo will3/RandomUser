@@ -32,7 +32,7 @@ class ListViewController: UIViewController, UITableViewDelegate {
     let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, User>>(
         configureCell: { (_, tableView, indexPath, user: User) in
             let cell = tableView.dequeueReusableCell(withIdentifier: "ListViewCell")! as! ListViewCell
-            cell.nameLabel.text = "\(user.firstName) \(user.lastName)"
+            cell.nameLabel.text = user.formatName()
             let age = DateUtils.calcAge(birthday: user.dob)
             cell.ageLabel.text = "\(age)"
             let image = URL(string: user.thumbImageUrl)
@@ -63,18 +63,29 @@ class ListViewController: UIViewController, UITableViewDelegate {
         let loadUsers: (Driver<ListViewState>) -> Signal<ListViewCommand> = react(
             request: { $0.getUsersQuery })
             { (query) -> Signal<ListViewCommand> in
-                if !query.shouldLoadNextPage {
-                    return Signal.empty()
-                }
-
-                guard let nextPage = query.nextPage else {
-                    return Signal.empty()
-                }
+                if !query.shouldLoadNextPage { return Signal.empty() }
+                guard let nextPage = query.nextPage else { return Signal.empty() }
 
                 return self.userService
                     .getUsers(take: 10, page: nextPage, gender: query.gender)
                     .asSignal(onErrorJustReturn: .failure(.networkError))
                     .map(ListViewCommand.responseReceived)
+            }
+        
+        let openProfileView: (Driver<ListViewState>) -> Signal<ListViewCommand> = react(
+            request: { OpenProfileQuery(
+                index: $0.selectedIndex,
+                profiles: $0.results,
+                openProfileCount: $0.openProfileCount,
+                nextPage: $0.nextPage) })
+            { (query) -> Signal<ListViewCommand> in
+                guard let index = query.index else { return Signal.empty() }
+                return ProfileViewController
+                    .prompt(from: self, index: index, profiles: query.profiles, nextPage: query.nextPage)
+                    .flatMapLatest { vc -> Observable<ListViewCommand> in
+                        return Observable.just(ListViewCommand.closedProfileView)
+                    }
+                    .asSignal(onErrorSignalWith: Signal.empty())
             }
 
         let bindUI: (Driver<ListViewState>) -> Signal<ListViewCommand> = bind(self) { me, state in
@@ -116,11 +127,17 @@ class ListViewController: UIViewController, UITableViewDelegate {
                     }
                     .asSignal(onErrorSignalWith: Signal.empty())
                 }
+            
+            let tapOnProfile = me.tableView.rx
+                .itemSelected
+                .asSignal()
+                .map { ListViewCommand.openProfile($0.item) }
 
             let events: [Signal<ListViewCommand>] = [
                 loadNextPage,
                 pullToRefresh,
-                changeFilter
+                changeFilter,
+                tapOnProfile
             ]
 
             return Bindings(subscriptions: subscriptions, events: events)
@@ -129,7 +146,7 @@ class ListViewController: UIViewController, UITableViewDelegate {
         Driver.system(
             initialState: ListViewState.initial,
             reduce: ListViewState.reduce,
-            feedback: bindUI, loadUsers)
+            feedback: bindUI, loadUsers, openProfileView)
             .drive()
             .disposed(by: disposeBag)
     }
