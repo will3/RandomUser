@@ -48,6 +48,25 @@ class Migrations {
             try db.run(users.addColumn(address, defaultValue: ""))
             db.userVersion = 2
         }
+        
+        if db.userVersion == 2 {
+            let users = Table("users")
+            let largeImageUrl = Expression<String>("largeImageUrl")
+            let email = Expression<String>("email")
+            let registered = Expression<Date>("registered")
+            let phone = Expression<String>("phone")
+            let cell = Expression<String>("cell")
+            let nat = Expression<String>("nat")
+            let identifier = Expression<String>("identifier")
+            try db.run(users.addColumn(largeImageUrl, defaultValue: ""))
+            try db.run(users.addColumn(email, defaultValue: ""))
+            try db.run(users.addColumn(registered, defaultValue: Date(timeIntervalSince1970: 0)))
+            try db.run(users.addColumn(phone, defaultValue: ""))
+            try db.run(users.addColumn(cell, defaultValue: ""))
+            try db.run(users.addColumn(nat, defaultValue: ""))
+            try db.run(users.addColumn(identifier, defaultValue: ""))
+            db.userVersion = 3
+        }
     }
 }
 

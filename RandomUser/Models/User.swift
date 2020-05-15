@@ -17,4 +17,11 @@ struct User: Encodable, Decodable, Equatable {
     let dob: Date
     let thumbImageUrl: String
     let address: String?
+
+    let largeImageUrl: String?
+    let email: String?
+    let registered: Date?
+    let phone: String?
+    let cell: String?
+    let nat: String?
 }

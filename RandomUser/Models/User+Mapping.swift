@@ -22,7 +22,13 @@ extension User {
             lastName: user.name.last,
             dob: DateUtils.isoDateFormatter.date(from: user.dob.date)!,
             thumbImageUrl: user.picture.large,
-            address: address
+            address: address,
+            largeImageUrl: user.picture.large,
+            email: user.email,
+            registered: DateUtils.isoDateFormatter.date(from: user.registered.date)!,
+            phone: user.phone,
+            cell: user.cell,
+            nat: user.nat
         )
     }
 }
