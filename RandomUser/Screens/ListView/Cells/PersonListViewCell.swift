@@ -9,6 +9,45 @@
 import Foundation
 import UIKit
 
+extension UILabel {
+    func setupAgeLabel() {
+        layer.cornerRadius = 4
+        textColor = .white
+        clipsToBounds = true
+    }
+    
+    func drawAge(gender: String, dob: Date) {
+        backgroundColor = gender == "male"
+            ? UIColor(hex: "#C9E7F6FF")
+            : UIColor(hex: "#F6D2E1FF")
+
+        let age = DateUtils.calcAge(birthday: dob)
+        let ageText = NSMutableAttributedString()
+        let icon = NSTextAttachment()
+        icon.bounds = CGRect(x: 0, y: -2, width: 14, height: 14)
+        icon.image = gender == "male" ? UIImage(named: "male") : UIImage(named: "female")
+        ageText.append(NSAttributedString(string: " "))
+        ageText.append(NSAttributedString(attachment: icon))
+        ageText.append(NSAttributedString(string: " "))
+        ageText.append(NSAttributedString(string: "\(age)"))
+        ageText.append(NSAttributedString(string: " "))
+        attributedText = ageText
+    }
+}
+
+extension UILabel {
+    func drawLocation(address: String?) {
+        let location = NSMutableAttributedString()
+        let icon = NSTextAttachment()
+        icon.image = UIImage(named: "fob")
+        icon.bounds = CGRect(x: 0, y: 0, width: 9, height: 13)
+        location.append(NSAttributedString(attachment: icon))
+        location.append(NSAttributedString(string: " "))
+        location.append(NSAttributedString(string: address ?? ""))
+        attributedText = location
+    }
+}
+
 class PersonListViewCell: UITableViewCell {
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
@@ -22,50 +61,19 @@ class PersonListViewCell: UITableViewCell {
         profileImageView.layer.cornerRadius = profileImageView.bounds.size.width / 2
         profileImageView.clipsToBounds = true
 
-        ageLabel.layer.cornerRadius = 4
-        ageLabel.textColor = .white
-        ageLabel.clipsToBounds = true
+        ageLabel.setupAgeLabel()
     }
 }
 
 extension PersonListViewCell {
     func configureUser(_ user: User) {
-        nameLabel.text = user.formatName()
+        nameLabel.text = "\(user.title) \(user.firstName) \(user.lastName)"
 
-        configureAge(user: user)
-        configureLocation(user: user)
-
+        ageLabel.drawAge(gender: user.gender, dob: user.dob)
+        locationLabel.drawLocation(address: user.address)
+        
         let image = URL(string: user.thumbImageUrl)
         profileImageView.kf.setImage(with: image)
-    }
-
-    private func configureAge(user: User) {
-        ageLabel.backgroundColor = user.gender == "male"
-            ? UIColor(hex: "#C9E7F6FF")
-            : UIColor(hex: "#F6D2E1FF")
-
-        let age = DateUtils.calcAge(birthday: user.dob)
-        let ageText = NSMutableAttributedString()
-        let icon = NSTextAttachment()
-        icon.bounds = CGRect(x: 0, y: -2, width: 14, height: 14)
-        icon.image = user.gender == "male" ? UIImage(named: "male") : UIImage(named: "female")
-        ageText.append(NSAttributedString(string: " "))
-        ageText.append(NSAttributedString(attachment: icon))
-        ageText.append(NSAttributedString(string: " "))
-        ageText.append(NSAttributedString(string: "\(age)"))
-        ageText.append(NSAttributedString(string: " "))
-        ageLabel.attributedText = ageText
-    }
-
-    private func configureLocation(user: User) {
-        let location = NSMutableAttributedString()
-        let icon = NSTextAttachment()
-        icon.image = UIImage(named: "fob")
-        icon.bounds = CGRect(x: 0, y: 0, width: 9, height: 13)
-        location.append(NSAttributedString(attachment: icon))
-        location.append(NSAttributedString(string: " "))
-        location.append(NSAttributedString(string: user.address ?? ""))
-        locationLabel.attributedText = location
     }
 }
 

@@ -25,6 +25,11 @@ class ProfileCardView: UIView {
     @IBOutlet var ageLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var clipView: UIView!
+    
+    @IBOutlet var usernameLabel: UILabel!
+    @IBOutlet var phoneLabel: UILabel!
+    @IBOutlet var cellLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
 
     override func awakeFromNib() {
         profileImageView.layer.masksToBounds = false
@@ -38,5 +43,22 @@ class ProfileCardView: UIView {
 
         clipView.layer.cornerRadius = 12.0
         clipView.clipsToBounds = true
+        
+        ageLabel.setupAgeLabel()
+    }
+
+    func drawProfile(_ profile: User) {
+        nameLabel.text = "\(profile.title) \(profile.firstName) \(profile.lastName)"
+
+        addressLabel.drawLocation(address: profile.address)
+        ageLabel.drawAge(gender: profile.gender, dob: profile.dob)
+        
+        let url = profile.thumbImageUrl
+        profileImageView.kf.setImage(with: URL(string: url))
+        
+        usernameLabel.text = "@\(profile.username)"
+        phoneLabel.text = profile.phone ?? ""
+        cellLabel.text = profile.cell ?? ""
+        emailLabel.text = profile.email ?? ""
     }
 }

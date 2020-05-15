@@ -51,12 +51,7 @@ class ProfileSwipeView: UIView {
 
         card.isHidden = false
         let profile = profiles[actualIndex]
-        card.nameLabel.text = "\(profile.firstName) \(profile.lastName)"
-        card.addressLabel.text = profile.address
-        let age = DateUtils.calcAge(birthday: profile.dob)
-        card.ageLabel.text = "\(age)"
-        let url = profile.thumbImageUrl
-        card.profileImageView.kf.setImage(with: URL(string: url))
+        card.drawProfile(profile)
     }
 
     let insets = UIEdgeInsets(top: 20, left: 20, bottom: 120, right: 20)

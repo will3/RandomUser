@@ -11,7 +11,6 @@
 		9DC7A2D816BB1BC9BB49C58B /* Pods_RandomUser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E47D9275035A780304E2FB3 /* Pods_RandomUser.framework */; };
 		BE190C4B246DDFD5009EEC42 /* ProfileSwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */; };
 		BE190C4D246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */; };
-		BE190C4F246DECD4009EEC42 /* User+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4E246DECD4009EEC42 /* User+Format.swift */; };
 		BE190C54246E0733009EEC42 /* AppContainer+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C53246E0733009EEC42 /* AppContainer+UI.swift */; };
 		BE190C58246E0D0D009EEC42 /* Gender+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C57246E0D0D009EEC42 /* Gender+Format.swift */; };
 		BE1CBDBB246D24010047D4A9 /* ProfileGallery+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDBA246D24010047D4A9 /* ProfileGallery+UI.swift */; };
@@ -89,7 +88,6 @@
 		7E2FFE7E91E7DCDA07F115DC /* Pods_RandomUser_RandomUserUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RandomUser_RandomUserUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSwipeView.swift; sourceTree = "<group>"; };
 		BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileSwipeView+Reactive.swift"; sourceTree = "<group>"; };
-		BE190C4E246DECD4009EEC42 /* User+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Format.swift"; sourceTree = "<group>"; };
 		BE190C53246E0733009EEC42 /* AppContainer+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContainer+UI.swift"; sourceTree = "<group>"; };
 		BE190C57246E0D0D009EEC42 /* Gender+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gender+Format.swift"; sourceTree = "<group>"; };
 		BE1CBDBA246D24010047D4A9 /* ProfileGallery+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileGallery+UI.swift"; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 				BE74EF81246C7B730050526C /* DateUtils.swift */,
 				BE470815246C9B4000275736 /* Migrations.swift */,
 				BE1CBDC3246D31840047D4A9 /* Bundle+Factory.swift */,
-				BE190C4E246DECD4009EEC42 /* User+Format.swift */,
 				BE190C57246E0D0D009EEC42 /* Gender+Format.swift */,
 				BEAF04B6246E42DA00D93B30 /* UIScrollView+Reactive.swift */,
 				BE277EE9246B6A2E001D73F2 /* Info.plist */,
@@ -693,7 +690,6 @@
 				BE470822246CCD0A00275736 /* FilterViewController.swift in Sources */,
 				BE190C4B246DDFD5009EEC42 /* ProfileSwipeView.swift in Sources */,
 				BE74EF6A246C6D120050526C /* Mutable.swift in Sources */,
-				BE190C4F246DECD4009EEC42 /* User+Format.swift in Sources */,
 				BE277EDE246B6A2D001D73F2 /* SceneDelegate.swift in Sources */,
 				BEAF04C5246E52E800D93B30 /* User+Mapping.swift in Sources */,
 				BEAF04BD246E474900D93B30 /* ProfileGallery+Feedback.swift in Sources */,
