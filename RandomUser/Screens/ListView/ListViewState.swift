@@ -22,7 +22,7 @@ extension Filter: Mutable {}
 
 enum ListViewCommand {
     case loadNextPage
-    case responseReceived(GetUsersResponse)
+    case responseReceived([User])
     case refresh
     case presentFilter
     case changeFilter(Filter)
@@ -79,18 +79,12 @@ extension ListViewState {
                     $0.shouldLoadNextPage = true
                 }
             }
-        case let .responseReceived(response):
-            switch response {
-            case let .success(users, nextPage):
-                return state.mutate {
-                    $0.results = $0.results + users
-                    $0.nextPage = nextPage
-                    $0.shouldLoadNextPage = false
-                    $0.failure = nil
-                    $0.refreshing = false
-                }
-            case let .failure(error):
-                return state.mutate { $0.failure = error }
+        case let .responseReceived(profiles):
+            return state.mutate {
+                $0.results = profiles
+                $0.shouldLoadNextPage = false
+                $0.failure = nil
+                $0.refreshing = false
             }
         case .refresh:
             return state.mutate {

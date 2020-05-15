@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let listViewController = ListViewController(nibName: "ListView", bundle: nil)
         let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-        let containerViewController = ContainerViewController(listViewController: listViewController, profileViewController: profileViewController)
+        let containerViewController = AppContainerViewController(listViewController: listViewController, profileViewController: profileViewController)
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene

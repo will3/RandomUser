@@ -1,5 +1,5 @@
 //
-//  ContainerViewController.swift
+//  AppContainerViewController.swift
 //  RandomUser
 //
 //  Created by will on 15/05/20.
@@ -13,25 +13,7 @@ import RxSwift
 import SnapKit
 import UIKit
 
-struct ChangePageQuery: Equatable {
-    let page: Int
-}
-
-struct ContainerViewState: Mutable {
-    var page = 0
-
-    var changePageQuery: ChangePageQuery {
-        return ChangePageQuery(page: page)
-    }
-
-    static let initial = ContainerViewState()
-}
-
-enum ContainerViewCommand {
-    case scrollToPage(Int)
-}
-
-class ContainerViewController: UIViewController {
+class AppContainerViewController: UIViewController {
     var listViewController: ListViewController!
     var profileViewController: ProfileViewController!
     let scrollView = UIScrollView()
@@ -40,6 +22,8 @@ class ContainerViewController: UIViewController {
     let profileViewButton = UIBarButtonItem()
     let listViewButton = UIBarButtonItem()
 
+    let userService = UserService()
+    
     let disposeBag = DisposeBag()
 
     init(listViewController: ListViewController, profileViewController: ProfileViewController) {
@@ -47,7 +31,7 @@ class ContainerViewController: UIViewController {
         self.profileViewController = profileViewController
         super.init(nibName: nil, bundle: nil)
 
-        listViewController.containerViewController = self
+        listViewController.AppContainerViewController = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -61,45 +45,42 @@ class ContainerViewController: UIViewController {
         setupScrollView()
         setupChildViewControllers()
 
-        let bindUI: (Driver<ContainerViewState>) -> Signal<ContainerViewCommand> = bind(self) { me, _ in
-            let subscriptions: [Disposable] = []
-            let events: [Signal<ContainerViewCommand>] = [
-                me.listViewButton.rx.tap.asSignal().map { _ in ContainerViewCommand.scrollToPage(0) },
-                me.profileViewButton.rx.tap.asSignal().map { _ in ContainerViewCommand.scrollToPage(1) },
+        let bindUI: AppContainer.Feedback = bind(self) { me, state in
+            let subscriptions: [Disposable] = [
+                state.map { $0.profiles }.drive(me.listViewController.rx.profiles)
+            ]
+            let events: [Signal<AppContainer.Event>] = [
+                me.listViewButton.rx.tap.asSignal()
+                    .map { _ in AppContainer.Event.scrollToPage(0) },
+                me.profileViewButton.rx.tap.asSignal()
+                    .map { _ in AppContainer.Event.scrollToPage(1) },
+                me.listViewController.rx.loadMore.asSignal(onErrorSignalWith: .empty())
+                    .map { _ in AppContainer.Event.loadMore }
             ]
             return Bindings(subscriptions: subscriptions, events: events)
         }
 
-        let scrollToPage: (Driver<ContainerViewState>) -> Signal<ContainerViewCommand> = react(request: { $0.changePageQuery }) { query in
-            self.scrollToPage(page: query.page)
-            return Signal.empty()
-        }
-
-        Driver
-            .system(
-                initialState: ContainerViewState.initial,
-                reduce: { (state, event) -> ContainerViewState in
-                    switch event {
-                    case let .scrollToPage(page):
-                        return state.mutate {
-                            $0.page = page
-                        }
-                    }
-                },
-                feedback: bindUI, scrollToPage
-            )
+        AppContainer.system(
+            initialState: AppContainer.initial,
+            ui: bindUI,
+            scrollToPage: scrollToPage,
+            loadProfiles: loadProfiles)
             .drive()
             .disposed(by: disposeBag)
     }
 
     func showProfileViewController() -> ProfileViewController {
-        scrollToPage(page: 1)
+        scrollToPage(1)
         return profileViewController
     }
 
-    func scrollToPage(page: Int) {
+    func scrollToPage(_ page: Int) {
         scrollView.setContentOffset(CGPoint(x: scrollView.contentSize.width * CGFloat(page), y: 0),
                                     animated: true)
+    }
+
+    private func loadProfiles(take: Int, page: Int, filter: Filter) -> Observable<GetUsersResponse> {
+        return userService.getUsers(take: take, page: page, gender: filter.gender)
     }
 
     private func setupToolbar() {

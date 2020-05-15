@@ -24,9 +24,10 @@ extension UIScrollView {
 class ListViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
     let refreshControl = UIRefreshControl()
-    var containerViewController: ContainerViewController?
-
-    let userService = UserService()
+    var AppContainerViewController: AppContainerViewController?
+    var onLoadMore: (() -> Void)?
+    var profiles = BehaviorRelay<[User]>(value: [User]())
+    
     let disposeBag = DisposeBag()
     let loadThreshold = 20.0
     let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, User>>(
@@ -64,12 +65,8 @@ class ListViewController: UIViewController, UITableViewDelegate {
             request: { $0.getUsersQuery })
         { (query) -> Signal<ListViewCommand> in
             if !query.shouldLoadNextPage { return Signal.empty() }
-            guard let nextPage = query.nextPage else { return Signal.empty() }
-
-            return self.userService
-                .getUsers(take: 10, page: nextPage, gender: query.gender)
-                .asSignal(onErrorJustReturn: .failure(.networkError))
-                .map(ListViewCommand.responseReceived)
+            self.onLoadMore?()
+            return Signal.empty()
         }
 
         let openProfileView: (Driver<ListViewState>) -> Signal<ListViewCommand> = react(
@@ -136,12 +133,15 @@ class ListViewController: UIViewController, UITableViewDelegate {
                 .itemSelected
                 .asSignal()
                 .map { ListViewCommand.openProfile($0.item) }
+            
+            let profilesDidSet = me.profiles.asSignal(onErrorSignalWith: .empty()).map( ListViewCommand.responseReceived)
 
             let events: [Signal<ListViewCommand>] = [
                 loadNextPage,
                 pullToRefresh,
                 changeFilter,
                 tapOnProfile,
+                profilesDidSet
             ]
 
             return Bindings(subscriptions: subscriptions, events: events)
@@ -168,8 +168,33 @@ extension ListViewController {
         nextPage: Int?,
         filter: Filter
     ) {
-        guard let containerViewController = self.containerViewController else { return }
-        let vc = containerViewController.showProfileViewController()
+        guard let AppContainerViewController = self.AppContainerViewController else { return }
+        let vc = AppContainerViewController.showProfileViewController()
         vc.setup(profiles: profiles, index: index, nextPage: nextPage, filter: filter)
+    }
+}
+
+extension Reactive where Base == ListViewController {
+    var profiles: Binder<[User]> {
+        return Binder(base) { view, profiles in
+            view.profiles.accept(profiles)
+        }
+    }
+    
+    var loadMore: Observable<(ListViewController)> {
+        return Observable.create { [weak view = self.base] observer -> Disposable in
+            guard let view = view else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+
+            view.onLoadMore = { [weak view] in
+                if let view = view {
+                    observer.onNext(view)
+                }
+            }
+
+            return Disposables.create()
+        }
     }
 }
