@@ -117,6 +117,7 @@ class ProfileSwipeView: UIView {
             } else {
                 UIView.animate(withDuration: 0.2) {
                     card.transform = self.calcTransform(index: 0)
+                    self.updateCards()
                 }
             }
         }
