@@ -15,7 +15,7 @@ import UIKit
 
 class AppContainerViewController: UIViewController {
     var listViewController: PersonListViewController!
-    var ProfileGalleryViewController: ProfileGalleryViewController!
+    var profileGalleryViewController: ProfileGalleryViewController!
     let scrollView = UIScrollView()
     let toolbar = UIToolbar()
     let toolbarHeight = 60
@@ -23,17 +23,13 @@ class AppContainerViewController: UIViewController {
     let listViewButton = UIBarButtonItem()
 
     let userService = UserService()
-    
+
     let disposeBag = DisposeBag()
-    
-    private var state: Driver<AppContainer>?
 
     init(listViewController: PersonListViewController, ProfileGalleryViewController: ProfileGalleryViewController) {
         self.listViewController = listViewController
-        self.ProfileGalleryViewController = ProfileGalleryViewController
+        profileGalleryViewController = ProfileGalleryViewController
         super.init(nibName: nil, bundle: nil)
-
-        listViewController.containerViewController = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,21 +42,24 @@ class AppContainerViewController: UIViewController {
         setupToolbar()
         setupScrollView()
         setupChildViewControllers()
-        
+
         let bindUI: AppContainer.Feedback = bind(self) { me, state in
             let subscriptions: [Disposable] = [
                 state
                     .map { $0.refreshing }
                     .drive(me.listViewController.refreshControl.rx.isRefreshing),
             ]
-            
+
             let events: [Signal<AppContainer.Event>] = [
                 me.listViewButton.rx.tap.asSignal()
                     .map { _ in AppContainer.Event.scrollToPage(0) },
                 me.profileViewButton.rx.tap.asSignal()
                     .map { _ in AppContainer.Event.scrollToPage(1) },
-                me.listViewController.rx.nearBottom.asSignal(onErrorSignalWith: .empty())
-                    .map { _ in AppContainer.Event.loadMore },
+                Signal.merge(
+                    me.listViewController.rx.nearBottom.asSignal(onErrorSignalWith: .empty()),
+                    me.profileGalleryViewController.swipeView.rx.nearBottom.asSignal(onErrorSignalWith: .empty())
+                )
+                .map { _ in AppContainer.Event.loadMore },
                 me.listViewController.rx.tapProfile.map(AppContainer.Event.navigateToProfile),
                 me.listViewController.refreshControl.rx.controlEvent(.valueChanged).asSignal().map { _ in AppContainer.Event.refresh },
                 me.listViewController.rx.tapFilter
@@ -78,33 +77,29 @@ class AppContainerViewController: UIViewController {
                             }
                             .asSignal(onErrorSignalWith: Signal.empty())
                     },
-                me.scrollView.rx.didScrollToExactPage.map(AppContainer.Event.scrollToPage)
+                me.scrollView.rx.didScrollToExactPage.map(AppContainer.Event.scrollToPage),
             ]
             return Bindings(subscriptions: subscriptions, events: events)
         }
 
-        state = AppContainer.system(
+        let state = AppContainer.system(
             initialState: AppContainer.initial,
             ui: bindUI,
             scrollToPage: scrollToPage,
-            loadProfiles: loadProfiles)
-            
-        state?
+            loadProfiles: loadProfiles
+        )
+
+        state
             .drive()
             .disposed(by: disposeBag)
-    }
-    
-    var profileUpdated: (Observable<[User]>) {
-        guard let state = state else { return Observable.just([User]()) }
-        return state.map { $0.profiles }.asObservable()
+
+        profileGalleryViewController.nestedState = state.map { state in
+            ProfileGalleryNested(profiles: state.profiles, startIndex: state.profileIndex)
+        }
+        listViewController.nestedState = state.map { $0.profiles }
     }
 
-    func showProfileGalleryViewController() -> ProfileGalleryViewController {
-        scrollToPage(1)
-        return ProfileGalleryViewController
-    }
-
-    func scrollToPage(_ page: Int) {
+    private func scrollToPage(_ page: Int) {
         scrollView.setContentOffset(CGPoint(x: scrollView.bounds.size.width * CGFloat(page), y: 0),
                                     animated: true)
     }
@@ -138,25 +133,25 @@ class AppContainerViewController: UIViewController {
 
     private func setupChildViewControllers() {
         addChild(listViewController)
-        addChild(ProfileGalleryViewController)
+        addChild(profileGalleryViewController)
 
         scrollView.addSubview(listViewController.view)
-        scrollView.addSubview(ProfileGalleryViewController.view)
+        scrollView.addSubview(profileGalleryViewController.view)
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
 
         listViewController.view.snp.makeConstraints { make in
             make.width.height.equalTo(scrollView)
             make.left.top.bottom.equalTo(scrollView)
-            make.right.equalTo(ProfileGalleryViewController.view.snp.left)
+            make.right.equalTo(profileGalleryViewController.view.snp.left)
         }
 
-        ProfileGalleryViewController.view.snp.makeConstraints { make in
+        profileGalleryViewController.view.snp.makeConstraints { make in
             make.width.height.equalTo(scrollView)
             make.right.top.bottom.equalTo(scrollView)
         }
 
         listViewController.didMove(toParent: self)
-        ProfileGalleryViewController.didMove(toParent: self)
+        profileGalleryViewController.didMove(toParent: self)
     }
 }

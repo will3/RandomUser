@@ -17,21 +17,20 @@ class ProfileSwipeView: UIView {
     private var initial = CGPoint()
     private var pivot = CGPoint()
     private let loadMoreThreshold = 4
-    private var loading = false
 
-    var onLoadMore: (() -> Void)?
+    var onNearBottom: (() -> Void)?
 
     var swipeOffset = 0
 
     var startIndex: Int = 0 {
         didSet {
+            swipeOffset = 0
             redraw()
         }
     }
 
     var profiles: [User] = [] {
         didSet {
-            loading = false
             redraw()
         }
     }
@@ -146,18 +145,8 @@ class ProfileSwipeView: UIView {
     private func loadMoreIfNeeded() {
         let i = startIndex + swipeOffset
         if profiles.count - i < loadMoreThreshold {
-            loadMore()
+            onNearBottom?()
         }
-    }
-
-    private func loadMore() {
-        if loading {
-            return
-        }
-
-        onLoadMore?()
-
-        loading = true
     }
 
     private func updateZIndexes() {

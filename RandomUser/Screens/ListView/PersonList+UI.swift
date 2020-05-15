@@ -15,16 +15,11 @@ import RxSwift
 import SnapKit
 import UIKit
 
-extension UIScrollView {
-    func isNearBottomEdge(edgeOffset: CGFloat = 200.0) -> Bool {
-        return contentOffset.y + frame.size.height + edgeOffset > contentSize.height
-    }
-}
-
 class PersonListViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
     let refreshControl = UIRefreshControl()
-    var containerViewController: AppContainerViewController?
+
+    var nestedState: SharedSequence<DriverSharingStrategy, [User]>?
 
     let disposeBag = DisposeBag()
     let loadThreshold = 20.0
@@ -69,11 +64,10 @@ class PersonListViewController: UIViewController, UITableViewDelegate {
 
             var events: [Signal<PersonList.Event>] = [
             ]
-            
-            // TODO Review this
-            if let containerViewController = me.containerViewController {
+
+            if let nestedState = me.nestedState {
                 events += [
-                    containerViewController.profileUpdated.asSignal(onErrorSignalWith: .empty()).map(PersonList.Event.responseReceived)
+                    nestedState.asSignal(onErrorSignalWith: .empty()).map(PersonList.Event.responseReceived),
                 ]
             }
 
@@ -82,9 +76,10 @@ class PersonListViewController: UIViewController, UITableViewDelegate {
 
         PersonList.feedback(
             initialState: PersonList.initial,
-            ui: bindUI)
-            .drive()
-            .disposed(by: disposeBag)
+            ui: bindUI
+        )
+        .drive()
+        .disposed(by: disposeBag)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

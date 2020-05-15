@@ -8,16 +8,16 @@
 
 import Foundation
 import RxCocoa
-import RxSwift
 import RxFeedback
+import RxSwift
 
 extension PersonList {
     typealias Feedback = (Driver<PersonList>) -> Signal<PersonList.Event>
-    
+
     static func feedback(
         initialState: PersonList,
-        ui: @escaping Feedback) -> Driver<PersonList> {
-        
+        ui: @escaping Feedback
+    ) -> Driver<PersonList> {
         return Driver.system(
             initialState: initialState,
             reduce: PersonList.reduce,

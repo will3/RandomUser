@@ -13,18 +13,17 @@ import RxSwift
 
 extension AppContainer {
     typealias Feedback = (Driver<AppContainer>) -> Signal<Event>
-    
-    static func system(initialState: AppContainer,
+
+    static func system(initialState _: AppContainer,
                        ui: @escaping Feedback,
                        scrollToPage: @escaping (Int) -> Void,
                        loadProfiles: @escaping (Int, Int, Filter) -> Observable<GetUsersResponse>) -> Driver<AppContainer> {
-        
         let scrollToPageFeedback: Feedback = react(request: { $0.changePageQuery }) {
             query in
             scrollToPage(query.page)
             return Signal.empty()
         }
-        
+
         let loadMore: Feedback = react(request: { $0.loadMoreQuery }) {
             query -> Signal<Event> in
             guard let page = query.page else { return .empty() }

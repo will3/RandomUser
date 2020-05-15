@@ -18,19 +18,19 @@ struct AppContainer: Mutable {
     var refreshing = false
 
     static let initial = AppContainer()
-    
+
     mutating func refresh() {
-        self.profiles = [User]()
-        self.page = 1
-        self.loadMoreTrigger = true
-        self.refreshing = true
+        profiles = [User]()
+        page = 1
+        loadMoreTrigger = true
+        refreshing = true
     }
 }
 
 extension AppContainer {
     static func reduce(state: AppContainer, event: Event) -> AppContainer {
         switch event {
-        case .scrollToPage(let scrollViewPage):
+        case let .scrollToPage(scrollViewPage):
             return state.mutate {
                 $0.scrollViewPage = scrollViewPage
             }
@@ -38,7 +38,7 @@ extension AppContainer {
             return state.mutate {
                 $0.loadMoreTrigger = true
             }
-        case .loadMoreSucceeded(let response):
+        case let .loadMoreSucceeded(response):
             switch response {
             case let .success(results, nextPage):
                 return state.mutate {
@@ -47,8 +47,8 @@ extension AppContainer {
                     $0.loadMoreTrigger = false
                     $0.refreshing = false
                 }
-            case .failure(_):
-                // TODO triggstateer error modal
+            case .failure:
+                // TODO: triggstateer error modal
                 return state.mutate {
                     $0.loadMoreTrigger = false
                     $0.refreshing = false

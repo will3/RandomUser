@@ -24,7 +24,7 @@ extension AppContainer {
     var changePageQuery: ChangePageQuery {
         return ChangePageQuery(page: scrollViewPage)
     }
-    
+
     var loadMoreQuery: LoadMoreQuery {
         return LoadMoreQuery(loadMoreTrigger: loadMoreTrigger, page: page, filter: filter)
     }

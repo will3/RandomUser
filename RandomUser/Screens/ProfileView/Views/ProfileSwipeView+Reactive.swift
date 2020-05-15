@@ -23,17 +23,15 @@ extension Reactive where Base == ProfileSwipeView {
         }
     }
 
-    var loadMore: Observable<ProfileSwipeView> {
+    var nearBottom: Observable<Void> {
         return Observable.create { [weak view = self.base] observer -> Disposable in
             guard let view = view else {
                 observer.onCompleted()
                 return Disposables.create()
             }
 
-            view.onLoadMore = { [weak view] in
-                if let view = view {
-                    observer.onNext(view)
-                }
+            view.onNearBottom = {
+                observer.onNext(())
             }
 
             return Disposables.create()

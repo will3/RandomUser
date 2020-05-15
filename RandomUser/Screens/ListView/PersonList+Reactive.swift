@@ -11,20 +11,18 @@ import RxCocoa
 import RxSwift
 
 extension Reactive where Base == PersonListViewController {
-    var tapProfile: Signal<(Int)> {
-        let tableView = self.base.tableView!
+    var tapProfile: Signal<Int> {
+        let tableView = base.tableView!
         return tableView.rx.itemSelected.asSignal().map { $0.item }
     }
 
-    var tapFilter: Signal<()> {
-        let filterButton = self.base.filterButton
+    var tapFilter: Signal<Void> {
+        let filterButton = base.filterButton
         return filterButton.button.rx.controlEvent(.touchUpInside).asSignal()
     }
-    
-    var nearBottom: Signal<()> {
-        let tableView = self.base.tableView!
-        return tableView.rx.contentOffset.asDriver().flatMap { _ in
-            tableView.isNearBottomEdge() ? Signal.just(()) : Signal.empty()
-        }
+
+    var nearBottom: Signal<Void> {
+        let tableView = base.tableView!
+        return tableView.rx.nearBottom
     }
 }
