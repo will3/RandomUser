@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  ProfileGalleryViewController.swift
 //  RandomUser
 //
 //  Created by will on 14/05/20.
@@ -39,7 +39,7 @@ struct ProfileViewState: Mutable {
     static let initial = ProfileViewState()
 }
 
-class ProfileViewController: UIViewController {
+class ProfileGalleryViewController: UIViewController {
     var initial = ProfileViewState.initial
     let disposeBag = DisposeBag()
     let userService = UserService()

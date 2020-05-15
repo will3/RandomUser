@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let listViewController = PersonListViewController(nibName: "PersonListViewController", bundle: nil)
-        let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-        let containerViewController = AppContainerViewController(listViewController: listViewController, profileViewController: profileViewController)
+        let profileGalleryViewController = ProfileGalleryViewController(nibName: "ProfileGalleryViewController", bundle: nil)
+        let containerViewController = AppContainerViewController(listViewController: listViewController, ProfileGalleryViewController: profileGalleryViewController)
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene

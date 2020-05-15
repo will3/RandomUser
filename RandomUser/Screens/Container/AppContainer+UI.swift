@@ -15,7 +15,7 @@ import UIKit
 
 class AppContainerViewController: UIViewController {
     var listViewController: PersonListViewController!
-    var profileViewController: ProfileViewController!
+    var ProfileGalleryViewController: ProfileGalleryViewController!
     let scrollView = UIScrollView()
     let toolbar = UIToolbar()
     let toolbarHeight = 60
@@ -28,9 +28,9 @@ class AppContainerViewController: UIViewController {
     
     private var state: Driver<AppContainer>?
 
-    init(listViewController: PersonListViewController, profileViewController: ProfileViewController) {
+    init(listViewController: PersonListViewController, ProfileGalleryViewController: ProfileGalleryViewController) {
         self.listViewController = listViewController
-        self.profileViewController = profileViewController
+        self.ProfileGalleryViewController = ProfileGalleryViewController
         super.init(nibName: nil, bundle: nil)
 
         listViewController.containerViewController = self
@@ -99,9 +99,9 @@ class AppContainerViewController: UIViewController {
         return state.map { $0.profiles }.asObservable()
     }
 
-    func showProfileViewController() -> ProfileViewController {
+    func showProfileGalleryViewController() -> ProfileGalleryViewController {
         scrollToPage(1)
-        return profileViewController
+        return ProfileGalleryViewController
     }
 
     func scrollToPage(_ page: Int) {
@@ -138,25 +138,25 @@ class AppContainerViewController: UIViewController {
 
     private func setupChildViewControllers() {
         addChild(listViewController)
-        addChild(profileViewController)
+        addChild(ProfileGalleryViewController)
 
         scrollView.addSubview(listViewController.view)
-        scrollView.addSubview(profileViewController.view)
+        scrollView.addSubview(ProfileGalleryViewController.view)
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
 
         listViewController.view.snp.makeConstraints { make in
             make.width.height.equalTo(scrollView)
             make.left.top.bottom.equalTo(scrollView)
-            make.right.equalTo(profileViewController.view.snp.left)
+            make.right.equalTo(ProfileGalleryViewController.view.snp.left)
         }
 
-        profileViewController.view.snp.makeConstraints { make in
+        ProfileGalleryViewController.view.snp.makeConstraints { make in
             make.width.height.equalTo(scrollView)
             make.right.top.bottom.equalTo(scrollView)
         }
 
         listViewController.didMove(toParent: self)
-        profileViewController.didMove(toParent: self)
+        ProfileGalleryViewController.didMove(toParent: self)
     }
 }
