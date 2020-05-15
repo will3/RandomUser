@@ -17,6 +17,7 @@ import UIKit
 enum FilterRow {
     case gender(Gender)
     case country(CountryCode?)
+    case kitten(Bool)
 }
 
 class ProfileFilterViewController: UIViewController, UITableViewDelegate {
@@ -50,6 +51,7 @@ class ProfileFilterViewController: UIViewController, UITableViewDelegate {
                         [
                             FilterRow.gender(filter.gender),
                             FilterRow.country(filter.countryCode),
+                            FilterRow.kitten(filter.kitten)
                         ]
                     }
                     .map { [SectionModel(model: "Results", items: $0)] }

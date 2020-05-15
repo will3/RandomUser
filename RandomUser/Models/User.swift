@@ -15,13 +15,15 @@ struct User: Encodable, Decodable, Equatable {
     let firstName: String
     let lastName: String
     let dob: Date
-    let thumbImageUrl: String
+    var thumbImageUrl: String
     let address: String?
 
-    let largeImageUrl: String?
+    var largeImageUrl: String?
     let email: String?
     let registered: Date?
     let phone: String?
     let cell: String?
     let nat: String?
 }
+
+extension User: Mutable { }

@@ -31,6 +31,9 @@ extension FilterCell {
         case let .country(code):
             titleLabel.text = "Country"
             detailLabel.text = code?.formatName() ?? "All"
+        case let .kitten(kitten):
+            titleLabel.text = "Kitten"
+            detailLabel.text = kitten ? "Yes" : "No"
         }
     }
 }

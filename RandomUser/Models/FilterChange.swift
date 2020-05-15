@@ -11,4 +11,5 @@ import Foundation
 enum FilterChange {
     case changeGender(Gender)
     case changeCountry(CountryCode?)
+    case changeKitten(Bool)
 }

@@ -105,7 +105,7 @@ class AppContainerViewController: UIViewController {
     }
 
     private func loadProfiles(take: Int, page: Int, filter: Filter) -> Observable<GetUsersResponse> {
-        return userService.getUsers(take: take, page: page, gender: filter.gender, countryCode: filter.countryCode)
+        return userService.getUsers(take: take, page: page, gender: filter.gender, countryCode: filter.countryCode, kitten: filter.kitten)
     }
 
     private func setupToolbar() {

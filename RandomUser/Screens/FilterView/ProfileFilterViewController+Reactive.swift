@@ -18,6 +18,8 @@ extension Reactive where Base == ProfileFilterViewController {
                 return .changeGender(gender)
             case let .country(code):
                 return .changeCountry(code)
+            case let .kitten(kitten):
+                return .changeKitten(kitten)
             }
         }
     }

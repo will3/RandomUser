@@ -76,6 +76,11 @@ extension AppContainer {
                     $0.filter.countryCode = code?.next() ?? .AU
                     $0.refresh()
                 }
+            case let .changeKitten(kitten):
+                return state.mutate {
+                    $0.filter.kitten = !kitten
+                    $0.refresh()
+                }
             }
         case .showFilter:
             return state.mutate {

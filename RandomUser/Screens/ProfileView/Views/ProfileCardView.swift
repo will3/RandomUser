@@ -53,8 +53,11 @@ class ProfileCardView: UIView {
         addressLabel.drawLocation(address: profile.address)
         ageLabel.drawAge(gender: profile.gender, dob: profile.dob)
 
-        let url = profile.thumbImageUrl
-        profileImageView.kf.setImage(with: URL(string: url))
+        if let url = profile.largeImageUrl {
+            profileImageView.kf.setImage(with: URL(string: url))
+        } else {
+            profileImageView.image = nil
+        }
 
         usernameLabel.text = "@\(profile.username)"
         phoneLabel.text = profile.phone ?? ""

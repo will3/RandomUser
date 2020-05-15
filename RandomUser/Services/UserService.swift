@@ -31,6 +31,27 @@ class UserService: IUserService {
         self.api = api
     }
 
+    func getUsers(take: Int = 10, page: Int = 1, gender: Gender, countryCode: CountryCode?, kitten: Bool) -> Observable<GetUsersResponse> {
+        let response = getUsers(take: take, page: page, gender: gender, countryCode: countryCode)
+        if !kitten {
+            return response
+        }
+        return response.map {
+            r in
+            switch (r) {
+            case let .success((results, nextPage)):
+                return .success((results.map { user in
+                    user.mutate {
+                        $0.thumbImageUrl = "https://placekitten.com/g/200/200"
+                        $0.largeImageUrl = "https://placekitten.com/g/800/800"
+                    }
+                }, nextPage))
+            default:
+                return r
+            }
+        }
+    }
+
     func getUsers(take: Int = 10, page: Int = 1, gender: Gender, countryCode: CountryCode?) -> Observable<GetUsersResponse> {
         let db = try! connectionFactory.create()
         if reachability.connection == .unavailable {

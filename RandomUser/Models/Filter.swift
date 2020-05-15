@@ -11,6 +11,7 @@ import Foundation
 struct Filter: Equatable {
     var gender: Gender = .female
     var countryCode: CountryCode?
+    var kitten = false
 }
 
 extension Filter: Mutable {}
