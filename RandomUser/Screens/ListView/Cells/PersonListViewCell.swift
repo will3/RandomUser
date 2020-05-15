@@ -22,7 +22,7 @@ class PersonListViewCell: UITableViewCell {
         profileImageView.layer.cornerRadius = profileImageView.bounds.size.width / 2
         profileImageView.clipsToBounds = true
 
-        ageLabel.layer.cornerRadius = 2
+        ageLabel.layer.cornerRadius = 4
         ageLabel.textColor = .white
         ageLabel.clipsToBounds = true
     }
