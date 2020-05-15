@@ -46,7 +46,7 @@ class UserService {
             .map { (r) -> GetUsersResponse in
                 switch r {
                 case let .success(results, nextPage):
-                    let users = results.map(UserMapper.mapUser)
+                    let users = results.map(User.from)
                     try! self.repository.saveUsers(db: db, items: users)
                     return .success((results: users, nextPage: nextPage))
                 case let .failure(err):

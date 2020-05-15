@@ -29,7 +29,6 @@
 		BE277F0F246B7DD6001D73F2 /* PersonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE277F0E246B7DD6001D73F2 /* PersonListViewController.xib */; };
 		BE277F1C246BB8DA001D73F2 /* PersonListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE277F1B246BB8DA001D73F2 /* PersonListViewCell.xib */; };
 		BE277F1E246BBBAC001D73F2 /* PersonListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277F1D246BBBAC001D73F2 /* PersonListViewCell.swift */; };
-		BE47080D246C7D7800275736 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE47080C246C7D7800275736 /* UserMapper.swift */; };
 		BE470813246C80B400275736 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE470812246C80B400275736 /* UserService.swift */; };
 		BE470816246C9B4000275736 /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE470815246C9B4000275736 /* Migrations.swift */; };
 		BE47081C246CC2C900275736 /* FilterFab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE47081B246CC2C900275736 /* FilterFab.swift */; };
@@ -58,6 +57,7 @@
 		BEAF04BB246E467C00D93B30 /* ProfileGallery+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04BA246E467C00D93B30 /* ProfileGallery+Reducer.swift */; };
 		BEAF04BD246E474900D93B30 /* ProfileGallery+Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04BC246E474900D93B30 /* ProfileGallery+Feedback.swift */; };
 		BEAF04C1246E4BB100D93B30 /* ProfileGallery+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04C0246E4BB100D93B30 /* ProfileGallery+Event.swift */; };
+		BEAF04C5246E52E800D93B30 /* User+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04C4246E52E800D93B30 /* User+Mapping.swift */; };
 		DC6E49A67C6C31080BC5EEF7 /* Pods_RandomUser_RandomUserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2FFE7E91E7DCDA07F115DC /* Pods_RandomUser_RandomUserUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,7 +110,6 @@
 		BE277F0E246B7DD6001D73F2 /* PersonListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonListViewController.xib; sourceTree = "<group>"; };
 		BE277F1B246BB8DA001D73F2 /* PersonListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonListViewCell.xib; sourceTree = "<group>"; };
 		BE277F1D246BBBAC001D73F2 /* PersonListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListViewCell.swift; sourceTree = "<group>"; };
-		BE47080C246C7D7800275736 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		BE470812246C80B400275736 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BE470815246C9B4000275736 /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
 		BE47081B246CC2C900275736 /* FilterFab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterFab.swift; sourceTree = "<group>"; };
@@ -139,6 +138,7 @@
 		BEAF04BA246E467C00D93B30 /* ProfileGallery+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileGallery+Reducer.swift"; sourceTree = "<group>"; };
 		BEAF04BC246E474900D93B30 /* ProfileGallery+Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileGallery+Feedback.swift"; sourceTree = "<group>"; };
 		BEAF04C0246E4BB100D93B30 /* ProfileGallery+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileGallery+Event.swift"; sourceTree = "<group>"; };
+		BEAF04C4246E52E800D93B30 /* User+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Mapping.swift"; sourceTree = "<group>"; };
 		E31FEA053B724C805561D34B /* Pods-RandomUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.release.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.release.xcconfig"; sourceTree = "<group>"; };
 		E944330EAAC25E108E4AB08B /* Pods-RandomUser-RandomUserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser-RandomUserUITests.release.xcconfig"; path = "Target Support Files/Pods-RandomUser-RandomUserUITests/Pods-RandomUser-RandomUserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F1D1CCBBB5F09AD584E6264D /* Pods-RandomUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.debug.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,11 +234,10 @@
 		BE277EDA246B6A2D001D73F2 /* RandomUser */ = {
 			isa = PBXGroup;
 			children = (
-				BEAF04C3246E51FB00D93B30 /* Misc */,
+				BEAF04C3246E51FB00D93B30 /* Assets */,
 				BE470819246CC2A000275736 /* Components */,
 				BE470818246CC29400275736 /* Screens */,
 				BE470811246C80AA00275736 /* Services */,
-				BE47080B246C7D6E00275736 /* Mappers */,
 				BE74EF7E246C7B140050526C /* Models */,
 				BE74EF6F246C71DA0050526C /* Repositories */,
 				BE277F14246B897A001D73F2 /* Api */,
@@ -251,6 +250,7 @@
 				BE190C4E246DECD4009EEC42 /* User+Format.swift */,
 				BE190C57246E0D0D009EEC42 /* Gender+Format.swift */,
 				BEAF04B6246E42DA00D93B30 /* UIScrollView+Reactive.swift */,
+				BE277EE9246B6A2E001D73F2 /* Info.plist */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -303,14 +303,6 @@
 				BE74EF7B246C7A690050526C /* RandomUserApi.swift */,
 			);
 			path = Api;
-			sourceTree = "<group>";
-		};
-		BE47080B246C7D6E00275736 /* Mappers */ = {
-			isa = PBXGroup;
-			children = (
-				BE47080C246C7D7800275736 /* UserMapper.swift */,
-			);
-			path = Mappers;
 			sourceTree = "<group>";
 		};
 		BE470811246C80AA00275736 /* Services */ = {
@@ -382,18 +374,18 @@
 				BE74EF7F246C7B1E0050526C /* User.swift */,
 				BEAF04A2246E2CD200D93B30 /* Filter.swift */,
 				BEAF04A4246E2CDF00D93B30 /* Gender.swift */,
+				BEAF04C4246E52E800D93B30 /* User+Mapping.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		BEAF04C3246E51FB00D93B30 /* Misc */ = {
+		BEAF04C3246E51FB00D93B30 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
 				BE277EE4246B6A2E001D73F2 /* Assets.xcassets */,
 				BE277EE6246B6A2E001D73F2 /* LaunchScreen.storyboard */,
-				BE277EE9246B6A2E001D73F2 /* Info.plist */,
 			);
-			path = Misc;
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		D1E49FC248392695390FE9F5 /* Pods */ = {
@@ -672,7 +664,6 @@
 				BE277EE0246B6A2D001D73F2 /* PersonList+UI.swift in Sources */,
 				BEAF04A5246E2CDF00D93B30 /* Gender.swift in Sources */,
 				BE470816246C9B4000275736 /* Migrations.swift in Sources */,
-				BE47080D246C7D7800275736 /* UserMapper.swift in Sources */,
 				BE1CBDBB246D24010047D4A9 /* ProfileGallery+UI.swift in Sources */,
 				BE47081C246CC2C900275736 /* FilterFab.swift in Sources */,
 				BEAF04B7246E42DA00D93B30 /* UIScrollView+Reactive.swift in Sources */,
@@ -694,6 +685,7 @@
 				BE74EF6A246C6D120050526C /* Mutable.swift in Sources */,
 				BE190C4F246DECD4009EEC42 /* User+Format.swift in Sources */,
 				BE277EDE246B6A2D001D73F2 /* SceneDelegate.swift in Sources */,
+				BEAF04C5246E52E800D93B30 /* User+Mapping.swift in Sources */,
 				BEAF04BD246E474900D93B30 /* ProfileGallery+Feedback.swift in Sources */,
 				BE277F1E246BBBAC001D73F2 /* PersonListViewCell.swift in Sources */,
 				BE1CBDC1246D24BE0047D4A9 /* ProfileCardView.swift in Sources */,
