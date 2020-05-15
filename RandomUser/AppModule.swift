@@ -50,7 +50,7 @@ class AppModule {
             return UserRepository(queue: queue)
         }
 
-        container.register(IRandomUserApi.self) { r in
+        container.register(IRandomUserApi.self) { _ in
             RandomUserApi(baseURL: "https://randomuser.me/api", seed: 1337)
         }
 
@@ -76,11 +76,20 @@ class AppModule {
             ProfileGalleryViewController(nibName: "ProfileGalleryViewController", bundle: nil)
         }
 
+        container.register(ProfileFilterViewController.self) { _ in
+            ProfileFilterViewController(nibName: "ProfileFilterViewController", bundle: nil)
+        }
+
         container.register(AppContainerViewController.self) { r in
             let listViewController = r.resolve(PersonListViewController.self)!
             let profileGalleryViewController = r.resolve(ProfileGalleryViewController.self)!
+            let filterViewController = r.resolve(ProfileFilterViewController.self)!
 
-            let containerViewController = AppContainerViewController(listViewController: listViewController, ProfileGalleryViewController: profileGalleryViewController)
+            let containerViewController = AppContainerViewController(
+                listViewController: listViewController,
+                profileGalleryViewController: profileGalleryViewController,
+                filterViewController: filterViewController
+            )
 
             containerViewController.userService = r.resolve(IUserService.self)!
 

@@ -25,7 +25,7 @@ class ProfileCardView: UIView {
     @IBOutlet var ageLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var clipView: UIView!
-    
+
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var phoneLabel: UILabel!
     @IBOutlet var cellLabel: UILabel!
@@ -43,7 +43,7 @@ class ProfileCardView: UIView {
 
         clipView.layer.cornerRadius = 12.0
         clipView.clipsToBounds = true
-        
+
         ageLabel.setupAgeLabel()
     }
 
@@ -52,10 +52,10 @@ class ProfileCardView: UIView {
 
         addressLabel.drawLocation(address: profile.address)
         ageLabel.drawAge(gender: profile.gender, dob: profile.dob)
-        
+
         let url = profile.thumbImageUrl
         profileImageView.kf.setImage(with: URL(string: url))
-        
+
         usernameLabel.text = "@\(profile.username)"
         phoneLabel.text = profile.phone ?? ""
         cellLabel.text = profile.cell ?? ""

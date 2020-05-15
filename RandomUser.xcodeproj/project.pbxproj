@@ -12,7 +12,6 @@
 		BE190C4B246DDFD5009EEC42 /* ProfileSwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */; };
 		BE190C4D246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */; };
 		BE190C54246E0733009EEC42 /* AppContainer+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C53246E0733009EEC42 /* AppContainer+UI.swift */; };
-		BE190C58246E0D0D009EEC42 /* Gender+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C57246E0D0D009EEC42 /* Gender+Format.swift */; };
 		BE1CBDBB246D24010047D4A9 /* ProfileGallery+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDBA246D24010047D4A9 /* ProfileGallery+UI.swift */; };
 		BE1CBDBE246D24170047D4A9 /* ProfileCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1CBDBD246D24170047D4A9 /* ProfileCardView.xib */; };
 		BE1CBDC1246D24BE0047D4A9 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDC0246D24BE0047D4A9 /* ProfileCardView.swift */; };
@@ -32,8 +31,8 @@
 		BE470816246C9B4000275736 /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE470815246C9B4000275736 /* Migrations.swift */; };
 		BE47081C246CC2C900275736 /* FilterFab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE47081B246CC2C900275736 /* FilterFab.swift */; };
 		BE47081E246CC2D400275736 /* FilterFab.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE47081D246CC2D400275736 /* FilterFab.xib */; };
-		BE470822246CCD0A00275736 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE470821246CCD0A00275736 /* FilterViewController.swift */; };
-		BE470824246CCD1300275736 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE470823246CCD1300275736 /* FilterView.xib */; };
+		BE470822246CCD0A00275736 /* ProfileFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE470821246CCD0A00275736 /* ProfileFilterViewController.swift */; };
+		BE470824246CCD1300275736 /* ProfileFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE470823246CCD1300275736 /* ProfileFilterViewController.xib */; };
 		BE47082D246D177600275736 /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE47082B246D177600275736 /* FilterCell.xib */; };
 		BE47082E246D177600275736 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE47082C246D177600275736 /* FilterCell.swift */; };
 		BE74EF6A246C6D120050526C /* Mutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF69246C6D120050526C /* Mutable.swift */; };
@@ -62,6 +61,10 @@
 		BEAF04CD246E570300D93B30 /* IUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04CC246E570300D93B30 /* IUserRepository.swift */; };
 		BEAF04CF246E8AB500D93B30 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04CE246E8AB500D93B30 /* CountryCode.swift */; };
 		BEAF04D1246E8C3400D93B30 /* IRandomUserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04D0246E8C3400D93B30 /* IRandomUserApi.swift */; };
+		BEAF04D3246E8D8200D93B30 /* ProfileFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04D2246E8D8200D93B30 /* ProfileFilter.swift */; };
+		BEAF04D5246E922D00D93B30 /* RxFeedback+Wiring.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04D4246E922D00D93B30 /* RxFeedback+Wiring.swift */; };
+		BEAF04D7246E97A700D93B30 /* ProfileFilterViewController+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04D6246E97A700D93B30 /* ProfileFilterViewController+Reactive.swift */; };
+		BEAF04D9246E9CD500D93B30 /* FilterChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04D8246E9CD500D93B30 /* FilterChange.swift */; };
 		DC6E49A67C6C31080BC5EEF7 /* Pods_RandomUser_RandomUserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2FFE7E91E7DCDA07F115DC /* Pods_RandomUser_RandomUserUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,7 +94,6 @@
 		BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSwipeView.swift; sourceTree = "<group>"; };
 		BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileSwipeView+Reactive.swift"; sourceTree = "<group>"; };
 		BE190C53246E0733009EEC42 /* AppContainer+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContainer+UI.swift"; sourceTree = "<group>"; };
-		BE190C57246E0D0D009EEC42 /* Gender+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gender+Format.swift"; sourceTree = "<group>"; };
 		BE1CBDBA246D24010047D4A9 /* ProfileGallery+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileGallery+UI.swift"; sourceTree = "<group>"; };
 		BE1CBDBD246D24170047D4A9 /* ProfileCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCardView.xib; sourceTree = "<group>"; };
 		BE1CBDC0246D24BE0047D4A9 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
@@ -117,8 +119,8 @@
 		BE470815246C9B4000275736 /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
 		BE47081B246CC2C900275736 /* FilterFab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterFab.swift; sourceTree = "<group>"; };
 		BE47081D246CC2D400275736 /* FilterFab.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterFab.xib; sourceTree = "<group>"; };
-		BE470821246CCD0A00275736 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
-		BE470823246CCD1300275736 /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
+		BE470821246CCD0A00275736 /* ProfileFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterViewController.swift; sourceTree = "<group>"; };
+		BE470823246CCD1300275736 /* ProfileFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileFilterViewController.xib; sourceTree = "<group>"; };
 		BE47082B246D177600275736 /* FilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
 		BE47082C246D177600275736 /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		BE74EF69246C6D120050526C /* Mutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mutable.swift; sourceTree = "<group>"; };
@@ -147,6 +149,10 @@
 		BEAF04CC246E570300D93B30 /* IUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUserRepository.swift; sourceTree = "<group>"; };
 		BEAF04CE246E8AB500D93B30 /* CountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
 		BEAF04D0246E8C3400D93B30 /* IRandomUserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRandomUserApi.swift; sourceTree = "<group>"; };
+		BEAF04D2246E8D8200D93B30 /* ProfileFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilter.swift; sourceTree = "<group>"; };
+		BEAF04D4246E922D00D93B30 /* RxFeedback+Wiring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxFeedback+Wiring.swift"; sourceTree = "<group>"; };
+		BEAF04D6246E97A700D93B30 /* ProfileFilterViewController+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileFilterViewController+Reactive.swift"; sourceTree = "<group>"; };
+		BEAF04D8246E9CD500D93B30 /* FilterChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChange.swift; sourceTree = "<group>"; };
 		E31FEA053B724C805561D34B /* Pods-RandomUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.release.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.release.xcconfig"; sourceTree = "<group>"; };
 		E944330EAAC25E108E4AB08B /* Pods-RandomUser-RandomUserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser-RandomUserUITests.release.xcconfig"; path = "Target Support Files/Pods-RandomUser-RandomUserUITests/Pods-RandomUser-RandomUserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F1D1CCBBB5F09AD584E6264D /* Pods-RandomUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.debug.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.debug.xcconfig"; sourceTree = "<group>"; };
@@ -255,10 +261,10 @@
 				BE74EF81246C7B730050526C /* DateUtils.swift */,
 				BE470815246C9B4000275736 /* Migrations.swift */,
 				BE1CBDC3246D31840047D4A9 /* Bundle+Factory.swift */,
-				BE190C57246E0D0D009EEC42 /* Gender+Format.swift */,
 				BEAF04B6246E42DA00D93B30 /* UIScrollView+Reactive.swift */,
 				BE277EE9246B6A2E001D73F2 /* Info.plist */,
 				BEAF04C8246E546D00D93B30 /* AppModule.swift */,
+				BEAF04D4246E922D00D93B30 /* RxFeedback+Wiring.swift */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -355,8 +361,10 @@
 			isa = PBXGroup;
 			children = (
 				BE470825246CCDCF00275736 /* Cells */,
-				BE470821246CCD0A00275736 /* FilterViewController.swift */,
-				BE470823246CCD1300275736 /* FilterView.xib */,
+				BE470821246CCD0A00275736 /* ProfileFilterViewController.swift */,
+				BE470823246CCD1300275736 /* ProfileFilterViewController.xib */,
+				BEAF04D2246E8D8200D93B30 /* ProfileFilter.swift */,
+				BEAF04D6246E97A700D93B30 /* ProfileFilterViewController+Reactive.swift */,
 			);
 			path = FilterView;
 			sourceTree = "<group>";
@@ -387,6 +395,7 @@
 				BEAF04A4246E2CDF00D93B30 /* Gender.swift */,
 				BEAF04C4246E52E800D93B30 /* User+Mapping.swift */,
 				BEAF04CE246E8AB500D93B30 /* CountryCode.swift */,
+				BEAF04D8246E9CD500D93B30 /* FilterChange.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -535,7 +544,7 @@
 				BE1CBDC6246D3E4B0047D4A9 /* ProfileGalleryViewController.xib in Resources */,
 				BE277EE8246B6A2E001D73F2 /* LaunchScreen.storyboard in Resources */,
 				BE277F1C246BB8DA001D73F2 /* PersonListViewCell.xib in Resources */,
-				BE470824246CCD1300275736 /* FilterView.xib in Resources */,
+				BE470824246CCD1300275736 /* ProfileFilterViewController.xib in Resources */,
 				BE47081E246CC2D400275736 /* FilterFab.xib in Resources */,
 				BE1CBDBE246D24170047D4A9 /* ProfileCardView.xib in Resources */,
 				BE47082D246D177600275736 /* FilterCell.xib in Resources */,
@@ -684,6 +693,7 @@
 				BEAF04BB246E467C00D93B30 /* ProfileGallery+Reducer.swift in Sources */,
 				BE47082E246D177600275736 /* FilterCell.swift in Sources */,
 				BE74EF71246C71E90050526C /* UserRepository.swift in Sources */,
+				BEAF04D5246E922D00D93B30 /* RxFeedback+Wiring.swift in Sources */,
 				BEAF049D246E1D9100D93B30 /* AppContainer+Reducer.swift in Sources */,
 				BE190C54246E0733009EEC42 /* AppContainer+UI.swift in Sources */,
 				BE190C4D246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift in Sources */,
@@ -695,19 +705,21 @@
 				BEAF04AF246E388C00D93B30 /* PersonList+Reducer.swift in Sources */,
 				BEAF04CF246E8AB500D93B30 /* CountryCode.swift in Sources */,
 				BE1CBDC4246D31840047D4A9 /* Bundle+Factory.swift in Sources */,
-				BE470822246CCD0A00275736 /* FilterViewController.swift in Sources */,
+				BE470822246CCD0A00275736 /* ProfileFilterViewController.swift in Sources */,
 				BE190C4B246DDFD5009EEC42 /* ProfileSwipeView.swift in Sources */,
 				BE74EF6A246C6D120050526C /* Mutable.swift in Sources */,
 				BE277EDE246B6A2D001D73F2 /* SceneDelegate.swift in Sources */,
 				BEAF04C5246E52E800D93B30 /* User+Mapping.swift in Sources */,
 				BEAF04BD246E474900D93B30 /* ProfileGallery+Feedback.swift in Sources */,
+				BEAF04D3246E8D8200D93B30 /* ProfileFilter.swift in Sources */,
 				BE277F1E246BBBAC001D73F2 /* PersonListViewCell.swift in Sources */,
 				BE1CBDC1246D24BE0047D4A9 /* ProfileCardView.swift in Sources */,
 				BEAF04B3246E3CD800D93B30 /* AppContainer+Event.swift in Sources */,
 				BE74EF80246C7B1E0050526C /* User.swift in Sources */,
 				BEAF04C1246E4BB100D93B30 /* ProfileGallery+Event.swift in Sources */,
-				BE190C58246E0D0D009EEC42 /* Gender+Format.swift in Sources */,
+				BEAF04D9246E9CD500D93B30 /* FilterChange.swift in Sources */,
 				BEAF04CB246E560300D93B30 /* IUserService.swift in Sources */,
+				BEAF04D7246E97A700D93B30 /* ProfileFilterViewController+Reactive.swift in Sources */,
 				BEAF04A7246E2D8F00D93B30 /* PersonList+Feedback.swift in Sources */,
 				BEAF04CD246E570300D93B30 /* IUserRepository.swift in Sources */,
 			);

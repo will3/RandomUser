@@ -18,14 +18,22 @@ extension AppContainer {
         let page: Int?
         let filter: Filter
     }
+
+    struct ShowFilterQuery: Equatable {
+        let showFilterTrigger: Bool
+    }
 }
 
 extension AppContainer {
     var changePageQuery: ChangePageQuery {
-        return ChangePageQuery(page: scrollViewPage)
+        ChangePageQuery(page: scrollViewPage)
     }
 
     var loadMoreQuery: LoadMoreQuery {
-        return LoadMoreQuery(loadMoreTrigger: loadMoreTrigger, page: page, filter: filter)
+        LoadMoreQuery(loadMoreTrigger: loadMoreTrigger, page: page, filter: filter)
+    }
+
+    var showFilterQuery: ShowFilterQuery {
+        ShowFilterQuery(showFilterTrigger: showFilterTrigger)
     }
 }

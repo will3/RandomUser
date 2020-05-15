@@ -15,7 +15,7 @@ extension UILabel {
         textColor = .white
         clipsToBounds = true
     }
-    
+
     func drawAge(gender: String, dob: Date) {
         backgroundColor = gender == "male"
             ? UIColor(hex: "#C9E7F6FF")
@@ -71,7 +71,7 @@ extension PersonListViewCell {
 
         ageLabel.drawAge(gender: user.gender, dob: user.dob)
         locationLabel.drawLocation(address: user.address)
-        
+
         let image = URL(string: user.thumbImageUrl)
         profileImageView.kf.setImage(with: image)
     }

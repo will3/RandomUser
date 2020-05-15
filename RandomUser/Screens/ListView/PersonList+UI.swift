@@ -19,7 +19,7 @@ class PersonListViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
     let refreshControl = UIRefreshControl()
 
-    var nestedState: SharedSequence<DriverSharingStrategy, [User]>?
+    var nestedState: NestedSystem<[User]>?
 
     let disposeBag = DisposeBag()
     let loadThreshold = 20.0

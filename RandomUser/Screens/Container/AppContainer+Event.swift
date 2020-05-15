@@ -15,6 +15,8 @@ extension AppContainer {
         case loadMoreSucceeded(GetUsersResponse)
         case navigateToProfile(index: Int)
         case refresh
-        case changeFilter(Filter)
+        case changeFilter(FilterChange)
+        case showFilter
+        case filterDismissed
     }
 }

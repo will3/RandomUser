@@ -13,3 +13,29 @@ enum Gender {
     case female
     case both
 }
+
+extension Gender {
+    func next() -> Gender {
+        switch self {
+        case .male:
+            return .female
+        case .female:
+            return .both
+        case .both:
+            return .male
+        }
+    }
+}
+
+extension Gender {
+    func format() -> String {
+        switch self {
+        case .male:
+            return "Male"
+        case .female:
+            return "Female"
+        case .both:
+            return "Both"
+        }
+    }
+}

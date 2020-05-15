@@ -17,7 +17,8 @@ extension AppContainer {
     static func system(initialState _: AppContainer,
                        ui: @escaping Feedback,
                        scrollToPage: @escaping (Int) -> Void,
-                       loadProfiles: @escaping (Int, Int, Filter) -> Observable<GetUsersResponse>) -> Driver<AppContainer> {
+                       loadProfiles: @escaping (Int, Int, Filter) -> Observable<GetUsersResponse>,
+                       showFilter: @escaping () -> ProfileFilterViewController) -> Driver<AppContainer> {
         let scrollToPageFeedback: Feedback = react(request: { $0.changePageQuery }) {
             query in
             scrollToPage(query.page)
@@ -34,11 +35,18 @@ extension AppContainer {
                 .map(Event.loadMoreSucceeded)
         }
 
+        let showFilter: Feedback = react(request: { $0.showFilterQuery }) {
+            query -> Signal<Event> in
+            if !query.showFilterTrigger { return Signal.empty() }
+            let filterVc = showFilter()
+            return filterVc.rx.viewWillDisappear.asSignal().map { _ in Event.filterDismissed }
+        }
+
         return Driver
             .system(
                 initialState: AppContainer.initial,
                 reduce: AppContainer.reduce(state:event:),
-                feedback: ui, scrollToPageFeedback, loadMore
+                feedback: ui, scrollToPageFeedback, loadMore, showFilter
             )
     }
 }

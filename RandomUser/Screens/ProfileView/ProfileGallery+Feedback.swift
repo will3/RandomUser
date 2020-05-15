@@ -20,7 +20,6 @@ extension ProfileGallery {
                 initialState: initialState,
                 reduce: ProfileGallery.reduce,
                 feedback: ui
-                // loadMore
             )
     }
 }

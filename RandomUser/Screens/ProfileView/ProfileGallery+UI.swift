@@ -22,7 +22,7 @@ class ProfileGalleryViewController: UIViewController {
     var initial = ProfileGallery.initial
     let disposeBag = DisposeBag()
     let swipeView = ProfileSwipeView()
-    var nestedState: SharedSequence<DriverSharingStrategy, ProfileGalleryNested>?
+    var nestedState: NestedSystem<ProfileGalleryNested>?
 
     override func viewDidLoad() {
         view.addSubview(swipeView)

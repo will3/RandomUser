@@ -48,7 +48,7 @@ class Migrations {
             try db.run(users.addColumn(address, defaultValue: ""))
             db.userVersion = 2
         }
-        
+
         if db.userVersion == 2 {
             let users = Table("users")
             let largeImageUrl = Expression<String>("largeImageUrl")

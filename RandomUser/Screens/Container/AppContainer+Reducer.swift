@@ -16,6 +16,7 @@ struct AppContainer: Mutable {
     var profiles = [User]()
     var profileIndex = 0
     var refreshing = false
+    var showFilterTrigger = false
 
     static let initial = AppContainer()
 
@@ -63,10 +64,26 @@ extension AppContainer {
             return state.mutate {
                 $0.refresh()
             }
-        case let .changeFilter(filter):
+        case let .changeFilter(filterChange):
+            switch filterChange {
+            case let .changeGender(gender):
+                return state.mutate {
+                    $0.filter.gender = gender.next()
+                    $0.refresh()
+                }
+            case let .changeCountry(code):
+                return state.mutate {
+                    $0.filter.countryCode = code?.next() ?? .AU
+                    $0.refresh()
+                }
+            }
+        case .showFilter:
             return state.mutate {
-                $0.filter = filter
-                $0.refresh()
+                $0.showFilterTrigger = true
+            }
+        case .filterDismissed:
+            return state.mutate {
+                $0.showFilterTrigger = false
             }
         }
     }

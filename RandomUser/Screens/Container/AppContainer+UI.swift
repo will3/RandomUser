@@ -17,6 +17,7 @@ class AppContainerViewController: UIViewController {
     var userService: IUserService!
     var listViewController: PersonListViewController!
     var profileGalleryViewController: ProfileGalleryViewController!
+    var filterViewController: ProfileFilterViewController!
 
     let scrollView = UIScrollView()
     let toolbar = UIToolbar()
@@ -28,10 +29,12 @@ class AppContainerViewController: UIViewController {
 
     init(
         listViewController: PersonListViewController,
-        ProfileGalleryViewController: ProfileGalleryViewController
+        profileGalleryViewController: ProfileGalleryViewController,
+        filterViewController: ProfileFilterViewController
     ) {
         self.listViewController = listViewController
-        profileGalleryViewController = ProfileGalleryViewController
+        self.profileGalleryViewController = profileGalleryViewController
+        self.filterViewController = filterViewController
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -65,22 +68,9 @@ class AppContainerViewController: UIViewController {
                 .map { _ in AppContainer.Event.loadMore },
                 me.listViewController.rx.tapProfile.map(AppContainer.Event.navigateToProfile),
                 me.listViewController.refreshControl.rx.controlEvent(.valueChanged).asSignal().map { _ in AppContainer.Event.refresh },
-                me.listViewController.rx.tapFilter
-                    .withLatestFrom(state)
-                    .flatMapLatest {
-                        state in FilterViewController.prompt(from: me, filter: state.filter)
-                            .flatMapLatest { fv -> Observable<AppContainer.Event> in
-                                guard let fv = fv, let filter = fv.filter.value else {
-                                    return Observable.empty()
-                                }
-                                if !fv.filterChanged {
-                                    return Observable.empty()
-                                }
-                                return Observable.just(AppContainer.Event.changeFilter(filter))
-                            }
-                            .asSignal(onErrorSignalWith: Signal.empty())
-                    },
+                me.listViewController.rx.tapFilter.asSignal().map { _ in AppContainer.Event.showFilter },
                 me.scrollView.rx.didScrollToExactPage.map(AppContainer.Event.scrollToPage),
+                me.filterViewController.rx.filterChanged.map { filterChange in AppContainer.Event.changeFilter(filterChange) },
             ]
             return Bindings(subscriptions: subscriptions, events: events)
         }
@@ -89,7 +79,8 @@ class AppContainerViewController: UIViewController {
             initialState: AppContainer.initial,
             ui: bindUI,
             scrollToPage: scrollToPage,
-            loadProfiles: loadProfiles
+            loadProfiles: loadProfiles,
+            showFilter: showFilter
         )
 
         state
@@ -100,6 +91,12 @@ class AppContainerViewController: UIViewController {
             ProfileGalleryNested(profiles: state.profiles, startIndex: state.profileIndex)
         }
         listViewController.nestedState = state.map { $0.profiles }
+        filterViewController.filterState = state.map { $0.filter }
+    }
+
+    private func showFilter() -> ProfileFilterViewController {
+        present(filterViewController, animated: true, completion: nil)
+        return filterViewController
     }
 
     private func scrollToPage(_ page: Int) {
@@ -156,5 +153,7 @@ class AppContainerViewController: UIViewController {
 
         listViewController.didMove(toParent: self)
         profileGalleryViewController.didMove(toParent: self)
+
+        filterViewController.loadViewIfNeeded()
     }
 }

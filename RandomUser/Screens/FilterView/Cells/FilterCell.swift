@@ -21,3 +21,16 @@ class FilterCell: UITableViewCell {
         disposeBagCell = DisposeBag()
     }
 }
+
+extension FilterCell {
+    func configure(row: FilterRow) {
+        switch row {
+        case let .gender(gender):
+            titleLabel.text = "Show me"
+            detailLabel.text = gender.format()
+        case let .country(code):
+            titleLabel.text = "Country"
+            detailLabel.text = code?.formatName() ?? "All"
+        }
+    }
+}

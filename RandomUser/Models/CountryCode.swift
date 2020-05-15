@@ -14,7 +14,7 @@ enum CountryCode {
 
 extension CountryCode {
     func next() -> CountryCode? {
-        let inOrder: [CountryCode] = [ .AU, .BR, .CA, .CH, .DE, .DK, .ES, .FI, .FR, .GB, .IE, .IR, .NO, .NL, .NZ, .TR, .US ]
+        let inOrder: [CountryCode] = [.AU, .BR, .CA, .CH, .DE, .DK, .ES, .FI, .FR, .GB, .IE, .IR, .NO, .NL, .NZ, .TR, .US]
         guard let index = inOrder.firstIndex(of: self) else {
             return nil
         }

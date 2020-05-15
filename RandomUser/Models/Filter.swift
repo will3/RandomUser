@@ -9,7 +9,7 @@
 import Foundation
 
 struct Filter: Equatable {
-    var gender: Gender
+    var gender: Gender = .female
     var countryCode: CountryCode?
 }
 
