@@ -6,87 +6,99 @@
 import Foundation
 
 // MARK: - Welcome
+
 struct RUWelcome: Codable {
-    let results: [RUUser]
-    let info: RUInfo
+  let results: [RUUser]
+  let info: RUInfo
 }
 
 // MARK: - Info
+
 struct RUInfo: Codable {
-    let seed: String
-    let results, page: Int
-    let version: String
+  let seed: String
+  let results, page: Int
+  let version: String
 }
 
 // MARK: - User
+
 struct RUUser: Codable {
-    let gender: String
-    let name: RUName
-    let location: RULocation
-    let email: String
-    let login: RULogin
-    let dob, registered: RUDob
-    let phone, cell: String
-    let id: RUID
-    let picture: RUPicture
-    let nat: String
+  let gender: String
+  let name: RUName
+  let location: RULocation
+  let email: String
+  let login: RULogin
+  let dob, registered: RUDob
+  let phone, cell: String
+  let id: RUID
+  let picture: RUPicture
+  let nat: String
 }
 
 // MARK: - Dob
+
 struct RUDob: Codable {
-    let date: String
-    let age: Int
+  let date: String
+  let age: Int
 }
 
 // MARK: - ID
+
 struct RUID: Codable {
-    let name, value: String?
+  let name, value: String?
 }
 
 // MARK: - Location
+
 struct RULocation: Codable {
-    let street: RUStreet
-    let city, state, country: String
-    let postcode: StringOrInt
-    let coordinates: RUCoordinates
-    let timezone: RUTimezone
+  let street: RUStreet
+  let city, state, country: String
+  let postcode: StringOrInt
+  let coordinates: RUCoordinates
+  let timezone: RUTimezone
 }
 
 // MARK: - Coordinates
+
 struct RUCoordinates: Codable {
-    let latitude, longitude: String
+  let latitude, longitude: String
 }
 
 // MARK: - Street
+
 struct RUStreet: Codable {
-    let number: Int
-    let name: String
+  let number: Int
+  let name: String
 }
 
 // MARK: - Timezone
-struct RUTimezone: Codable {
-    let offset, timezoneDescription: String
 
-    enum CodingKeys: String, CodingKey {
-        case offset
-        case timezoneDescription = "description"
-    }
+struct RUTimezone: Codable {
+  let offset, timezoneDescription: String
+
+  enum CodingKeys: String, CodingKey {
+    case offset
+    case timezoneDescription = "description"
+  }
 }
 
 // MARK: - Login
+
 struct RULogin: Codable {
-    let uuid, username, password, salt: String
-    let md5, sha1, sha256: String
+  let uuid, username, password, salt: String
+  let md5, sha1, sha256: String
 }
 
 // MARK: - Name
+
 struct RUName: Codable {
-    let title, first, last: String
+  let title, first, last: String
 }
 
 // MARK: - Picture
+
 struct RUPicture: Codable {
-    let large, medium, thumbnail: String
+  let large, medium, thumbnail: String
 }
 
 enum StringOrInt: Codable {
@@ -109,9 +121,9 @@ enum StringOrInt: Codable {
   func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .int(let int):
+    case let .int(int):
       try container.encode(int)
-    case .string(let string):
+    case let .string(string):
       try container.encode(string)
     }
   }

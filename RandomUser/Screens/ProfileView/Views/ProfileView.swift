@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import UIKit
-import RxSwift
-import RxFeedback
 import RxCocoa
+import RxFeedback
 import RxKingfisher
+import RxSwift
+import UIKit
 
 extension ProfileView {
     static func fromNib() -> ProfileView {
@@ -21,11 +21,11 @@ extension ProfileView {
 
 class ProfileView: UIView {
     @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet var nameLabel: UILabel!;
+    @IBOutlet var nameLabel: UILabel!
     @IBOutlet var ageLabel: UILabel!
-    @IBOutlet var addressLabel: UILabel!;
-    @IBOutlet var clipView: UIView!;
-    
+    @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var clipView: UIView!
+
     override func awakeFromNib() {
         profileImageView.layer.masksToBounds = false
 
@@ -35,7 +35,7 @@ class ProfileView: UIView {
         layer.shadowOffset = CGSize.zero
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 2
-        
+
         clipView.layer.cornerRadius = 12.0
         clipView.clipsToBounds = true
     }

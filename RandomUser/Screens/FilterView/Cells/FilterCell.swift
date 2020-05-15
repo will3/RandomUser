@@ -7,16 +7,16 @@
 //
 
 import Foundation
-import UIKit
 import RxSwift
+import UIKit
 
 class FilterCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var toggle: UISwitch!
-    
+
     var disposeBagCell: DisposeBag = DisposeBag()
-    
+
     override func prepareForReuse() {
         disposeBagCell = DisposeBag()
     }

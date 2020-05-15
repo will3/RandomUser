@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
 import Reachability
+import RxCocoa
+import RxSwift
 
 typealias GetUsersResponse = Result<(results: [User], nextPage: Int?), GetUsersError>
 
-enum GetUsersError : Error {
+enum GetUsersError: Error {
     case apiError(RandomUserApiError)
     case networkError
 }
@@ -24,18 +24,19 @@ class UserService {
     let reachability = try! Reachability()
     let connectionFactory = ConnectionFactory()
     func getUsers(take: Int = 10, page: Int = 1, gender: Gender) -> Observable<GetUsersResponse> {
-        let db = try! self.connectionFactory.create()
+        let db = try! connectionFactory.create()
         if reachability.connection == .unavailable {
-            let count = (try? self.repository.countUsers(db: db)) ?? 0
-            if (take * (page - 1) >= count) {
+            let count = (try? repository.countUsers(db: db)) ?? 0
+            if take * (page - 1) >= count {
                 return Observable.just(.success(([User](), nil)))
             }
 
-            let users = (try? self.repository.getUsers(
+            let users = (try? repository.getUsers(
                 db: db,
                 limit: take,
                 offset: take * (page - 1),
-                gender: gender.formatQuery()))
+                gender: gender.formatQuery()
+            ))
                 ?? [User]()
             return Observable.just(.success((users, page + 1)))
         }
@@ -50,8 +51,8 @@ class UserService {
                     return .success((results: users, nextPage: nextPage))
                 case let .failure(err):
                     return .failure(.apiError(err))
+                }
             }
-        }
     }
 }
 

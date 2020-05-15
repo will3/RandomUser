@@ -7,18 +7,18 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 extension Reactive where Base == ProfileSwipeView {
     var profiles: Binder<[User]> {
-        return Binder(self.base) { view, profiles in
+        return Binder(base) { view, profiles in
             view.profiles = profiles
         }
     }
 
     var startIndex: Binder<Int> {
-        return Binder(self.base) { view, startIndex in
+        return Binder(base) { view, startIndex in
             view.startIndex = startIndex
         }
     }
@@ -29,13 +29,13 @@ extension Reactive where Base == ProfileSwipeView {
                 observer.onCompleted()
                 return Disposables.create()
             }
-            
+
             view.onLoadMore = { [weak view] in
                 if let view = view {
                     observer.onNext(view)
                 }
             }
-            
+
             return Disposables.create()
         }
     }

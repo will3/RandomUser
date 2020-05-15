@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import UIKit
-import RxSwift
+import RxCocoa
 import RxDataSources
 import RxFeedback
-import RxCocoa
+import RxSwift
 import RxViewController
+import UIKit
 
 enum FilterRow {
     case gender(Gender)
@@ -29,7 +29,7 @@ extension FilterViewController {
                 observer.on(.next(vc))
                 observer.onCompleted()
             }
-            
+
             return dispose
         }
     }
@@ -48,11 +48,11 @@ extension Gender {
     }
 }
 
-class FilterViewController : UIViewController, UITableViewDelegate {
+class FilterViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var doneButton: UIBarButtonItem!
     @IBOutlet var cancelButton: UIBarButtonItem!
-    
+
     var onFilterChanged: ((Filter?) -> Void)?
 
     let disposeBag = DisposeBag()
@@ -62,14 +62,13 @@ class FilterViewController : UIViewController, UITableViewDelegate {
     var filterChanged = false
 
     let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, FilterRow>>(
-        configureCell: { (_, tableView, indexPath, row: FilterRow) in
+        configureCell: { (_, tableView, _, row: FilterRow) in
             let cell = tableView.dequeueReusableCell(withIdentifier: "FilterCell")! as! FilterCell
 
             switch row {
-            case .gender(let gender):
+            case let .gender(gender):
                 cell.titleLabel.text = "Gender"
                 cell.detailLabel.text = gender.format()
-                break
             }
 
             return cell
@@ -77,10 +76,9 @@ class FilterViewController : UIViewController, UITableViewDelegate {
 
     override func viewDidLoad() {
         tableView.register(UINib(nibName: "FilterCell", bundle: nil), forCellReuseIdentifier: "FilterCell")
-        
+
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
 
-        
         tableView.rx.modelSelected(FilterRow.self).subscribe(onNext: { [weak self] row in
             guard let self = self else { return }
             switch row {
@@ -91,30 +89,31 @@ class FilterViewController : UIViewController, UITableViewDelegate {
                 self.filter.accept(filter)
             }
         }).disposed(by: disposeBag)
-        
+
         doneButton.rx.tap
             .bind { [weak self] in
                 self?.filterChanged = true
                 self?.dismiss(animated: true, completion: nil)
             }.disposed(by: disposeBag)
-        
+
         cancelButton.rx.tap
             .bind { [weak self] in
                 self?.dismiss(animated: true, completion: nil)
             }
             .disposed(by: disposeBag)
-        
+
         filter.map { filter -> [FilterRow] in
             guard let filter = filter else {
                 return [FilterRow]()
             }
-            return [ FilterRow.gender(filter.gender) ] }
-            .map { [SectionModel(model: "Results", items: $0)] }
-            .asDriver(onErrorJustReturn: [])
-            .drive(self.tableView.rx.items(dataSource: self.dataSource))
-            .disposed(by: disposeBag)
+            return [FilterRow.gender(filter.gender)]
+        }
+        .map { [SectionModel(model: "Results", items: $0)] }
+        .asDriver(onErrorJustReturn: [])
+        .drive(tableView.rx.items(dataSource: dataSource))
+        .disposed(by: disposeBag)
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }

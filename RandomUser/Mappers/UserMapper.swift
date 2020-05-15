@@ -22,6 +22,7 @@ class UserMapper {
             lastName: user.name.last,
             dob: DateUtils.isoDateFormatter.date(from: user.dob.date)!,
             thumbImageUrl: user.picture.large,
-            address: address)
+            address: address
+        )
     }
 }

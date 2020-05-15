@@ -6,11 +6,11 @@
 //  Copyright © 2020 will. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 import RxSwift
 
-enum RandomUserApiError : Error {
+enum RandomUserApiError: Error {
     case malformedJson
 }
 
@@ -18,7 +18,7 @@ typealias RandomUserApiResponse = Result<(results: [RUUser], nextPage: Int?), Ra
 
 class RandomUserApi {
     let seed = 1337
-    
+
     let backgroundWorkScheduler: OperationQueueScheduler
 
     init() {
@@ -29,20 +29,20 @@ class RandomUserApi {
     }
 
     func getUsers(take: Int = 10, page: Int = 1, gender: String?) -> Observable<RandomUserApiResponse> {
-
         var components = URLComponents(string: "https://randomuser.me/api")!
         components.queryItems = [
             // URLQueryItem(name: "seed", value: "\(seed)"),
             URLQueryItem(name: "results", value: "\(take)"),
             URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "gender", value: gender)]
+            URLQueryItem(name: "gender", value: gender),
+        ]
         let url = components.url!
 
         return URLSession.shared.rx
             .response(request: URLRequest(url: url))
             .retry(3)
             .observeOn(backgroundWorkScheduler)
-            .map { (r, data) -> RandomUserApiResponse in
+            .map { (_, data) -> RandomUserApiResponse in
                 guard let welcome = try? JSONDecoder().decode(RUWelcome.self, from: data) else {
                     return .failure(.malformedJson)
                 }

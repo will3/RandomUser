@@ -1,5 +1,4 @@
-protocol Mutable {
-}
+protocol Mutable {}
 
 extension Mutable {
     func mutateOne<T>(transform: (inout Self) -> T) -> Self {

@@ -18,8 +18,7 @@ struct Filter: Equatable {
     var gender: Gender
 }
 
-extension Filter: Mutable {
-}
+extension Filter: Mutable {}
 
 enum ListViewCommand {
     case loadNextPage
@@ -45,7 +44,8 @@ struct ListViewState {
         return GetUsersQuery(
             nextPage: nextPage,
             shouldLoadNextPage: shouldLoadNextPage,
-            gender: filter.gender)
+            gender: filter.gender
+        )
     }
 
     init() {
@@ -53,7 +53,7 @@ struct ListViewState {
     }
 }
 
-// TODO optimize Equatable
+// TODO: optimize Equatable
 struct OpenProfileQuery: Equatable {
     let index: Int?
     let profiles: [User]
@@ -63,12 +63,12 @@ struct OpenProfileQuery: Equatable {
 }
 
 struct GetUsersQuery: Equatable {
-    let nextPage: Int?;
-    let shouldLoadNextPage: Bool;
-    let gender: Gender;
+    let nextPage: Int?
+    let shouldLoadNextPage: Bool
+    let gender: Gender
 }
 
-extension ListViewState: Mutable { }
+extension ListViewState: Mutable {}
 
 extension ListViewState {
     static func reduce(state: ListViewState, command: ListViewCommand) -> ListViewState {
@@ -79,7 +79,7 @@ extension ListViewState {
                     $0.shouldLoadNextPage = true
                 }
             }
-        case .responseReceived(let response):
+        case let .responseReceived(response):
             switch response {
             case let .success(users, nextPage):
                 return state.mutate {
@@ -100,7 +100,7 @@ extension ListViewState {
                 $0.failure = nil
                 $0.refreshing = true
             }
-        case .changeFilter(let filter):
+        case let .changeFilter(filter):
             print("change filter \(filter)")
             return state.mutate {
                 $0.filter = filter
@@ -109,7 +109,7 @@ extension ListViewState {
                 $0.shouldLoadNextPage = true
                 $0.failure = nil
             }
-        case .openProfile(let index):
+        case let .openProfile(index):
             return state.mutate {
                 $0.selectedIndex = index
                 $0.openProfileCount = $0.openProfileCount + 1

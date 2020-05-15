@@ -14,7 +14,7 @@ class Migrations {
         let db = try ConnectionFactory().create()
         if db.userVersion == 0 {
             let users = Table("users")
-            
+
             let username = Expression<String>("username")
             let gender = Expression<String>("gender")
             let title = Expression<String>("title")
@@ -22,7 +22,7 @@ class Migrations {
             let lastName = Expression<String>("lastName")
             let dob = Expression<Date>("dob")
             let thumbImageUrl = Expression<Date>("thumbImageUrl")
-            
+
             try db.run(users.create { t in
                 t.column(username, primaryKey: true)
                 t.column(gender)
@@ -35,7 +35,7 @@ class Migrations {
 
             db.userVersion = 1
         }
-        
+
         if db.userVersion == 1 {
             let users = Table("users")
             let address = Expression<String>("address")
@@ -47,7 +47,7 @@ class Migrations {
 
 extension Connection {
     public var userVersion: Int32 {
-        get { return Int32(try! scalar("PRAGMA user_version") as! Int64)}
+        get { return Int32(try! scalar("PRAGMA user_version") as! Int64) }
         set { try! run("PRAGMA user_version = \(newValue)") }
     }
 }

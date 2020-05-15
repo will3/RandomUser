@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import UIKit
 import RxCocoa
 import RxFeedback
 import RxSwift
 import RxViewController
+import UIKit
 
 struct LoadProfilesQuery: Equatable {
     let page: Int?
@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController {
     let disposeBag = DisposeBag()
     let userService = UserService()
     let swipeView = ProfileSwipeView()
-    
+
     func setup(profiles: [User], index: Int, nextPage: Int?, filter: Filter) {
         initial = initial.mutate {
             $0.profiles = profiles
@@ -56,18 +56,18 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         view.addSubview(swipeView)
-        swipeView.snp.makeConstraints { (make) in
+        swipeView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
 
         let bindUI: (Driver<ProfileViewState>) -> Signal<ProfileViewCommand> = bind(self) { me, state in
             let subscriptions: [Disposable] = [
                 state.map { $0.profiles }.distinctUntilChanged().drive(me.swipeView.rx.profiles),
-                state.map { $0.index }.distinctUntilChanged().drive(me.swipeView.rx.startIndex)
+                state.map { $0.index }.distinctUntilChanged().drive(me.swipeView.rx.startIndex),
             ]
             let events: [Signal<ProfileViewCommand>] = [
                 me.swipeView.rx.loadMore.asSignal(onErrorJustReturn: me.swipeView)
-                    .map { _ in ProfileViewCommand.loadMore }
+                    .map { _ in ProfileViewCommand.loadMore },
             ]
 
             return Bindings(subscriptions: subscriptions, events: events)
@@ -75,15 +75,15 @@ class ProfileViewController: UIViewController {
 
         let loadMore: (Driver<ProfileViewState>) -> Signal<ProfileViewCommand> = react(
             request: { $0.loadProfilesQuery })
-            { (query) -> Signal<ProfileViewCommand> in
-                if !query.loadNextPageTrigger { return Signal.empty() }
-                guard let page = query.page else { return Signal.empty() }
+        { (query) -> Signal<ProfileViewCommand> in
+            if !query.loadNextPageTrigger { return Signal.empty() }
+            guard let page = query.page else { return Signal.empty() }
 
-                return self.userService
-                    .getUsers(take: 10, page: page, gender: query.filter.gender)
-                    .asSignal(onErrorJustReturn: .failure(.networkError))
-                    .map(ProfileViewCommand.loadMoreCompleted)
-            }
+            return self.userService
+                .getUsers(take: 10, page: page, gender: query.filter.gender)
+                .asSignal(onErrorJustReturn: .failure(.networkError))
+                .map(ProfileViewCommand.loadMoreCompleted)
+        }
 
         Driver
             .system(
@@ -94,15 +94,15 @@ class ProfileViewController: UIViewController {
                         return state.mutate {
                             $0.loadNextPageTrigger = true
                         }
-                    case .loadMoreCompleted(let response):
+                    case let .loadMoreCompleted(response):
                         switch response {
-                        case .success(let profiles, let nextPage):
+                        case let .success(profiles, nextPage):
                             return state.mutate {
                                 $0.profiles = $0.profiles + profiles
                                 $0.nextPage = nextPage
                                 $0.loadNextPageTrigger = false
                             }
-                        case .failure(let error):
+                        case let .failure(error):
                             return state.mutate {
                                 $0.failure = error
                                 $0.loadNextPageTrigger = false
@@ -110,7 +110,8 @@ class ProfileViewController: UIViewController {
                         }
                     }
                 },
-                feedback: bindUI, loadMore)
+                feedback: bindUI, loadMore
+            )
             .drive()
             .disposed(by: disposeBag)
     }

@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import UIKit
-import SnapKit
 import RxCocoa
-import RxSwift
 import RxFeedback
+import RxSwift
+import SnapKit
+import UIKit
 
 struct ChangePageQuery: Equatable {
     let page: Int
@@ -60,16 +60,16 @@ class ContainerViewController: UIViewController {
         setupToolbar()
         setupScrollView()
         setupChildViewControllers()
-        
-        let bindUI: (Driver<ContainerViewState>) -> Signal<ContainerViewCommand> = bind(self) { me, state in
+
+        let bindUI: (Driver<ContainerViewState>) -> Signal<ContainerViewCommand> = bind(self) { me, _ in
             let subscriptions: [Disposable] = []
             let events: [Signal<ContainerViewCommand>] = [
                 me.listViewButton.rx.tap.asSignal().map { _ in ContainerViewCommand.scrollToPage(0) },
-                me.profileViewButton.rx.tap.asSignal().map { _ in ContainerViewCommand.scrollToPage(1) }
+                me.profileViewButton.rx.tap.asSignal().map { _ in ContainerViewCommand.scrollToPage(1) },
             ]
             return Bindings(subscriptions: subscriptions, events: events)
         }
-        
+
         let scrollToPage: (Driver<ContainerViewState>) -> Signal<ContainerViewCommand> = react(request: { $0.changePageQuery }) { query in
             self.scrollToPage(page: query.page)
             return Signal.empty()
@@ -79,28 +79,29 @@ class ContainerViewController: UIViewController {
             .system(
                 initialState: ContainerViewState.initial,
                 reduce: { (state, event) -> ContainerViewState in
-                    switch (event) {
-                    case .scrollToPage(let page):
+                    switch event {
+                    case let .scrollToPage(page):
                         return state.mutate {
                             $0.page = page
                         }
                     }
                 },
-                feedback: bindUI, scrollToPage)
+                feedback: bindUI, scrollToPage
+            )
             .drive()
             .disposed(by: disposeBag)
     }
-    
+
     func showProfileViewController() -> ProfileViewController {
         scrollToPage(page: 1)
         return profileViewController
     }
-    
+
     func scrollToPage(page: Int) {
         scrollView.setContentOffset(CGPoint(x: scrollView.contentSize.width * CGFloat(page), y: 0),
                                     animated: true)
     }
-    
+
     private func setupToolbar() {
         view.addSubview(toolbar)
         toolbar.snp.makeConstraints { make in
@@ -114,7 +115,7 @@ class ContainerViewController: UIViewController {
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.items = [listViewButton, space, profileViewButton]
     }
-    
+
     private func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
@@ -123,27 +124,27 @@ class ContainerViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
-    
+
     private func setupChildViewControllers() {
         addChild(listViewController)
         addChild(profileViewController)
-        
+
         scrollView.addSubview(listViewController.view)
         scrollView.addSubview(profileViewController.view)
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
-        
+
         listViewController.view.snp.makeConstraints { make in
             make.width.height.equalTo(scrollView)
             make.left.top.bottom.equalTo(scrollView)
             make.right.equalTo(profileViewController.view.snp.left)
         }
-        
+
         profileViewController.view.snp.makeConstraints { make in
             make.width.height.equalTo(scrollView)
             make.right.top.bottom.equalTo(scrollView)
         }
-        
+
         listViewController.didMove(toParent: self)
         profileViewController.didMove(toParent: self)
     }

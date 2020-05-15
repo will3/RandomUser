@@ -22,18 +22,18 @@ class ProfileSwipeView: UIView {
     var onLoadMore: (() -> Void)?
 
     var swipeOffset = 0
-    
+
     var startIndex: Int = 0 {
         didSet {
             redraw()
         }
     }
-    
-    var profiles: [User] = []  {
-       didSet {
+
+    var profiles: [User] = [] {
+        didSet {
             loading = false
             redraw()
-       }
+        }
     }
 
     private func redraw() {
@@ -78,13 +78,12 @@ class ProfileSwipeView: UIView {
         let translation = pan.translation(in: self)
         let profileView = profileViews[0]
         let location = pan.location(in: self)
-        let threshold = UIScreen.main.bounds.width *  0.25
+        let threshold = UIScreen.main.bounds.width * 0.25
 
         switch pan.state {
         case .began:
             initial = location
-            pivot = CGPoint(x: self.bounds.width * 0.5, y: self.bounds.height * 0.6)
-            break
+            pivot = CGPoint(x: bounds.width * 0.5, y: bounds.height * 0.6)
         case .changed:
             let start = atan2(minAbs(initial.y - pivot.y, 20), initial.x - pivot.x)
             let end = atan2(minAbs(initial.y + translation.y * 0.2 - pivot.y, 10), initial.x + translation.x - pivot.x)
@@ -95,23 +94,22 @@ class ProfileSwipeView: UIView {
                     .translatedBy(x: translation.x, y: translation.y)
                     .rotated(by: angular)
             }
-            
+
             let gone = pow(max(min(abs(translation.x / threshold), 1), 0), 2)
-            
-            for i in 1..<numProfileViews {
+
+            for i in 1 ..< numProfileViews {
                 let profileView = profileViews[i]
-                self.updateProfileView(profileView, index: CGFloat(i) - gone)
+                updateProfileView(profileView, index: CGFloat(i) - gone)
             }
 
-            break
         default:
-            if (translation.x > threshold) {
+            if translation.x > threshold {
                 UIView.animate(withDuration: 0.2, animations: {
                     profileView.transform = self.calcTransform(left: false)
                 }, completion: { _ in
                     self.onSwipeComplete()
                 })
-            } else if (translation.x < -threshold) {
+            } else if translation.x < -threshold {
                 UIView.animate(withDuration: 0.2, animations: {
                     profileView.transform = self.calcTransform(left: true)
                 }, completion: { _ in
@@ -120,18 +118,15 @@ class ProfileSwipeView: UIView {
             } else {
                 UIView.animate(withDuration: 0.2) {
                     profileView.transform = self.calcTransform(index: 0)
-                    
                 }
             }
-
-            break
         }
     }
-    
+
     private func onSwipeComplete() {
         let first = profileViews[0]
-        for i in 0..<numProfileViews {
-            if (i == numProfileViews - 1) {
+        for i in 0 ..< numProfileViews {
+            if i == numProfileViews - 1 {
                 profileViews[i] = first
             } else {
                 profileViews[i] = profileViews[i + 1]
@@ -142,22 +137,21 @@ class ProfileSwipeView: UIView {
 
         updateProfileView(first, index: CGFloat(numProfileViews - 1))
         configureProfileView(first, atIndex: profileViews.count - 1)
-        
+
         updateZIndexes()
-        
+
         loadMoreIfNeeded()
     }
-    
-    
+
     private func loadMoreIfNeeded() {
         let i = startIndex + swipeOffset
-        if (profiles.count - i < loadMoreThreshold) {
+        if profiles.count - i < loadMoreThreshold {
             loadMore()
         }
     }
 
     private func loadMore() {
-        if (loading) {
+        if loading {
             return
         }
 
@@ -165,15 +159,15 @@ class ProfileSwipeView: UIView {
 
         loading = true
     }
-    
+
     private func updateZIndexes() {
         for (i, profileView) in profileViews.enumerated() {
             profileView.layer.zPosition = -CGFloat(i)
         }
     }
-    
+
     private func createProfileViews() {
-        for _ in 0..<numProfileViews {
+        for _ in 0 ..< numProfileViews {
             let profileView = ProfileView.fromNib()
             profileViews.append(profileView)
             addSubview(profileView)
@@ -181,9 +175,9 @@ class ProfileSwipeView: UIView {
                 make.edges.equalTo(self).inset(insets)
             }
         }
-        
+
         profileViews.reverse()
-        
+
         updateProfileViews()
     }
 
@@ -192,13 +186,13 @@ class ProfileSwipeView: UIView {
             updateProfileView(profileView, index: CGFloat(i))
         }
     }
-    
+
     private func updateProfileView(_ profileView: ProfileView, index: CGFloat) {
         profileView.transform = calcTransform(index: index)
         let i = index / (CGFloat(numProfileViews) - 1.0)
         profileView.alpha = 1 - pow(i, 3) * 1.0
     }
-    
+
     private func calcTransform(index: Int) -> CGAffineTransform {
         return calcTransform(index: CGFloat(index))
     }
@@ -213,7 +207,7 @@ class ProfileSwipeView: UIView {
             .translatedBy(x: 0, y: translateY)
             .scaledBy(x: scale, y: scale)
     }
-    
+
     private func calcTransform(left: Bool) -> CGAffineTransform {
         let x = UIScreen.main.bounds.width * 1.1
         let y = UIScreen.main.bounds.height * 0.2
@@ -223,8 +217,8 @@ class ProfileSwipeView: UIView {
     }
 
     private func minAbs(_ val: CGFloat, _ absV: CGFloat) -> CGFloat {
-        if (abs(val) < absV) {
-            if (val < 0) {
+        if abs(val) < absV {
+            if val < 0 {
                 return -absV
             } else {
                 return absV

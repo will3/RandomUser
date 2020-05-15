@@ -40,7 +40,7 @@ class UserRepository {
             }
         }
     }
-    
+
     func countUsers(db: Connection) throws -> Int {
         let users = Table("users")
         return try db.scalar(users.count)
@@ -59,9 +59,9 @@ class UserRepository {
         query = query.limit(limit, offset: offset)
 
         let rows = try db.prepare(query)
-            
-        return try rows.map({ (row) -> User in
-            return try row.decode()
-        })
+
+        return try rows.map { (row) -> User in
+            try row.decode()
+        }
     }
 }
