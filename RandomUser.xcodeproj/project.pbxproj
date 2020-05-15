@@ -234,6 +234,7 @@
 		BE277EDA246B6A2D001D73F2 /* RandomUser */ = {
 			isa = PBXGroup;
 			children = (
+				BEAF04C3246E51FB00D93B30 /* Misc */,
 				BE470819246CC2A000275736 /* Components */,
 				BE470818246CC29400275736 /* Screens */,
 				BE470811246C80AA00275736 /* Services */,
@@ -243,9 +244,6 @@
 				BE277F14246B897A001D73F2 /* Api */,
 				BE277EDB246B6A2D001D73F2 /* AppDelegate.swift */,
 				BE277EDD246B6A2D001D73F2 /* SceneDelegate.swift */,
-				BE277EE4246B6A2E001D73F2 /* Assets.xcassets */,
-				BE277EE6246B6A2E001D73F2 /* LaunchScreen.storyboard */,
-				BE277EE9246B6A2E001D73F2 /* Info.plist */,
 				BE74EF69246C6D120050526C /* Mutable.swift */,
 				BE74EF81246C7B730050526C /* DateUtils.swift */,
 				BE470815246C9B4000275736 /* Migrations.swift */,
@@ -386,6 +384,16 @@
 				BEAF04A4246E2CDF00D93B30 /* Gender.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BEAF04C3246E51FB00D93B30 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				BE277EE4246B6A2E001D73F2 /* Assets.xcassets */,
+				BE277EE6246B6A2E001D73F2 /* LaunchScreen.storyboard */,
+				BE277EE9246B6A2E001D73F2 /* Info.plist */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		D1E49FC248392695390FE9F5 /* Pods */ = {
