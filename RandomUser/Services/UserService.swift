@@ -19,18 +19,19 @@ enum GetUsersError: Error {
 }
 
 class UserService: IUserService {
-    let api = RandomUserApi()
+    let api: IRandomUserApi
     let repository: IUserRepository
     let reachability: Reachability
     let connectionFactory: ConnectionFactory
 
-    init(repository: IUserRepository, reachability: Reachability, connectionFactory: ConnectionFactory) {
+    init(repository: IUserRepository, reachability: Reachability, connectionFactory: ConnectionFactory, api: IRandomUserApi) {
         self.repository = repository
         self.reachability = reachability
         self.connectionFactory = connectionFactory
+        self.api = api
     }
 
-    func getUsers(take: Int = 10, page: Int = 1, gender: Gender) -> Observable<GetUsersResponse> {
+    func getUsers(take: Int = 10, page: Int = 1, gender: Gender, countryCode: CountryCode?) -> Observable<GetUsersResponse> {
         let db = try! connectionFactory.create()
         if reachability.connection == .unavailable {
             let count = (try? repository.countUsers(db: db)) ?? 0
@@ -49,7 +50,7 @@ class UserService: IUserService {
         }
 
         return api
-            .getUsers(take: take, page: page, gender: gender.formatQuery())
+            .getUsers(take: take, page: page, gender: gender.formatQuery(), countryCode: countryCode?.formatShort())
             .map { (r) -> GetUsersResponse in
                 switch r {
                 case let .success(results, nextPage):

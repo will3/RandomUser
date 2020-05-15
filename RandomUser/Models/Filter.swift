@@ -10,6 +10,7 @@ import Foundation
 
 struct Filter: Equatable {
     var gender: Gender
+    var countryCode: CountryCode?
 }
 
 extension Filter: Mutable {}

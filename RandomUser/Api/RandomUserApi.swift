@@ -10,38 +10,31 @@ import Alamofire
 import Foundation
 import RxSwift
 
-enum RandomUserApiError: Error {
-    case malformedJson
-}
+class RandomUserApi: IRandomUserApi {
+    let seed: Int
+    let baseURL: String
 
-typealias RandomUserApiResponse = Result<(results: [RUUser], nextPage: Int?), RandomUserApiError>
-
-class RandomUserApi {
-    let seed = 1337
-
-    let backgroundWorkScheduler: OperationQueueScheduler
-
-    init() {
-        let operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 2
-        operationQueue.qualityOfService = QualityOfService.userInitiated
-        backgroundWorkScheduler = OperationQueueScheduler(operationQueue: operationQueue)
+    init(baseURL: String, seed: Int) {
+        self.baseURL = baseURL
+        self.seed = seed
     }
 
-    func getUsers(take: Int = 10, page: Int = 1, gender: String?) -> Observable<RandomUserApiResponse> {
-        var components = URLComponents(string: "https://randomuser.me/api")!
+    func getUsers(take: Int = 10, page: Int = 1, gender: String?, countryCode: String?) -> Observable<RandomUserApiResponse> {
+        var components = URLComponents(string: baseURL)!
         components.queryItems = [
+            // Hmm seed not supported with queries
             // URLQueryItem(name: "seed", value: "\(seed)"),
             URLQueryItem(name: "results", value: "\(take)"),
             URLQueryItem(name: "page", value: "\(page)"),
             URLQueryItem(name: "gender", value: gender),
+            URLQueryItem(name: "nat", value: countryCode),
         ]
         let url = components.url!
 
         return URLSession.shared.rx
             .response(request: URLRequest(url: url))
             .retry(3)
-            .observeOn(backgroundWorkScheduler)
+            .observeOn(MainScheduler.instance)
             .map { (_, data) -> RandomUserApiResponse in
                 guard let welcome = try? JSONDecoder().decode(RUWelcome.self, from: data) else {
                     return .failure(.malformedJson)

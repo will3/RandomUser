@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 protocol IUserService {
-    func getUsers(take: Int, page: Int, gender: Gender) -> Observable<GetUsersResponse>
+    func getUsers(take: Int, page: Int, gender: Gender, countryCode: CountryCode?) -> Observable<GetUsersResponse>
 }

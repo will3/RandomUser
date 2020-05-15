@@ -16,6 +16,7 @@ import UIKit
 
 enum FilterRow {
     case gender(Gender)
+    case country(CountryCode?)
 }
 
 extension FilterViewController {
@@ -67,8 +68,11 @@ class FilterViewController: UIViewController, UITableViewDelegate {
 
             switch row {
             case let .gender(gender):
-                cell.titleLabel.text = "Gender"
+                cell.titleLabel.text = "Show me"
                 cell.detailLabel.text = gender.format()
+            case let .country(code):
+                cell.titleLabel.text = "Country"
+                cell.detailLabel.text = code?.formatName() ?? "All"
             }
 
             return cell
@@ -85,6 +89,11 @@ class FilterViewController: UIViewController, UITableViewDelegate {
             case .gender:
                 let filter = self.filter.value?.mutate { filter in
                     filter.gender = filter.gender.next()
+                }
+                self.filter.accept(filter)
+            case .country(_):
+                let filter = self.filter.value?.mutate { filter in
+                    filter.countryCode = filter.countryCode?.next() ?? .AU
                 }
                 self.filter.accept(filter)
             }
@@ -106,7 +115,10 @@ class FilterViewController: UIViewController, UITableViewDelegate {
             guard let filter = filter else {
                 return [FilterRow]()
             }
-            return [FilterRow.gender(filter.gender)]
+            return [
+                FilterRow.gender(filter.gender),
+                FilterRow.country(filter.countryCode)
+            ]
         }
         .map { [SectionModel(model: "Results", items: $0)] }
         .asDriver(onErrorJustReturn: [])

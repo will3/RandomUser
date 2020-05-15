@@ -50,15 +50,21 @@ class AppModule {
             return UserRepository(queue: queue)
         }
 
+        container.register(IRandomUserApi.self) { r in
+            RandomUserApi(baseURL: "https://randomuser.me/api", seed: 1337)
+        }
+
         container.register(IUserService.self) { r in
             let repository = r.resolve(IUserRepository.self)!
             let reachability = r.resolve(Reachability.self)!
             let connectionFactory = r.resolve(ConnectionFactory.self)!
+            let api = r.resolve(IRandomUserApi.self)!
 
             return UserService(
                 repository: repository,
                 reachability: reachability,
-                connectionFactory: connectionFactory
+                connectionFactory: connectionFactory,
+                api: api
             )
         }
 
