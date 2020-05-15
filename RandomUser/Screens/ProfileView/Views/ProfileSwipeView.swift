@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class ProfileSwipeView: UIView {
-    private let numProfileViews = 4
-    private var profileViews: [ProfileView] = []
+    private let numCards = 4
+    private var cards: [ProfileCardView] = []
     private var hasSetup = false
     private let pan = UIPanGestureRecognizer()
     private var initial = CGPoint()
@@ -38,26 +38,26 @@ class ProfileSwipeView: UIView {
 
     private func redraw() {
         setupIfNeeded()
-        for (i, profileView) in profileViews.enumerated() {
-            configureProfileView(profileView, atIndex: i)
+        for (i, card) in cards.enumerated() {
+            configureCard(card, atIndex: i)
         }
     }
 
-    private func configureProfileView(_ profileView: ProfileView, atIndex index: Int) {
+    private func configureCard(_ card: ProfileCardView, atIndex index: Int) {
         let actualIndex = startIndex + swipeOffset + index
         if actualIndex >= profiles.count {
-            profileView.isHidden = true
+            card.isHidden = true
             return
         }
 
-        profileView.isHidden = false
+        card.isHidden = false
         let profile = profiles[actualIndex]
-        profileView.nameLabel.text = "\(profile.firstName) \(profile.lastName)"
-        profileView.addressLabel.text = profile.address
+        card.nameLabel.text = "\(profile.firstName) \(profile.lastName)"
+        card.addressLabel.text = profile.address
         let age = DateUtils.calcAge(birthday: profile.dob)
-        profileView.ageLabel.text = "\(age)"
+        card.ageLabel.text = "\(age)"
         let url = profile.thumbImageUrl
-        profileView.profileImageView.kf.setImage(with: URL(string: url))
+        card.profileImageView.kf.setImage(with: URL(string: url))
     }
 
     let insets = UIEdgeInsets(top: 20, left: 20, bottom: 120, right: 20)
@@ -67,7 +67,7 @@ class ProfileSwipeView: UIView {
             return
         }
 
-        createProfileViews()
+        createCards()
 
         addGestureRecognizer(pan)
         pan.addTarget(self, action: #selector(handleScreenEdgePan))
@@ -76,7 +76,7 @@ class ProfileSwipeView: UIView {
 
     @objc func handleScreenEdgePan(_ pan: UIPanGestureRecognizer) {
         let translation = pan.translation(in: self)
-        let profileView = profileViews[0]
+        let card = cards[0]
         let location = pan.location(in: self)
         let threshold = UIScreen.main.bounds.width * 0.25
 
@@ -90,53 +90,53 @@ class ProfileSwipeView: UIView {
             let angular = (end - start) * 0.1
 
             UIView.animate(withDuration: 0.2) {
-                profileView.transform = self.calcTransform(index: 0)
+                card.transform = self.calcTransform(index: 0)
                     .translatedBy(x: translation.x, y: translation.y)
                     .rotated(by: angular)
             }
 
             let gone = pow(max(min(abs(translation.x / threshold), 1), 0), 2)
 
-            for i in 1 ..< numProfileViews {
-                let profileView = profileViews[i]
-                updateProfileView(profileView, index: CGFloat(i) - gone)
+            for i in 1 ..< numCards {
+                let card = cards[i]
+                updateCard(card, index: CGFloat(i) - gone)
             }
 
         default:
             if translation.x > threshold {
                 UIView.animate(withDuration: 0.2, animations: {
-                    profileView.transform = self.calcTransform(left: false)
+                    card.transform = self.calcTransform(left: false)
                 }, completion: { _ in
                     self.onSwipeComplete()
                 })
             } else if translation.x < -threshold {
                 UIView.animate(withDuration: 0.2, animations: {
-                    profileView.transform = self.calcTransform(left: true)
+                    card.transform = self.calcTransform(left: true)
                 }, completion: { _ in
                     self.onSwipeComplete()
                 })
             } else {
                 UIView.animate(withDuration: 0.2) {
-                    profileView.transform = self.calcTransform(index: 0)
+                    card.transform = self.calcTransform(index: 0)
                 }
             }
         }
     }
 
     private func onSwipeComplete() {
-        let first = profileViews[0]
-        for i in 0 ..< numProfileViews {
-            if i == numProfileViews - 1 {
-                profileViews[i] = first
+        let first = cards[0]
+        for i in 0 ..< numCards {
+            if i == numCards - 1 {
+                cards[i] = first
             } else {
-                profileViews[i] = profileViews[i + 1]
+                cards[i] = cards[i + 1]
             }
         }
 
         swipeOffset += 1
 
-        updateProfileView(first, index: CGFloat(numProfileViews - 1))
-        configureProfileView(first, atIndex: profileViews.count - 1)
+        updateCard(first, index: CGFloat(numCards - 1))
+        configureCard(first, atIndex: cards.count - 1)
 
         updateZIndexes()
 
@@ -161,36 +161,36 @@ class ProfileSwipeView: UIView {
     }
 
     private func updateZIndexes() {
-        for (i, profileView) in profileViews.enumerated() {
-            profileView.layer.zPosition = -CGFloat(i)
+        for (i, card) in cards.enumerated() {
+            card.layer.zPosition = -CGFloat(i)
         }
     }
 
-    private func createProfileViews() {
-        for _ in 0 ..< numProfileViews {
-            let profileView = ProfileView.fromNib()
-            profileViews.append(profileView)
-            addSubview(profileView)
-            profileView.snp.makeConstraints { make in
+    private func createCards() {
+        for _ in 0 ..< numCards {
+            let card = ProfileCardView.fromNib()
+            cards.append(card)
+            addSubview(card)
+            card.snp.makeConstraints { make in
                 make.edges.equalTo(self).inset(insets)
             }
         }
 
-        profileViews.reverse()
+        cards.reverse()
 
-        updateProfileViews()
+        updateCards()
     }
 
-    private func updateProfileViews() {
-        for (i, profileView) in profileViews.enumerated() {
-            updateProfileView(profileView, index: CGFloat(i))
+    private func updateCards() {
+        for (i, card) in cards.enumerated() {
+            updateCard(card, index: CGFloat(i))
         }
     }
 
-    private func updateProfileView(_ profileView: ProfileView, index: CGFloat) {
-        profileView.transform = calcTransform(index: index)
-        let i = index / (CGFloat(numProfileViews) - 1.0)
-        profileView.alpha = 1 - pow(i, 3) * 1.0
+    private func updateCard(_ card: ProfileCardView, index: CGFloat) {
+        card.transform = calcTransform(index: index)
+        let i = index / (CGFloat(numCards) - 1.0)
+        card.alpha = 1 - pow(i, 3) * 1.0
     }
 
     private func calcTransform(index: Int) -> CGAffineTransform {
@@ -198,7 +198,7 @@ class ProfileSwipeView: UIView {
     }
 
     private func calcTransform(index: CGFloat) -> CGAffineTransform {
-        let i = index / (CGFloat(numProfileViews) - 1.0)
+        let i = index / (CGFloat(numCards) - 1.0)
 
         let scale: CGFloat = 1.0 - pow(i, 1) * 0.08
         let translateY: CGFloat = pow(i, 1) * 64.0

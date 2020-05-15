@@ -13,13 +13,13 @@ import RxKingfisher
 import RxSwift
 import UIKit
 
-extension ProfileView {
-    static func fromNib() -> ProfileView {
-        return Bundle.fromNib("ProfileView")
+extension ProfileCardView {
+    static func fromNib() -> ProfileCardView {
+        return Bundle.fromNib("ProfileCardView")
     }
 }
 
-class ProfileView: UIView {
+class ProfileCardView: UIView {
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var ageLabel: UILabel!

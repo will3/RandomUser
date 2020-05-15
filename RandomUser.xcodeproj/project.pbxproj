@@ -15,8 +15,8 @@
 		BE190C54246E0733009EEC42 /* AppContainer+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C53246E0733009EEC42 /* AppContainer+UI.swift */; };
 		BE190C58246E0D0D009EEC42 /* Gender+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE190C57246E0D0D009EEC42 /* Gender+Format.swift */; };
 		BE1CBDBB246D24010047D4A9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDBA246D24010047D4A9 /* ProfileViewController.swift */; };
-		BE1CBDBE246D24170047D4A9 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1CBDBD246D24170047D4A9 /* ProfileView.xib */; };
-		BE1CBDC1246D24BE0047D4A9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDC0246D24BE0047D4A9 /* ProfileView.swift */; };
+		BE1CBDBE246D24170047D4A9 /* ProfileCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1CBDBD246D24170047D4A9 /* ProfileCardView.xib */; };
+		BE1CBDC1246D24BE0047D4A9 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDC0246D24BE0047D4A9 /* ProfileCardView.swift */; };
 		BE1CBDC4246D31840047D4A9 /* Bundle+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CBDC3246D31840047D4A9 /* Bundle+Factory.swift */; };
 		BE1CBDC6246D3E4B0047D4A9 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1CBDC5246D3E4B0047D4A9 /* ProfileViewController.xib */; };
 		BE277EDC246B6A2D001D73F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EDB246B6A2D001D73F2 /* AppDelegate.swift */; };
@@ -87,8 +87,8 @@
 		BE190C53246E0733009EEC42 /* AppContainer+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContainer+UI.swift"; sourceTree = "<group>"; };
 		BE190C57246E0D0D009EEC42 /* Gender+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gender+Format.swift"; sourceTree = "<group>"; };
 		BE1CBDBA246D24010047D4A9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		BE1CBDBD246D24170047D4A9 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
-		BE1CBDC0246D24BE0047D4A9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		BE1CBDBD246D24170047D4A9 /* ProfileCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCardView.xib; sourceTree = "<group>"; };
+		BE1CBDC0246D24BE0047D4A9 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		BE1CBDC3246D31840047D4A9 /* Bundle+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Factory.swift"; sourceTree = "<group>"; };
 		BE1CBDC5246D3E4B0047D4A9 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		BE277ED8246B6A2D001D73F2 /* RandomUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,8 +192,8 @@
 		BE1CBDBF246D24AE0047D4A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BE1CBDBD246D24170047D4A9 /* ProfileView.xib */,
-				BE1CBDC0246D24BE0047D4A9 /* ProfileView.swift */,
+				BE1CBDBD246D24170047D4A9 /* ProfileCardView.xib */,
+				BE1CBDC0246D24BE0047D4A9 /* ProfileCardView.swift */,
 				BE190C4A246DDFD5009EEC42 /* ProfileSwipeView.swift */,
 				BE190C4C246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift */,
 			);
@@ -516,7 +516,7 @@
 				BE277F1C246BB8DA001D73F2 /* PersonListViewCell.xib in Resources */,
 				BE470824246CCD1300275736 /* FilterView.xib in Resources */,
 				BE47081E246CC2D400275736 /* FilterFab.xib in Resources */,
-				BE1CBDBE246D24170047D4A9 /* ProfileView.xib in Resources */,
+				BE1CBDBE246D24170047D4A9 /* ProfileCardView.xib in Resources */,
 				BE47082D246D177600275736 /* FilterCell.xib in Resources */,
 				BE277EE5246B6A2E001D73F2 /* Assets.xcassets in Resources */,
 				BE277F0F246B7DD6001D73F2 /* PersonListViewController.xib in Resources */,
@@ -677,7 +677,7 @@
 				BE190C4F246DECD4009EEC42 /* User+Format.swift in Sources */,
 				BE277EDE246B6A2D001D73F2 /* SceneDelegate.swift in Sources */,
 				BE277F1E246BBBAC001D73F2 /* PersonListViewCell.swift in Sources */,
-				BE1CBDC1246D24BE0047D4A9 /* ProfileView.swift in Sources */,
+				BE1CBDC1246D24BE0047D4A9 /* ProfileCardView.swift in Sources */,
 				BEAF04B3246E3CD800D93B30 /* AppContainer+Event.swift in Sources */,
 				BE74EF80246C7B1E0050526C /* User.swift in Sources */,
 				BE190C58246E0D0D009EEC42 /* Gender+Format.swift in Sources */,
