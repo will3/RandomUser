@@ -22,9 +22,9 @@ extension UIScrollView {
 }
 
 class ListViewController: UIViewController, UITableViewDelegate {
-
     @IBOutlet var tableView: UITableView!
     let refreshControl = UIRefreshControl()
+    var containerViewController: ContainerViewController?
 
     let userService = UserService()
     let disposeBag = DisposeBag()
@@ -81,17 +81,12 @@ class ListViewController: UIViewController, UITableViewDelegate {
                 filter: $0.filter) })
             { (query) -> Signal<ListViewCommand> in
                 guard let index = query.index else { return Signal.empty() }
-                return ProfileViewController
-                    .prompt(
-                        from: self,
+                self.showProfileViewController(
                         index: index,
                         profiles: query.profiles,
                         nextPage: query.nextPage,
                         filter: query.filter)
-                    .flatMapLatest { vc -> Observable<ListViewCommand> in
-                        return Observable.just(ListViewCommand.closedProfileView)
-                    }
-                    .asSignal(onErrorSignalWith: Signal.empty())
+                return Signal.empty()
             }
 
         let bindUI: (Driver<ListViewState>) -> Signal<ListViewCommand> = bind(self) { me, state in
@@ -159,5 +154,18 @@ class ListViewController: UIViewController, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+}
+
+extension ListViewController {
+    func showProfileViewController(
+        index: Int,
+        profiles: [User],
+        nextPage: Int?,
+        filter: Filter
+        ) {
+        guard let containerViewController = self.containerViewController else { return }
+        let vc = containerViewController.showProfileViewController()
+        vc.setup(profiles: profiles, index: index, nextPage: nextPage, filter: filter)
     }
 }

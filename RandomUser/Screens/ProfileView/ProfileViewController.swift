@@ -39,30 +39,6 @@ struct ProfileViewState: Mutable {
     static let initial = ProfileViewState()
 }
 
-extension ProfileViewController {
-    static func prompt(
-        from: UIViewController,
-        index: Int,
-        profiles: [User],
-        nextPage: Int?,
-        filter: Filter
-        ) -> Observable<ProfileViewController?> {
-        return Observable.create { observer in
-            let vc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-            vc.setup(profiles: profiles, index: index, nextPage: nextPage, filter: filter)
-            vc.modalPresentationStyle = .fullScreen
-            from.present(vc, animated: true, completion: nil)
-            
-            let dispose = vc.rx.viewWillDisappear.bind { [weak vc] _ in
-                observer.on(.next(vc))
-                observer.onCompleted()
-            }
-            
-            return dispose
-        }
-    }
-}
-
 class ProfileViewController: UIViewController {
     var initial = ProfileViewState.initial
     let disposeBag = DisposeBag()

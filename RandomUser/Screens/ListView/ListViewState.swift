@@ -28,7 +28,6 @@ enum ListViewCommand {
     case presentFilter
     case changeFilter(Filter)
     case openProfile(Int)
-    case closedProfileView
 }
 
 struct ListViewState {
