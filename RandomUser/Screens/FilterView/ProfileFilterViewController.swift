@@ -38,6 +38,8 @@ class ProfileFilterViewController: UIViewController, UITableViewDelegate {
         })
 
     override func viewDidLoad() {
+        doneButton.accessibilityIdentifier = AccessibilityIdentifiers.doneButton
+
         tableView.register(UINib(nibName: "FilterCell", bundle: nil), forCellReuseIdentifier: "FilterCell")
 
         tableView.rx.setDelegate(self).disposed(by: disposeBag)

@@ -25,5 +25,7 @@ class FilterFab: UIView {
         snp.makeConstraints { make in
             make.width.height.equalTo(width)
         }
+        
+        self.button.accessibilityIdentifier = AccessibilityIdentifiers.filterButton
     }
 }

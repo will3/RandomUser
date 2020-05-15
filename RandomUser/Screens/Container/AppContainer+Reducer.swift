@@ -12,7 +12,7 @@ struct AppContainer: Mutable {
     var scrollViewPage: Int = 0
     var page: Int? = 1
     var loadMoreTrigger = true
-    var filter = Filter(gender: .female)
+    var filter = Filter(gender: .both)
     var profiles = [User]()
     var profileIndex = 0
     var refreshing = false

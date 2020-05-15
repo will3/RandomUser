@@ -4,6 +4,8 @@ PODS:
   - Kingfisher (5.14.0):
     - Kingfisher/Core (= 5.14.0)
   - Kingfisher/Core (5.14.0)
+  - Nimble (8.0.8)
+  - Quick (2.2.0)
   - ReachabilitySwift (5.0.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
@@ -34,6 +36,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Kingfisher
+  - Nimble
+  - Quick
   - ReachabilitySwift
   - RxCocoa
   - RxDataSources (~> 4.0)
@@ -50,6 +54,8 @@ SPEC REPOS:
     - Alamofire
     - Differentiator
     - Kingfisher
+    - Nimble
+    - Quick
     - ReachabilitySwift
     - RxCocoa
     - RxDataSources
@@ -66,6 +72,8 @@ SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Kingfisher: 7b64389a43139c903ec434788344c288217c792d
+  Nimble: 2da33c44adfde49552d4a6b3ef16039a45bf8dca
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
@@ -78,6 +86,6 @@ SPEC CHECKSUMS:
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: 377cf066705fc71104935bb1e822ddb676ae150b
+PODFILE CHECKSUM: c54a683744cb05865b0cf31cbed9669be83b0a6c
 
 COCOAPODS: 1.9.1

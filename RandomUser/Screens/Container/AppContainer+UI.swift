@@ -117,7 +117,9 @@ class AppContainerViewController: UIViewController {
         }
 
         profileViewButton.image = UIImage(named: "profile_view_icon")
+        listViewButton.accessibilityIdentifier = AccessibilityIdentifiers.profileViewButton
         listViewButton.image = UIImage(named: "list_view_icon")
+        listViewButton.accessibilityIdentifier = AccessibilityIdentifiers.listViewButton
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.items = [listViewButton, space, profileViewButton]
     }

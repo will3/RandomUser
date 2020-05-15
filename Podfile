@@ -22,10 +22,14 @@ target 'RandomUser' do
   target 'RandomUserTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Quick'
+    pod 'Nimble'
   end
 
   target 'RandomUserUITests' do
     # Pods for testing
+    pod 'Quick'
+    pod 'Nimble'
   end
 
 end

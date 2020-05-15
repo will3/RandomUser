@@ -22,8 +22,8 @@
 		BE277EE0246B6A2D001D73F2 /* PersonList+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EDF246B6A2D001D73F2 /* PersonList+UI.swift */; };
 		BE277EE5246B6A2E001D73F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE277EE4246B6A2E001D73F2 /* Assets.xcassets */; };
 		BE277EE8246B6A2E001D73F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE277EE6246B6A2E001D73F2 /* LaunchScreen.storyboard */; };
-		BE277EF3246B6A2F001D73F2 /* RandomUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EF2246B6A2F001D73F2 /* RandomUserTests.swift */; };
-		BE277EFE246B6A2F001D73F2 /* RandomUserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EFD246B6A2F001D73F2 /* RandomUserUITests.swift */; };
+		BE277EF3246B6A2F001D73F2 /* AppContainerReducerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EF2246B6A2F001D73F2 /* AppContainerReducerSpec.swift */; };
+		BE277EFE246B6A2F001D73F2 /* SmokeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EFD246B6A2F001D73F2 /* SmokeTest.swift */; };
 		BE277F0F246B7DD6001D73F2 /* PersonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE277F0E246B7DD6001D73F2 /* PersonListViewController.xib */; };
 		BE277F1C246BB8DA001D73F2 /* PersonListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE277F1B246BB8DA001D73F2 /* PersonListViewCell.xib */; };
 		BE277F1E246BBBAC001D73F2 /* PersonListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277F1D246BBBAC001D73F2 /* PersonListViewCell.swift */; };
@@ -65,6 +65,8 @@
 		BEAF04D5246E922D00D93B30 /* RxFeedback+Wiring.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04D4246E922D00D93B30 /* RxFeedback+Wiring.swift */; };
 		BEAF04D7246E97A700D93B30 /* ProfileFilterViewController+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04D6246E97A700D93B30 /* ProfileFilterViewController+Reactive.swift */; };
 		BEAF04D9246E9CD500D93B30 /* FilterChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04D8246E9CD500D93B30 /* FilterChange.swift */; };
+		BEAF04DB246EA95F00D93B30 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04DA246EA95F00D93B30 /* AccessibilityIdentifiers.swift */; };
+		BEAF04DD246EA9ED00D93B30 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04DA246EA95F00D93B30 /* AccessibilityIdentifiers.swift */; };
 		DC6E49A67C6C31080BC5EEF7 /* Pods_RandomUser_RandomUserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2FFE7E91E7DCDA07F115DC /* Pods_RandomUser_RandomUserUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -107,10 +109,10 @@
 		BE277EE7246B6A2E001D73F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE277EE9246B6A2E001D73F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE277EEE246B6A2F001D73F2 /* RandomUserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomUserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE277EF2246B6A2F001D73F2 /* RandomUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserTests.swift; sourceTree = "<group>"; };
+		BE277EF2246B6A2F001D73F2 /* AppContainerReducerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerReducerSpec.swift; sourceTree = "<group>"; };
 		BE277EF4246B6A2F001D73F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE277EF9246B6A2F001D73F2 /* RandomUserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomUserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE277EFD246B6A2F001D73F2 /* RandomUserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserUITests.swift; sourceTree = "<group>"; };
+		BE277EFD246B6A2F001D73F2 /* SmokeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeTest.swift; sourceTree = "<group>"; };
 		BE277EFF246B6A2F001D73F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE277F0E246B7DD6001D73F2 /* PersonListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonListViewController.xib; sourceTree = "<group>"; };
 		BE277F1B246BB8DA001D73F2 /* PersonListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonListViewCell.xib; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		BEAF04D4246E922D00D93B30 /* RxFeedback+Wiring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxFeedback+Wiring.swift"; sourceTree = "<group>"; };
 		BEAF04D6246E97A700D93B30 /* ProfileFilterViewController+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileFilterViewController+Reactive.swift"; sourceTree = "<group>"; };
 		BEAF04D8246E9CD500D93B30 /* FilterChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChange.swift; sourceTree = "<group>"; };
+		BEAF04DA246EA95F00D93B30 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
 		E31FEA053B724C805561D34B /* Pods-RandomUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.release.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.release.xcconfig"; sourceTree = "<group>"; };
 		E944330EAAC25E108E4AB08B /* Pods-RandomUser-RandomUserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser-RandomUserUITests.release.xcconfig"; path = "Target Support Files/Pods-RandomUser-RandomUserUITests/Pods-RandomUser-RandomUserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F1D1CCBBB5F09AD584E6264D /* Pods-RandomUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.debug.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.debug.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 				BE277EE9246B6A2E001D73F2 /* Info.plist */,
 				BEAF04C8246E546D00D93B30 /* AppModule.swift */,
 				BEAF04D4246E922D00D93B30 /* RxFeedback+Wiring.swift */,
+				BEAF04DA246EA95F00D93B30 /* AccessibilityIdentifiers.swift */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -272,7 +276,7 @@
 		BE277EF1246B6A2F001D73F2 /* RandomUserTests */ = {
 			isa = PBXGroup;
 			children = (
-				BE277EF2246B6A2F001D73F2 /* RandomUserTests.swift */,
+				BE277EF2246B6A2F001D73F2 /* AppContainerReducerSpec.swift */,
 				BE277EF4246B6A2F001D73F2 /* Info.plist */,
 			);
 			path = RandomUserTests;
@@ -281,7 +285,7 @@
 		BE277EFC246B6A2F001D73F2 /* RandomUserUITests */ = {
 			isa = PBXGroup;
 			children = (
-				BE277EFD246B6A2F001D73F2 /* RandomUserUITests.swift */,
+				BE277EFD246B6A2F001D73F2 /* SmokeTest.swift */,
 				BE277EFF246B6A2F001D73F2 /* Info.plist */,
 			);
 			path = RandomUserUITests;
@@ -462,6 +466,7 @@
 				BE277EEA246B6A2F001D73F2 /* Sources */,
 				BE277EEB246B6A2F001D73F2 /* Frameworks */,
 				BE277EEC246B6A2F001D73F2 /* Resources */,
+				F5FC1126E0C43410B658E829 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -670,6 +675,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F5FC1126E0C43410B658E829 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RandomUserTests/Pods-RandomUserTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RandomUserTests/Pods-RandomUserTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RandomUserTests/Pods-RandomUserTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -716,6 +738,7 @@
 				BE1CBDC1246D24BE0047D4A9 /* ProfileCardView.swift in Sources */,
 				BEAF04B3246E3CD800D93B30 /* AppContainer+Event.swift in Sources */,
 				BE74EF80246C7B1E0050526C /* User.swift in Sources */,
+				BEAF04DB246EA95F00D93B30 /* AccessibilityIdentifiers.swift in Sources */,
 				BEAF04C1246E4BB100D93B30 /* ProfileGallery+Event.swift in Sources */,
 				BEAF04D9246E9CD500D93B30 /* FilterChange.swift in Sources */,
 				BEAF04CB246E560300D93B30 /* IUserService.swift in Sources */,
@@ -729,7 +752,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE277EF3246B6A2F001D73F2 /* RandomUserTests.swift in Sources */,
+				BE277EF3246B6A2F001D73F2 /* AppContainerReducerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,7 +760,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE277EFE246B6A2F001D73F2 /* RandomUserUITests.swift in Sources */,
+				BEAF04DD246EA9ED00D93B30 /* AccessibilityIdentifiers.swift in Sources */,
+				BE277EFE246B6A2F001D73F2 /* SmokeTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -983,7 +1007,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = will.company.RandomUserUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = RandomUser;
 			};
@@ -1004,7 +1028,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = will.company.RandomUserUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = RandomUser;
 			};
