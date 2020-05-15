@@ -1,5 +1,5 @@
 //
-//  ListViewCell.swift
+//  PersonListViewCell.swift
 //  RandomUser
 //
 //  Created by will on 13/05/20.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ListViewCell: UITableViewCell {
+class PersonListViewCell: UITableViewCell {
     override func awakeFromNib() {
         profileImageView.layer.borderWidth = 0.1
         profileImageView.layer.borderColor = UIColor.clear.cgColor

@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let listViewController = ListViewController(nibName: "ListView", bundle: nil)
+        let listViewController = PersonListViewController(nibName: "PersonListViewController", bundle: nil)
         let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
         let containerViewController = AppContainerViewController(listViewController: listViewController, profileViewController: profileViewController)
 

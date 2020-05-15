@@ -8,41 +8,22 @@
 
 import Foundation
 
-extension AppContainer {
-    struct ChangePageQuery: Equatable {
-        let page: Int
-    }
-
-    struct LoadMoreQuery: Equatable {
-        let loadMoreTrigger: Bool
-        let page: Int?
-        let filter: Filter
-    }
-}
-
 struct AppContainer: Mutable {
     var scrollViewPage: Int = 0
     var page: Int? = 1
     var loadMoreTrigger = true
     var filter = Filter(gender: .female)
     var profiles = [User]()
-
-    var changePageQuery: ChangePageQuery {
-        return ChangePageQuery(page: scrollViewPage)
-    }
-    
-    var loadMoreQuery: LoadMoreQuery {
-        return LoadMoreQuery(loadMoreTrigger: loadMoreTrigger, page: page, filter: filter)
-    }
+    var profileIndex = 0
+    var refreshing = false
 
     static let initial = AppContainer()
-}
-
-extension AppContainer {
-    enum Event {
-        case scrollToPage(Int)
-        case loadMore
-        case loadMoreSucceeded(GetUsersResponse)
+    
+    mutating func refresh() {
+        self.profiles = [User]()
+        self.page = 1
+        self.loadMoreTrigger = true
+        self.refreshing = true
     }
 }
 
@@ -64,12 +45,28 @@ extension AppContainer {
                     $0.profiles += results
                     $0.page = nextPage
                     $0.loadMoreTrigger = false
+                    $0.refreshing = false
                 }
             case .failure(_):
-                // TODO trigger error modal
+                // TODO triggstateer error modal
                 return state.mutate {
                     $0.loadMoreTrigger = false
+                    $0.refreshing = false
                 }
+            }
+        case let .navigateToProfile(index: index):
+            return state.mutate {
+                $0.scrollViewPage = 1
+                $0.profileIndex = index
+            }
+        case .refresh:
+            return state.mutate {
+                $0.refresh()
+            }
+        case let .changeFilter(filter):
+            return state.mutate {
+                $0.filter = filter
+                $0.refresh()
             }
         }
     }

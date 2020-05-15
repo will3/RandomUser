@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListViewController" customModule="RandomUser" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonListViewController" customModule="RandomUser" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="WiZ-Xd-KmB" id="8A2-oY-H52"/>
                 <outlet property="view" destination="iN0-l3-epB" id="1ro-bd-ML0"/>

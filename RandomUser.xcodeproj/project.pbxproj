@@ -21,14 +21,14 @@
 		BE1CBDC6246D3E4B0047D4A9 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE1CBDC5246D3E4B0047D4A9 /* ProfileViewController.xib */; };
 		BE277EDC246B6A2D001D73F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EDB246B6A2D001D73F2 /* AppDelegate.swift */; };
 		BE277EDE246B6A2D001D73F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EDD246B6A2D001D73F2 /* SceneDelegate.swift */; };
-		BE277EE0246B6A2D001D73F2 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EDF246B6A2D001D73F2 /* ListViewController.swift */; };
+		BE277EE0246B6A2D001D73F2 /* PersonList+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EDF246B6A2D001D73F2 /* PersonList+UI.swift */; };
 		BE277EE5246B6A2E001D73F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE277EE4246B6A2E001D73F2 /* Assets.xcassets */; };
 		BE277EE8246B6A2E001D73F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE277EE6246B6A2E001D73F2 /* LaunchScreen.storyboard */; };
 		BE277EF3246B6A2F001D73F2 /* RandomUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EF2246B6A2F001D73F2 /* RandomUserTests.swift */; };
 		BE277EFE246B6A2F001D73F2 /* RandomUserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277EFD246B6A2F001D73F2 /* RandomUserUITests.swift */; };
-		BE277F0F246B7DD6001D73F2 /* ListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE277F0E246B7DD6001D73F2 /* ListView.xib */; };
-		BE277F1C246BB8DA001D73F2 /* ListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE277F1B246BB8DA001D73F2 /* ListViewCell.xib */; };
-		BE277F1E246BBBAC001D73F2 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277F1D246BBBAC001D73F2 /* ListViewCell.swift */; };
+		BE277F0F246B7DD6001D73F2 /* PersonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE277F0E246B7DD6001D73F2 /* PersonListViewController.xib */; };
+		BE277F1C246BB8DA001D73F2 /* PersonListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE277F1B246BB8DA001D73F2 /* PersonListViewCell.xib */; };
+		BE277F1E246BBBAC001D73F2 /* PersonListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE277F1D246BBBAC001D73F2 /* PersonListViewCell.swift */; };
 		BE47080D246C7D7800275736 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE47080C246C7D7800275736 /* UserMapper.swift */; };
 		BE470813246C80B400275736 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE470812246C80B400275736 /* UserService.swift */; };
 		BE470816246C9B4000275736 /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE470815246C9B4000275736 /* Migrations.swift */; };
@@ -39,15 +39,22 @@
 		BE47082D246D177600275736 /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE47082B246D177600275736 /* FilterCell.xib */; };
 		BE47082E246D177600275736 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE47082C246D177600275736 /* FilterCell.swift */; };
 		BE74EF6A246C6D120050526C /* Mutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF69246C6D120050526C /* Mutable.swift */; };
-		BE74EF6E246C6EF50050526C /* ListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF6D246C6EF50050526C /* ListViewState.swift */; };
 		BE74EF71246C71E90050526C /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF70246C71E90050526C /* UserRepository.swift */; };
 		BE74EF7C246C7A690050526C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF7A246C7A690050526C /* Models.swift */; };
 		BE74EF7D246C7A690050526C /* RandomUserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF7B246C7A690050526C /* RandomUserApi.swift */; };
 		BE74EF80246C7B1E0050526C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF7F246C7B1E0050526C /* User.swift */; };
 		BE74EF82246C7B730050526C /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE74EF81246C7B730050526C /* DateUtils.swift */; };
-		BEAF049D246E1D9100D93B30 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF049C246E1D9100D93B30 /* AppContainer.swift */; };
+		BEAF049D246E1D9100D93B30 /* AppContainer+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF049C246E1D9100D93B30 /* AppContainer+Reducer.swift */; };
 		BEAF049F246E1E7000D93B30 /* AppContainer+Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF049E246E1E7000D93B30 /* AppContainer+Feedback.swift */; };
-		BEAF04A1246E277B00D93B30 /* ListViewController+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04A0246E277B00D93B30 /* ListViewController+Reactive.swift */; };
+		BEAF04A3246E2CD200D93B30 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04A2246E2CD200D93B30 /* Filter.swift */; };
+		BEAF04A5246E2CDF00D93B30 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04A4246E2CDF00D93B30 /* Gender.swift */; };
+		BEAF04A7246E2D8F00D93B30 /* PersonList+Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04A6246E2D8F00D93B30 /* PersonList+Feedback.swift */; };
+		BEAF04AB246E372300D93B30 /* PersonList+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04AA246E372300D93B30 /* PersonList+Reactive.swift */; };
+		BEAF04AD246E387500D93B30 /* PersonList+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04AC246E387500D93B30 /* PersonList+Event.swift */; };
+		BEAF04AF246E388C00D93B30 /* PersonList+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04AE246E388C00D93B30 /* PersonList+Reducer.swift */; };
+		BEAF04B3246E3CD800D93B30 /* AppContainer+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04B2246E3CD800D93B30 /* AppContainer+Event.swift */; };
+		BEAF04B5246E404F00D93B30 /* AppContainer+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04B4246E404F00D93B30 /* AppContainer+Query.swift */; };
+		BEAF04B7246E42DA00D93B30 /* UIScrollView+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04B6246E42DA00D93B30 /* UIScrollView+Reactive.swift */; };
 		DC6E49A67C6C31080BC5EEF7 /* Pods_RandomUser_RandomUserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2FFE7E91E7DCDA07F115DC /* Pods_RandomUser_RandomUserUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +94,7 @@
 		BE277ED8246B6A2D001D73F2 /* RandomUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE277EDB246B6A2D001D73F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE277EDD246B6A2D001D73F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE277EDF246B6A2D001D73F2 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		BE277EDF246B6A2D001D73F2 /* PersonList+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonList+UI.swift"; sourceTree = "<group>"; };
 		BE277EE4246B6A2E001D73F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE277EE7246B6A2E001D73F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE277EE9246B6A2E001D73F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,9 +104,9 @@
 		BE277EF9246B6A2F001D73F2 /* RandomUserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomUserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE277EFD246B6A2F001D73F2 /* RandomUserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserUITests.swift; sourceTree = "<group>"; };
 		BE277EFF246B6A2F001D73F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE277F0E246B7DD6001D73F2 /* ListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListView.xib; sourceTree = "<group>"; };
-		BE277F1B246BB8DA001D73F2 /* ListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListViewCell.xib; sourceTree = "<group>"; };
-		BE277F1D246BBBAC001D73F2 /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
+		BE277F0E246B7DD6001D73F2 /* PersonListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonListViewController.xib; sourceTree = "<group>"; };
+		BE277F1B246BB8DA001D73F2 /* PersonListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonListViewCell.xib; sourceTree = "<group>"; };
+		BE277F1D246BBBAC001D73F2 /* PersonListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListViewCell.swift; sourceTree = "<group>"; };
 		BE47080C246C7D7800275736 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		BE470812246C80B400275736 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BE470815246C9B4000275736 /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
@@ -110,15 +117,22 @@
 		BE47082B246D177600275736 /* FilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
 		BE47082C246D177600275736 /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		BE74EF69246C6D120050526C /* Mutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mutable.swift; sourceTree = "<group>"; };
-		BE74EF6D246C6EF50050526C /* ListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewState.swift; sourceTree = "<group>"; };
 		BE74EF70246C71E90050526C /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		BE74EF7A246C7A690050526C /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		BE74EF7B246C7A690050526C /* RandomUserApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomUserApi.swift; sourceTree = "<group>"; };
 		BE74EF7F246C7B1E0050526C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BE74EF81246C7B730050526C /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
-		BEAF049C246E1D9100D93B30 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		BEAF049C246E1D9100D93B30 /* AppContainer+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContainer+Reducer.swift"; sourceTree = "<group>"; };
 		BEAF049E246E1E7000D93B30 /* AppContainer+Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContainer+Feedback.swift"; sourceTree = "<group>"; };
-		BEAF04A0246E277B00D93B30 /* ListViewController+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListViewController+Reactive.swift"; sourceTree = "<group>"; };
+		BEAF04A2246E2CD200D93B30 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		BEAF04A4246E2CDF00D93B30 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		BEAF04A6246E2D8F00D93B30 /* PersonList+Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonList+Feedback.swift"; sourceTree = "<group>"; };
+		BEAF04AA246E372300D93B30 /* PersonList+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonList+Reactive.swift"; sourceTree = "<group>"; };
+		BEAF04AC246E387500D93B30 /* PersonList+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonList+Event.swift"; sourceTree = "<group>"; };
+		BEAF04AE246E388C00D93B30 /* PersonList+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonList+Reducer.swift"; sourceTree = "<group>"; };
+		BEAF04B2246E3CD800D93B30 /* AppContainer+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContainer+Event.swift"; sourceTree = "<group>"; };
+		BEAF04B4246E404F00D93B30 /* AppContainer+Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContainer+Query.swift"; sourceTree = "<group>"; };
+		BEAF04B6246E42DA00D93B30 /* UIScrollView+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Reactive.swift"; sourceTree = "<group>"; };
 		E31FEA053B724C805561D34B /* Pods-RandomUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.release.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.release.xcconfig"; sourceTree = "<group>"; };
 		E944330EAAC25E108E4AB08B /* Pods-RandomUser-RandomUserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser-RandomUserUITests.release.xcconfig"; path = "Target Support Files/Pods-RandomUser-RandomUserUITests/Pods-RandomUser-RandomUserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F1D1CCBBB5F09AD584E6264D /* Pods-RandomUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.debug.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,8 +171,10 @@
 			isa = PBXGroup;
 			children = (
 				BE190C53246E0733009EEC42 /* AppContainer+UI.swift */,
-				BEAF049C246E1D9100D93B30 /* AppContainer.swift */,
+				BEAF049C246E1D9100D93B30 /* AppContainer+Reducer.swift */,
 				BEAF049E246E1E7000D93B30 /* AppContainer+Feedback.swift */,
+				BEAF04B2246E3CD800D93B30 /* AppContainer+Event.swift */,
+				BEAF04B4246E404F00D93B30 /* AppContainer+Query.swift */,
 			);
 			path = Container;
 			sourceTree = "<group>";
@@ -227,6 +243,7 @@
 				BE1CBDC3246D31840047D4A9 /* Bundle+Factory.swift */,
 				BE190C4E246DECD4009EEC42 /* User+Format.swift */,
 				BE190C57246E0D0D009EEC42 /* Gender+Format.swift */,
+				BEAF04B6246E42DA00D93B30 /* UIScrollView+Reactive.swift */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -253,10 +270,12 @@
 			isa = PBXGroup;
 			children = (
 				BE277F11246B7FCA001D73F2 /* Cells */,
-				BE277EDF246B6A2D001D73F2 /* ListViewController.swift */,
-				BE277F0E246B7DD6001D73F2 /* ListView.xib */,
-				BE74EF6D246C6EF50050526C /* ListViewState.swift */,
-				BEAF04A0246E277B00D93B30 /* ListViewController+Reactive.swift */,
+				BE277EDF246B6A2D001D73F2 /* PersonList+UI.swift */,
+				BEAF04AA246E372300D93B30 /* PersonList+Reactive.swift */,
+				BEAF04AE246E388C00D93B30 /* PersonList+Reducer.swift */,
+				BEAF04A6246E2D8F00D93B30 /* PersonList+Feedback.swift */,
+				BEAF04AC246E387500D93B30 /* PersonList+Event.swift */,
+				BE277F0E246B7DD6001D73F2 /* PersonListViewController.xib */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -264,8 +283,8 @@
 		BE277F11246B7FCA001D73F2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				BE277F1B246BB8DA001D73F2 /* ListViewCell.xib */,
-				BE277F1D246BBBAC001D73F2 /* ListViewCell.swift */,
+				BE277F1B246BB8DA001D73F2 /* PersonListViewCell.xib */,
+				BE277F1D246BBBAC001D73F2 /* PersonListViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -354,6 +373,8 @@
 			isa = PBXGroup;
 			children = (
 				BE74EF7F246C7B1E0050526C /* User.swift */,
+				BEAF04A2246E2CD200D93B30 /* Filter.swift */,
+				BEAF04A4246E2CDF00D93B30 /* Gender.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -492,13 +513,13 @@
 			files = (
 				BE1CBDC6246D3E4B0047D4A9 /* ProfileViewController.xib in Resources */,
 				BE277EE8246B6A2E001D73F2 /* LaunchScreen.storyboard in Resources */,
-				BE277F1C246BB8DA001D73F2 /* ListViewCell.xib in Resources */,
+				BE277F1C246BB8DA001D73F2 /* PersonListViewCell.xib in Resources */,
 				BE470824246CCD1300275736 /* FilterView.xib in Resources */,
 				BE47081E246CC2D400275736 /* FilterFab.xib in Resources */,
 				BE1CBDBE246D24170047D4A9 /* ProfileView.xib in Resources */,
 				BE47082D246D177600275736 /* FilterCell.xib in Resources */,
 				BE277EE5246B6A2E001D73F2 /* Assets.xcassets in Resources */,
-				BE277F0F246B7DD6001D73F2 /* ListView.xib in Resources */,
+				BE277F0F246B7DD6001D73F2 /* PersonListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,32 +649,39 @@
 			files = (
 				BE470813246C80B400275736 /* UserService.swift in Sources */,
 				BEAF049F246E1E7000D93B30 /* AppContainer+Feedback.swift in Sources */,
+				BEAF04A3246E2CD200D93B30 /* Filter.swift in Sources */,
 				BE74EF82246C7B730050526C /* DateUtils.swift in Sources */,
 				BE74EF7D246C7A690050526C /* RandomUserApi.swift in Sources */,
-				BE277EE0246B6A2D001D73F2 /* ListViewController.swift in Sources */,
+				BE277EE0246B6A2D001D73F2 /* PersonList+UI.swift in Sources */,
+				BEAF04A5246E2CDF00D93B30 /* Gender.swift in Sources */,
 				BE470816246C9B4000275736 /* Migrations.swift in Sources */,
 				BE47080D246C7D7800275736 /* UserMapper.swift in Sources */,
-				BEAF04A1246E277B00D93B30 /* ListViewController+Reactive.swift in Sources */,
 				BE1CBDBB246D24010047D4A9 /* ProfileViewController.swift in Sources */,
 				BE47081C246CC2C900275736 /* FilterFab.swift in Sources */,
+				BEAF04B7246E42DA00D93B30 /* UIScrollView+Reactive.swift in Sources */,
 				BE47082E246D177600275736 /* FilterCell.swift in Sources */,
 				BE74EF71246C71E90050526C /* UserRepository.swift in Sources */,
-				BEAF049D246E1D9100D93B30 /* AppContainer.swift in Sources */,
+				BEAF049D246E1D9100D93B30 /* AppContainer+Reducer.swift in Sources */,
 				BE190C54246E0733009EEC42 /* AppContainer+UI.swift in Sources */,
 				BE190C4D246DE8C5009EEC42 /* ProfileSwipeView+Reactive.swift in Sources */,
 				BE277EDC246B6A2D001D73F2 /* AppDelegate.swift in Sources */,
+				BEAF04AD246E387500D93B30 /* PersonList+Event.swift in Sources */,
+				BEAF04B5246E404F00D93B30 /* AppContainer+Query.swift in Sources */,
 				BE74EF7C246C7A690050526C /* Models.swift in Sources */,
+				BEAF04AB246E372300D93B30 /* PersonList+Reactive.swift in Sources */,
+				BEAF04AF246E388C00D93B30 /* PersonList+Reducer.swift in Sources */,
 				BE1CBDC4246D31840047D4A9 /* Bundle+Factory.swift in Sources */,
 				BE470822246CCD0A00275736 /* FilterViewController.swift in Sources */,
 				BE190C4B246DDFD5009EEC42 /* ProfileSwipeView.swift in Sources */,
 				BE74EF6A246C6D120050526C /* Mutable.swift in Sources */,
 				BE190C4F246DECD4009EEC42 /* User+Format.swift in Sources */,
 				BE277EDE246B6A2D001D73F2 /* SceneDelegate.swift in Sources */,
-				BE277F1E246BBBAC001D73F2 /* ListViewCell.swift in Sources */,
+				BE277F1E246BBBAC001D73F2 /* PersonListViewCell.swift in Sources */,
 				BE1CBDC1246D24BE0047D4A9 /* ProfileView.swift in Sources */,
+				BEAF04B3246E3CD800D93B30 /* AppContainer+Event.swift in Sources */,
 				BE74EF80246C7B1E0050526C /* User.swift in Sources */,
-				BE74EF6E246C6EF50050526C /* ListViewState.swift in Sources */,
 				BE190C58246E0D0D009EEC42 /* Gender+Format.swift in Sources */,
+				BEAF04A7246E2D8F00D93B30 /* PersonList+Feedback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

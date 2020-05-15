@@ -1,5 +1,5 @@
 //
-//  ListViewController+Reactive.swift
+//  Gender.swift
 //  RandomUser
 //
 //  Created by will on 15/05/20.
@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+enum Gender {
+    case male
+    case female
+    case both
+}
