@@ -10,6 +10,6 @@ import Foundation
 
 extension User {
     func formatName() -> String {
-        return "\(firstName) \(lastName)"
+        return "\(title) \(firstName) \(lastName)"
     }
 }

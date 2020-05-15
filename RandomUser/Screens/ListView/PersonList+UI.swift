@@ -26,12 +26,7 @@ class PersonListViewController: UIViewController, UITableViewDelegate {
     let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, User>>(
         configureCell: { (_, tableView, _, user: User) in
             let cell = tableView.dequeueReusableCell(withIdentifier: "PersonListViewCell")! as! PersonListViewCell
-            cell.nameLabel.text = user.formatName()
-            let age = DateUtils.calcAge(birthday: user.dob)
-            cell.ageLabel.text = "\(age)"
-            let image = URL(string: user.thumbImageUrl)
-            cell.profileImageView.kf.setImage(with: image)
-            cell.locationLabel.text = user.address
+            cell.configureUser(user)
 
             return cell
         })

@@ -14,19 +14,22 @@ import SnapKit
 import UIKit
 
 class AppContainerViewController: UIViewController {
+    var userService: IUserService!
     var listViewController: PersonListViewController!
     var profileGalleryViewController: ProfileGalleryViewController!
+
     let scrollView = UIScrollView()
     let toolbar = UIToolbar()
     let toolbarHeight = 60
     let profileViewButton = UIBarButtonItem()
     let listViewButton = UIBarButtonItem()
 
-    let userService = UserService()
-
     let disposeBag = DisposeBag()
 
-    init(listViewController: PersonListViewController, ProfileGalleryViewController: ProfileGalleryViewController) {
+    init(
+        listViewController: PersonListViewController,
+        ProfileGalleryViewController: ProfileGalleryViewController
+    ) {
         self.listViewController = listViewController
         profileGalleryViewController = ProfileGalleryViewController
         super.init(nibName: nil, bundle: nil)

@@ -10,8 +10,14 @@ import Foundation
 import SQLite
 
 class Migrations {
-    static func run() throws {
-        let db = try ConnectionFactory().create()
+    let connectionFactory: ConnectionFactory
+
+    init(connectionFactory: ConnectionFactory) {
+        self.connectionFactory = connectionFactory
+    }
+
+    func run() throws {
+        let db = try connectionFactory.create()
         if db.userVersion == 0 {
             let users = Table("users")
 

@@ -18,11 +18,18 @@ enum GetUsersError: Error {
     case networkError
 }
 
-class UserService {
+class UserService: IUserService {
     let api = RandomUserApi()
-    let repository = UserRepository()
-    let reachability = try! Reachability()
-    let connectionFactory = ConnectionFactory()
+    let repository: IUserRepository
+    let reachability: Reachability
+    let connectionFactory: ConnectionFactory
+
+    init(repository: IUserRepository, reachability: Reachability, connectionFactory: ConnectionFactory) {
+        self.repository = repository
+        self.reachability = reachability
+        self.connectionFactory = connectionFactory
+    }
+
     func getUsers(take: Int = 10, page: Int = 1, gender: Gender) -> Observable<GetUsersResponse> {
         let db = try! connectionFactory.create()
         if reachability.connection == .unavailable {

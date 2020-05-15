@@ -10,17 +10,23 @@ import Foundation
 import SQLite
 
 class ConnectionFactory {
-    func create() throws -> Connection {
-        let path = NSSearchPathForDirectoriesInDomains(
-            .documentDirectory, .userDomainMask, true
-        ).first!
+    let filename: String
 
-        return try Connection("\(path)/db.sqlite3")
+    init(filename: String) {
+        self.filename = filename
+    }
+
+    func create() throws -> Connection {
+        return try Connection(filename)
     }
 }
 
-class UserRepository {
-    private let queue = DispatchQueue(label: "will.company.RandomUser.UserRepository.queue")
+class UserRepository: IUserRepository {
+    private let queue: DispatchQueue
+
+    init(queue: DispatchQueue) {
+        self.queue = queue
+    }
 
     func saveUsers(db: Connection, items: [User]) throws {
         let users = Table("users")

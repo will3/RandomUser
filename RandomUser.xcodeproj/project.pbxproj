@@ -58,6 +58,9 @@
 		BEAF04BD246E474900D93B30 /* ProfileGallery+Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04BC246E474900D93B30 /* ProfileGallery+Feedback.swift */; };
 		BEAF04C1246E4BB100D93B30 /* ProfileGallery+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04C0246E4BB100D93B30 /* ProfileGallery+Event.swift */; };
 		BEAF04C5246E52E800D93B30 /* User+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04C4246E52E800D93B30 /* User+Mapping.swift */; };
+		BEAF04C9246E546D00D93B30 /* AppModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04C8246E546D00D93B30 /* AppModule.swift */; };
+		BEAF04CB246E560300D93B30 /* IUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04CA246E560300D93B30 /* IUserService.swift */; };
+		BEAF04CD246E570300D93B30 /* IUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF04CC246E570300D93B30 /* IUserRepository.swift */; };
 		DC6E49A67C6C31080BC5EEF7 /* Pods_RandomUser_RandomUserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2FFE7E91E7DCDA07F115DC /* Pods_RandomUser_RandomUserUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +142,9 @@
 		BEAF04BC246E474900D93B30 /* ProfileGallery+Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileGallery+Feedback.swift"; sourceTree = "<group>"; };
 		BEAF04C0246E4BB100D93B30 /* ProfileGallery+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileGallery+Event.swift"; sourceTree = "<group>"; };
 		BEAF04C4246E52E800D93B30 /* User+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Mapping.swift"; sourceTree = "<group>"; };
+		BEAF04C8246E546D00D93B30 /* AppModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModule.swift; sourceTree = "<group>"; };
+		BEAF04CA246E560300D93B30 /* IUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUserService.swift; sourceTree = "<group>"; };
+		BEAF04CC246E570300D93B30 /* IUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IUserRepository.swift; sourceTree = "<group>"; };
 		E31FEA053B724C805561D34B /* Pods-RandomUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.release.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.release.xcconfig"; sourceTree = "<group>"; };
 		E944330EAAC25E108E4AB08B /* Pods-RandomUser-RandomUserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser-RandomUserUITests.release.xcconfig"; path = "Target Support Files/Pods-RandomUser-RandomUserUITests/Pods-RandomUser-RandomUserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F1D1CCBBB5F09AD584E6264D /* Pods-RandomUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.debug.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.debug.xcconfig"; sourceTree = "<group>"; };
@@ -251,6 +257,7 @@
 				BE190C57246E0D0D009EEC42 /* Gender+Format.swift */,
 				BEAF04B6246E42DA00D93B30 /* UIScrollView+Reactive.swift */,
 				BE277EE9246B6A2E001D73F2 /* Info.plist */,
+				BEAF04C8246E546D00D93B30 /* AppModule.swift */,
 			);
 			path = RandomUser;
 			sourceTree = "<group>";
@@ -309,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				BE470812246C80B400275736 /* UserService.swift */,
+				BEAF04CA246E560300D93B30 /* IUserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -364,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				BE74EF70246C71E90050526C /* UserRepository.swift */,
+				BEAF04CC246E570300D93B30 /* IUserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -661,6 +670,7 @@
 				BEAF04A3246E2CD200D93B30 /* Filter.swift in Sources */,
 				BE74EF82246C7B730050526C /* DateUtils.swift in Sources */,
 				BE74EF7D246C7A690050526C /* RandomUserApi.swift in Sources */,
+				BEAF04C9246E546D00D93B30 /* AppModule.swift in Sources */,
 				BE277EE0246B6A2D001D73F2 /* PersonList+UI.swift in Sources */,
 				BEAF04A5246E2CDF00D93B30 /* Gender.swift in Sources */,
 				BE470816246C9B4000275736 /* Migrations.swift in Sources */,
@@ -693,7 +703,9 @@
 				BE74EF80246C7B1E0050526C /* User.swift in Sources */,
 				BEAF04C1246E4BB100D93B30 /* ProfileGallery+Event.swift in Sources */,
 				BE190C58246E0D0D009EEC42 /* Gender+Format.swift in Sources */,
+				BEAF04CB246E560300D93B30 /* IUserService.swift in Sources */,
 				BEAF04A7246E2D8F00D93B30 /* PersonList+Feedback.swift in Sources */,
+				BEAF04CD246E570300D93B30 /* IUserRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,10 +10,13 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let container = AppModule.defaultContainer
+
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        try? Migrations.run()
+        let migrations = container.resolve(Migrations.self)!
+        try? migrations.run()
 
         return true
     }

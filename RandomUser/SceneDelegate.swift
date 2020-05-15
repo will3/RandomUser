@@ -11,19 +11,17 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
+    let container = AppModule.defaultContainer
+
     func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let listViewController = PersonListViewController(nibName: "PersonListViewController", bundle: nil)
-        let profileGalleryViewController = ProfileGalleryViewController(nibName: "ProfileGalleryViewController", bundle: nil)
-        let containerViewController = AppContainerViewController(listViewController: listViewController, ProfileGalleryViewController: profileGalleryViewController)
-
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = containerViewController
+        window?.rootViewController = container.resolve(AppContainerViewController.self)!
         window?.makeKeyAndVisible()
     }
 

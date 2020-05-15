@@ -21,7 +21,6 @@ struct ProfileGalleryNested {
 class ProfileGalleryViewController: UIViewController {
     var initial = ProfileGallery.initial
     let disposeBag = DisposeBag()
-    let userService = UserService()
     let swipeView = ProfileSwipeView()
     var nestedState: SharedSequence<DriverSharingStrategy, ProfileGalleryNested>?
 
