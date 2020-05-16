@@ -39,3 +39,16 @@ extension Gender {
         }
     }
 }
+
+extension Gender {
+    func formatQuery() -> String? {
+        switch self {
+        case .male:
+            return "male"
+        case .female:
+            return "female"
+        case .both:
+            return nil
+        }
+    }
+}

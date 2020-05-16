@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.1.0)
+  - Cuckoo (1.3.2):
+    - Cuckoo/Swift (= 1.3.2)
+  - Cuckoo/Swift (1.3.2)
   - Differentiator (4.0.1)
   - Kingfisher (5.14.0):
     - Kingfisher/Core (= 5.14.0)
@@ -35,6 +38,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Cuckoo
   - Kingfisher
   - Nimble
   - Quick
@@ -52,6 +56,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://cdn.cocoapods.org/:
     - Alamofire
+    - Cuckoo
     - Differentiator
     - Kingfisher
     - Nimble
@@ -70,6 +75,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  Cuckoo: 57f71c6616b6b08cd9fe27f803da056fb619ff3e
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Kingfisher: 7b64389a43139c903ec434788344c288217c792d
   Nimble: 2da33c44adfde49552d4a6b3ef16039a45bf8dca
@@ -86,6 +92,6 @@ SPEC CHECKSUMS:
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: c54a683744cb05865b0cf31cbed9669be83b0a6c
+PODFILE CHECKSUM: 9800745db68028a3ee33855f0514fe93e5c41ff7
 
 COCOAPODS: 1.9.1

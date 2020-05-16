@@ -17,23 +17,24 @@ import UIKit
 
 class PersonListViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
+
+    var usersState: NestedSystem<[User]>?
+    
     let refreshControl = UIRefreshControl()
 
-    var nestedState: NestedSystem<[User]>?
+    lazy var filterButton = {
+        Bundle.main.loadNibNamed("FilterFab", owner: nil, options: nil)![0] as! FilterFab
+    }()
 
-    let disposeBag = DisposeBag()
-    let loadThreshold = 20.0
-    let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, User>>(
+    private let disposeBag = DisposeBag()
+    private let loadThreshold = 20.0
+    private let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, User>>(
         configureCell: { (_, tableView, _, user: User) in
             let cell = tableView.dequeueReusableCell(withIdentifier: "PersonListViewCell")! as! PersonListViewCell
             cell.configureUser(user)
 
             return cell
         })
-
-    lazy var filterButton = {
-        Bundle.main.loadNibNamed("FilterFab", owner: nil, options: nil)![0] as! FilterFab
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +61,9 @@ class PersonListViewController: UIViewController, UITableViewDelegate {
             var events: [Signal<PersonList.Event>] = [
             ]
 
-            if let nestedState = me.nestedState {
+            if let usersState = me.usersState {
                 events += [
-                    nestedState.asSignal(onErrorSignalWith: .empty()).map(PersonList.Event.responseReceived),
+                    usersState.asSignal(onErrorSignalWith: .empty()).map(PersonList.Event.profilesUpdated),
                 ]
             }
 

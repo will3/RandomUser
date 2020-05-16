@@ -18,7 +18,7 @@ struct PersonList {
 extension PersonList {
     static func reduce(state: PersonList, event: PersonList.Event) -> PersonList {
         switch event {
-        case let .responseReceived(profiles):
+        case let .profilesUpdated(profiles):
             return state.mutate {
                 $0.results = profiles
             }

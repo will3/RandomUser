@@ -49,7 +49,7 @@ extension AppContainer {
                     $0.refreshing = false
                 }
             case .failure:
-                // TODO: triggstateer error modal
+                // TODO: trigger error modal
                 return state.mutate {
                     $0.loadMoreTrigger = false
                     $0.refreshing = false

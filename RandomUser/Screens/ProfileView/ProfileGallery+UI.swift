@@ -19,10 +19,9 @@ struct ProfileGalleryNested {
 }
 
 class ProfileGalleryViewController: UIViewController {
-    var initial = ProfileGallery.initial
     let disposeBag = DisposeBag()
     let swipeView = ProfileSwipeView()
-    var nestedState: NestedSystem<ProfileGalleryNested>?
+    var profilesState: NestedSystem<ProfileGalleryNested>?
 
     override func viewDidLoad() {
         view.addSubview(swipeView)
@@ -35,7 +34,7 @@ class ProfileGalleryViewController: UIViewController {
                 state.map { $0.index }.distinctUntilChanged().drive(me.swipeView.rx.startIndex),
             ]
 
-            if let nestedState = me.nestedState {
+            if let nestedState = me.profilesState {
                 subscriptions += [
                     nestedState.map { $0.profiles }
                         .distinctUntilChanged()
@@ -52,7 +51,7 @@ class ProfileGalleryViewController: UIViewController {
             return Bindings(subscriptions: subscriptions, events: events)
         }
 
-        ProfileGallery.feedback(initialState: initial, ui: bindUI)
+        ProfileGallery.feedback(ui: bindUI)
             .drive()
             .disposed(by: disposeBag)
     }

@@ -2,44 +2,19 @@
 //  RandomUserApi.swift
 //  RandomUser
 //
-//  Created by will on 13/05/20.
+//  Created by will on 15/05/20.
 //  Copyright © 2020 will. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 import RxSwift
 
-class RandomUserApi: IRandomUserApi {
-    let seed: Int
-    let baseURL: String
+enum RandomUserApiError: Error {
+    case malformedJson
+}
 
-    init(baseURL: String, seed: Int) {
-        self.baseURL = baseURL
-        self.seed = seed
-    }
+typealias RandomUserApiResponse = Result<(results: [RUUser], nextPage: Int?), RandomUserApiError>
 
-    func getUsers(take: Int = 10, page: Int = 1, gender: String?, countryCode: String?) -> Observable<RandomUserApiResponse> {
-        var components = URLComponents(string: baseURL)!
-        components.queryItems = [
-            // Hmm seed not supported with queries
-            // URLQueryItem(name: "seed", value: "\(seed)"),
-            URLQueryItem(name: "results", value: "\(take)"),
-            URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "gender", value: gender),
-            URLQueryItem(name: "nat", value: countryCode),
-        ]
-        let url = components.url!
-
-        return URLSession.shared.rx
-            .response(request: URLRequest(url: url))
-            .retry(3)
-            .observeOn(MainScheduler.instance)
-            .map { (_, data) -> RandomUserApiResponse in
-                guard let welcome = try? JSONDecoder().decode(RUWelcome.self, from: data) else {
-                    return .failure(.malformedJson)
-                }
-                return .success((results: welcome.results, nextPage: welcome.info.page + 1))
-            }
-    }
+protocol RandomUserApi {
+    func getUsers(take: Int, page: Int, gender: String?, countryCode: String?) -> Observable<RandomUserApiResponse>
 }

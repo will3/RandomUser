@@ -14,8 +14,7 @@ import RxSwift
 extension AppContainer {
     typealias Feedback = (Driver<AppContainer>) -> Signal<Event>
 
-    static func system(initialState _: AppContainer,
-                       ui: @escaping Feedback,
+    static func system(ui: @escaping Feedback,
                        scrollToPage: @escaping (Int) -> Void,
                        loadProfiles: @escaping (Int, Int, Filter) -> Observable<GetUsersResponse>,
                        showFilter: @escaping () -> ProfileFilterViewController) -> Driver<AppContainer> {

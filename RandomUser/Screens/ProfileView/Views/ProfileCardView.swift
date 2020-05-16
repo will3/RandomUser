@@ -46,7 +46,9 @@ class ProfileCardView: UIView {
 
         ageLabel.setupAgeLabel()
     }
+}
 
+extension ProfileCardView {
     func drawProfile(_ profile: User) {
         nameLabel.text = "\(profile.title) \(profile.firstName) \(profile.lastName)"
 

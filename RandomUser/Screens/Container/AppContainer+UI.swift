@@ -14,24 +14,26 @@ import SnapKit
 import UIKit
 
 class AppContainerViewController: UIViewController {
-    var userService: IUserService!
-    var listViewController: PersonListViewController!
-    var profileGalleryViewController: ProfileGalleryViewController!
-    var filterViewController: ProfileFilterViewController!
+    private var userService: UserService!
+    private var listViewController: PersonListViewController!
+    private var profileGalleryViewController: ProfileGalleryViewController!
+    private var filterViewController: ProfileFilterViewController!
 
-    let scrollView = UIScrollView()
-    let toolbar = UIToolbar()
-    let toolbarHeight = 60
-    let profileViewButton = UIBarButtonItem()
-    let listViewButton = UIBarButtonItem()
+    private let scrollView = UIScrollView()
+    private let toolbar = UIToolbar()
+    private let toolbarHeight = 60
+    private let profileViewButton = UIBarButtonItem()
+    private let listViewButton = UIBarButtonItem()
 
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     init(
+        userService: UserService,
         listViewController: PersonListViewController,
         profileGalleryViewController: ProfileGalleryViewController,
         filterViewController: ProfileFilterViewController
     ) {
+        self.userService = userService
         self.listViewController = listViewController
         self.profileGalleryViewController = profileGalleryViewController
         self.filterViewController = filterViewController
@@ -76,7 +78,6 @@ class AppContainerViewController: UIViewController {
         }
 
         let state = AppContainer.system(
-            initialState: AppContainer.initial,
             ui: bindUI,
             scrollToPage: scrollToPage,
             loadProfiles: loadProfiles,
@@ -87,10 +88,10 @@ class AppContainerViewController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
 
-        profileGalleryViewController.nestedState = state.map { state in
+        profileGalleryViewController.profilesState = state.map { state in
             ProfileGalleryNested(profiles: state.profiles, startIndex: state.profileIndex)
         }
-        listViewController.nestedState = state.map { $0.profiles }
+        listViewController.usersState = state.map { $0.profiles }
         filterViewController.filterState = state.map { $0.filter }
     }
 

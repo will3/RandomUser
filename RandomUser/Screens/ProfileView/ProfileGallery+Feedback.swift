@@ -14,10 +14,10 @@ import RxSwift
 extension ProfileGallery {
     typealias Feedback = (Driver<ProfileGallery>) -> Signal<ProfileGallery.Event>
 
-    static func feedback(initialState: ProfileGallery, ui: @escaping Feedback) -> Driver<ProfileGallery> {
+    static func feedback(ui: @escaping Feedback) -> Driver<ProfileGallery> {
         return Driver
             .system(
-                initialState: initialState,
+                initialState: ProfileGallery.initial,
                 reduce: ProfileGallery.reduce,
                 feedback: ui
             )

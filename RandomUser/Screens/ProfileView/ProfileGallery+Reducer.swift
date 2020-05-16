@@ -18,7 +18,11 @@ struct ProfileGallery {
 }
 
 extension ProfileGallery {
-    static func reduce(state: ProfileGallery, event _: ProfileGallery.Event) -> ProfileGallery {
-        return state
+    static func reduce(state: ProfileGallery, event: ProfileGallery.Event) -> ProfileGallery {
+        // It's empty for now
+        switch event {
+        default:
+            return state
+        }
     }
 }

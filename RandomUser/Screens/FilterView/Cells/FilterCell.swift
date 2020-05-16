@@ -14,12 +14,6 @@ class FilterCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var toggle: UISwitch!
-
-    var disposeBagCell: DisposeBag = DisposeBag()
-
-    override func prepareForReuse() {
-        disposeBagCell = DisposeBag()
-    }
 }
 
 extension FilterCell {

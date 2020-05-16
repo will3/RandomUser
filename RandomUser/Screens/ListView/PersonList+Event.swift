@@ -10,6 +10,6 @@ import Foundation
 
 extension PersonList {
     enum Event {
-        case responseReceived([User])
+        case profilesUpdated([User])
     }
 }

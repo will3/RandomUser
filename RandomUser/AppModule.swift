@@ -38,31 +38,35 @@ class AppModule {
             let path = NSSearchPathForDirectoriesInDomains(
                 .documentDirectory, .userDomainMask, true
             ).first!
-            return ConnectionFactory(filename: "\(path)/db.sqlite3")
+            return ConnectionFactoryImpl(filename: "\(path)/db.sqlite3")
         }
 
         container.register(DispatchQueue.self, name: "database") { _ in
             DispatchQueue(label: "will.company.RandomUser.UserRepository.queue")
         }
 
-        container.register(IUserRepository.self) { r in
+        container.register(UserRepository.self) { r in
             let queue = r.resolve(DispatchQueue.self, name: "database")!
-            return UserRepository(queue: queue)
+            return UserRepositoryImpl(queue: queue)
         }
 
-        container.register(IRandomUserApi.self) { _ in
-            RandomUserApi(baseURL: "https://randomuser.me/api", seed: 1337)
+        container.register(RandomUserApi.self) { _ in
+            RandomUserApiImpl(baseURL: "https://randomuser.me/api", seed: 1337)
         }
 
-        container.register(IUserService.self) { r in
-            let repository = r.resolve(IUserRepository.self)!
-            let reachability = r.resolve(Reachability.self)!
+        container.register(NetworkStatus.self) { r in
+            NetworkStatusImpl(reachability: r.resolve(Reachability.self)!)
+        }
+
+        container.register(UserService.self) { r in
+            let repository = r.resolve(UserRepository.self)!
+            let networkStatus = r.resolve(NetworkStatus.self)!
             let connectionFactory = r.resolve(ConnectionFactory.self)!
-            let api = r.resolve(IRandomUserApi.self)!
+            let api = r.resolve(RandomUserApi.self)!
 
-            return UserService(
+            return UserServiceImpl(
                 repository: repository,
-                reachability: reachability,
+                networkStatus: networkStatus,
                 connectionFactory: connectionFactory,
                 api: api
             )
@@ -81,17 +85,17 @@ class AppModule {
         }
 
         container.register(AppContainerViewController.self) { r in
+            let userService = r.resolve(UserService.self)!
             let listViewController = r.resolve(PersonListViewController.self)!
             let profileGalleryViewController = r.resolve(ProfileGalleryViewController.self)!
             let filterViewController = r.resolve(ProfileFilterViewController.self)!
 
             let containerViewController = AppContainerViewController(
+                userService: userService,
                 listViewController: listViewController,
                 profileGalleryViewController: profileGalleryViewController,
                 filterViewController: filterViewController
             )
-
-            containerViewController.userService = r.resolve(IUserService.self)!
 
             return containerViewController
         }

@@ -14,21 +14,15 @@ import RxSwift
 import RxViewController
 import UIKit
 
-enum FilterRow {
-    case gender(Gender)
-    case country(CountryCode?)
-    case kitten(Bool)
-}
-
-class ProfileFilterViewController: UIViewController, UITableViewDelegate {
+class ProfileFilterViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var doneButton: UIBarButtonItem!
 
     var filterState: NestedSystem<Filter>?
 
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
-    let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, FilterRow>>(
+    private let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, FilterRow>>(
         configureCell: { (_, tableView, _, row: FilterRow) in
             let cell = tableView.dequeueReusableCell(withIdentifier: "FilterCell")! as! FilterCell
 
@@ -78,7 +72,9 @@ class ProfileFilterViewController: UIViewController, UITableViewDelegate {
     private func dismissView() {
         dismiss(animated: true, completion: nil)
     }
+}
 
+extension ProfileFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
