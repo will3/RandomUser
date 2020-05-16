@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AccessibilityIdentifiers {
+final class AccessibilityIdentifiers {
     static let filterButton = "filterButton"
     static let listViewButton = "listViewButton"
     static let profileViewButton = "profileViewButton"

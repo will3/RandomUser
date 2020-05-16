@@ -9,7 +9,7 @@
 import Foundation
 import Reachability
 
-class NetworkStatusImpl: NetworkStatus {
+final class NetworkStatusImpl: NetworkStatus {
     private let reachability: Reachability
     init(reachability: Reachability) {
         self.reachability = reachability

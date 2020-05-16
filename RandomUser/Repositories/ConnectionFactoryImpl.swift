@@ -9,8 +9,8 @@
 import Foundation
 import SQLite
 
-class ConnectionFactoryImpl: ConnectionFactory {
-    let filename: String
+final class ConnectionFactoryImpl: ConnectionFactory {
+    private let filename: String
 
     init(filename: String) {
         self.filename = filename

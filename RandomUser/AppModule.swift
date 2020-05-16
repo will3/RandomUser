@@ -10,7 +10,7 @@ import Foundation
 import Reachability
 import Swinject
 
-class AppModule {
+final class AppModule {
     private static var container: Container?
 
     static var defaultContainer: Container {

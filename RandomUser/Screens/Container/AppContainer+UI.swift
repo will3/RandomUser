@@ -13,7 +13,7 @@ import RxSwift
 import SnapKit
 import UIKit
 
-class AppContainerViewController: UIViewController {
+final class AppContainerViewController: UIViewController {
     private var userService: UserService!
     private var listViewController: PersonListViewController!
     private var profileGalleryViewController: ProfileGalleryViewController!
@@ -89,24 +89,10 @@ class AppContainerViewController: UIViewController {
             .disposed(by: disposeBag)
 
         profileGalleryViewController.profilesState = state.map { state in
-            ProfileGalleryNested(profiles: state.profiles, startIndex: state.profileIndex)
+            ProfileGalleryProfiles(profiles: state.profiles, startIndex: state.profileIndex)
         }
         listViewController.usersState = state.map { $0.profiles }
         filterViewController.filterState = state.map { $0.filter }
-    }
-
-    private func showFilter() -> ProfileFilterViewController {
-        present(filterViewController, animated: true, completion: nil)
-        return filterViewController
-    }
-
-    private func scrollToPage(_ page: Int) {
-        scrollView.setContentOffset(CGPoint(x: scrollView.bounds.size.width * CGFloat(page), y: 0),
-                                    animated: true)
-    }
-
-    private func loadProfiles(take: Int, page: Int, filter: Filter) -> Observable<GetUsersResponse> {
-        return userService.getUsers(take: take, page: page, gender: filter.gender, countryCode: filter.countryCode, kitten: filter.kitten)
     }
 
     private func setupToolbar() {
@@ -158,5 +144,22 @@ class AppContainerViewController: UIViewController {
         profileGalleryViewController.didMove(toParent: self)
 
         filterViewController.loadViewIfNeeded()
+    }
+}
+
+// Side effects
+extension AppContainerViewController {
+    private func showFilter() -> ProfileFilterViewController {
+        present(filterViewController, animated: true, completion: nil)
+        return filterViewController
+    }
+
+    private func scrollToPage(_ page: Int) {
+        scrollView.setContentOffset(CGPoint(x: scrollView.bounds.size.width * CGFloat(page), y: 0),
+                                    animated: true)
+    }
+
+    private func loadProfiles(take: Int, page: Int, filter: Filter) -> Observable<GetUsersResponse> {
+        return userService.getUsers(take: take, page: page, gender: filter.gender, countryCode: filter.countryCode, kitten: filter.kitten)
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import SQLite
 
-class UserRepositoryImpl: UserRepository {
+final class UserRepositoryImpl: UserRepository {
     private let queue: DispatchQueue
 
     init(queue: DispatchQueue) {

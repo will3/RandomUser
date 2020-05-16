@@ -13,15 +13,15 @@ import RxSwift
 import RxViewController
 import UIKit
 
-struct ProfileGalleryNested {
+struct ProfileGalleryProfiles {
     let profiles: [User]
     let startIndex: Int
 }
 
-class ProfileGalleryViewController: UIViewController {
+final class ProfileGalleryViewController: UIViewController {
     let disposeBag = DisposeBag()
     let swipeView = ProfileSwipeView()
-    var profilesState: NestedSystem<ProfileGalleryNested>?
+    var profilesState: NestedSystem<ProfileGalleryProfiles>?
 
     override func viewDidLoad() {
         view.addSubview(swipeView)

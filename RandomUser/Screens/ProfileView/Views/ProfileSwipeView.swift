@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProfileSwipeView: UIView {
+final class ProfileSwipeView: UIView {
     private let numCards = 4
     private var cards: [ProfileCardView] = []
     private var hasSetup = false

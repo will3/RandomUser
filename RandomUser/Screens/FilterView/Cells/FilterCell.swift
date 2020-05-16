@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import UIKit
 
-class FilterCell: UITableViewCell {
+final class FilterCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var toggle: UISwitch!

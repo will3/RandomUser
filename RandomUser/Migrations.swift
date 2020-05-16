@@ -9,8 +9,8 @@
 import Foundation
 import SQLite
 
-class Migrations {
-    let connectionFactory: ConnectionFactory
+final class Migrations {
+    private let connectionFactory: ConnectionFactory
 
     init(connectionFactory: ConnectionFactory) {
         self.connectionFactory = connectionFactory

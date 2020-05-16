@@ -60,9 +60,8 @@ class UserServiceSpec: QuickSpec {
                 kitten: false)
                 .subscribe(onNext: { (r: GetUsersResponse) in
                     switch r {
-                    case let .success(users, nextPage):
+                    case let .success(users, _):
                         expect(users).to(haveCount(1))
-                        expect(nextPage).to(beNil())
                         expectation.fulfill()
                     default:
                         break

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PersonListViewCell: UITableViewCell {
+final class PersonListViewCell: UITableViewCell {
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var ageLabel: UILabel!

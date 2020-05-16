@@ -19,7 +19,7 @@ extension ProfileCardView {
     }
 }
 
-class ProfileCardView: UIView {
+final class ProfileCardView: UIView {
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var ageLabel: UILabel!

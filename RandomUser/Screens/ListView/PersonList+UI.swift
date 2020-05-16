@@ -15,7 +15,7 @@ import RxSwift
 import SnapKit
 import UIKit
 
-class PersonListViewController: UIViewController, UITableViewDelegate {
+final class PersonListViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
 
     var usersState: NestedSystem<[User]>?

@@ -77,6 +77,7 @@
 		BED19886246F62FD00BF707E /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED19885246F62FD00BF707E /* GeneratedMocks.swift */; };
 		BED19888246F63FB00BF707E /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED19887246F63FB00BF707E /* NetworkStatus.swift */; };
 		BED1988A246F64CE00BF707E /* NetworkStatusImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED19889246F64CE00BF707E /* NetworkStatusImpl.swift */; };
+		BED1988C246F6D9A00BF707E /* ProfileFilter+System.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED1988B246F6D9A00BF707E /* ProfileFilter+System.swift */; };
 		DC6E49A67C6C31080BC5EEF7 /* Pods_RandomUser_RandomUserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2FFE7E91E7DCDA07F115DC /* Pods_RandomUser_RandomUserUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -176,6 +177,7 @@
 		BED19885246F62FD00BF707E /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		BED19887246F63FB00BF707E /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
 		BED19889246F64CE00BF707E /* NetworkStatusImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatusImpl.swift; sourceTree = "<group>"; };
+		BED1988B246F6D9A00BF707E /* ProfileFilter+System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileFilter+System.swift"; sourceTree = "<group>"; };
 		E31FEA053B724C805561D34B /* Pods-RandomUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.release.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.release.xcconfig"; sourceTree = "<group>"; };
 		E944330EAAC25E108E4AB08B /* Pods-RandomUser-RandomUserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser-RandomUserUITests.release.xcconfig"; path = "Target Support Files/Pods-RandomUser-RandomUserUITests/Pods-RandomUser-RandomUserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F1D1CCBBB5F09AD584E6264D /* Pods-RandomUser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomUser.debug.xcconfig"; path = "Target Support Files/Pods-RandomUser/Pods-RandomUser.debug.xcconfig"; sourceTree = "<group>"; };
@@ -228,9 +230,9 @@
 				BE1CBDBF246D24AE0047D4A9 /* Views */,
 				BE1CBDBA246D24010047D4A9 /* ProfileGallery+UI.swift */,
 				BEAF04BA246E467C00D93B30 /* ProfileGallery+Reducer.swift */,
-				BE1CBDC5246D3E4B0047D4A9 /* ProfileGalleryViewController.xib */,
 				BEAF04BC246E474900D93B30 /* ProfileGallery+Feedback.swift */,
 				BEAF04C0246E4BB100D93B30 /* ProfileGallery+Event.swift */,
+				BE1CBDC5246D3E4B0047D4A9 /* ProfileGalleryViewController.xib */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -388,6 +390,7 @@
 				BE470821246CCD0A00275736 /* ProfileFilterViewController.swift */,
 				BE470823246CCD1300275736 /* ProfileFilterViewController.xib */,
 				BEAF04D2246E8D8200D93B30 /* ProfileFilter.swift */,
+				BED1988B246F6D9A00BF707E /* ProfileFilter+System.swift */,
 				BEAF04D6246E97A700D93B30 /* ProfileFilterViewController+Reactive.swift */,
 			);
 			path = FilterView;
@@ -772,6 +775,7 @@
 				BE74EF7D246C7A690050526C /* RandomUserApiImpl.swift in Sources */,
 				BEAF04C9246E546D00D93B30 /* AppModule.swift in Sources */,
 				BE277EE0246B6A2D001D73F2 /* PersonList+UI.swift in Sources */,
+				BED1988C246F6D9A00BF707E /* ProfileFilter+System.swift in Sources */,
 				BEAF04A5246E2CDF00D93B30 /* Gender.swift in Sources */,
 				BE470816246C9B4000275736 /* Migrations.swift in Sources */,
 				BED1987B246F5D9200BF707E /* LocationLabel+Styles.swift in Sources */,

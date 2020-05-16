@@ -10,9 +10,9 @@ import Alamofire
 import Foundation
 import RxSwift
 
-class RandomUserApiImpl: RandomUserApi {
-    let seed: Int
-    let baseURL: String
+final class RandomUserApiImpl: RandomUserApi {
+    private let seed: Int
+    private let baseURL: String
 
     init(baseURL: String, seed: Int) {
         self.baseURL = baseURL

@@ -11,7 +11,7 @@ import Reachability
 import RxCocoa
 import RxSwift
 
-class UserServiceImpl: UserService {
+final class UserServiceImpl: UserService {
     private let api: RandomUserApi
     private let repository: UserRepository
     private let networkStatus: NetworkStatus

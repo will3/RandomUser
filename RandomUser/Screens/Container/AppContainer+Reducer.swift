@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AppContainer: Mutable {
+struct AppContainer {
     var scrollViewPage: Int = 0
     var page: Int? = 1
     var loadMoreTrigger = true
@@ -27,6 +27,8 @@ struct AppContainer: Mutable {
         refreshing = true
     }
 }
+
+extension AppContainer: Mutable { }
 
 extension AppContainer {
     static func reduce(state: AppContainer, event: Event) -> AppContainer {

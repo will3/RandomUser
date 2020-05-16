@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: RandomUser/Api/RandomUserApi.swift at 2020-05-16 00:33:42 +0000
+// MARK: - Mocks generated from file: RandomUser/Api/RandomUserApi.swift at 2020-05-16 00:43:08 +0000
 
 //
 //  RandomUserApi.swift
@@ -105,7 +105,7 @@ import RxSwift
 }
 
 
-// MARK: - Mocks generated from file: RandomUser/Repositories/ConnectionFactory.swift at 2020-05-16 00:33:42 +0000
+// MARK: - Mocks generated from file: RandomUser/Repositories/ConnectionFactory.swift at 2020-05-16 00:43:08 +0000
 
 //
 //  IDbConnectionFactory.swift
@@ -212,7 +212,7 @@ import SQLite
 }
 
 
-// MARK: - Mocks generated from file: RandomUser/Repositories/UserRepository.swift at 2020-05-16 00:33:42 +0000
+// MARK: - Mocks generated from file: RandomUser/Repositories/UserRepository.swift at 2020-05-16 00:43:08 +0000
 
 //
 //  UserRepository.swift
@@ -379,7 +379,7 @@ import SQLite
 }
 
 
-// MARK: - Mocks generated from file: RandomUser/Utils/NetworkStatus.swift at 2020-05-16 00:33:42 +0000
+// MARK: - Mocks generated from file: RandomUser/Utils/NetworkStatus.swift at 2020-05-16 00:43:08 +0000
 
 //
 //  Reachability.swift

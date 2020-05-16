@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DateUtils {
+final class DateUtils {
     static let calendar = Calendar.current
 
     static var isoDateFormatter: DateFormatter = {

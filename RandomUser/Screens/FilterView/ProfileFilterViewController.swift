@@ -14,7 +14,7 @@ import RxSwift
 import RxViewController
 import UIKit
 
-class ProfileFilterViewController: UIViewController {
+final class ProfileFilterViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var doneButton: UIBarButtonItem!
 
@@ -68,14 +68,17 @@ class ProfileFilterViewController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
     }
-
-    private func dismissView() {
-        dismiss(animated: true, completion: nil)
-    }
 }
 
 extension ProfileFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+}
+
+// Side effects
+extension ProfileFilterViewController {
+    private func dismissView() {
+        dismiss(animated: true, completion: nil)
     }
 }
