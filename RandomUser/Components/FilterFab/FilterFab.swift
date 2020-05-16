@@ -26,6 +26,6 @@ final class FilterFab: UIView {
             make.width.height.equalTo(width)
         }
         
-        self.button.accessibilityIdentifier = AccessibilityIdentifiers.filterButton
+        button.accessibilityIdentifier = AccessibilityIdentifiers.filterButton
     }
 }

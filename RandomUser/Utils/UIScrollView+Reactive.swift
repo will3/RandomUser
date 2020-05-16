@@ -14,8 +14,9 @@ extension Reactive where Base: UIScrollView {
     var didScrollToExactPage: Signal<Int> {
         base.rx.didEndDecelerating
             .asSignal(onErrorSignalWith: .empty())
-            .flatMap { (_) -> Signal<Int> in
-                let exactPage = self.base.contentOffset.x / self.base.bounds.size.width
+            .flatMap { [weak view = self.base] (_) -> Signal<Int> in
+                guard let view = view else { return Signal.empty() }
+                let exactPage = view.contentOffset.x / view.bounds.size.width
                 let page = floor(exactPage)
                 return (exactPage - page < 0.1)
                     ? Signal.just(Int(page))
@@ -25,8 +26,9 @@ extension Reactive where Base: UIScrollView {
     }
 
     var nearBottom: Signal<Void> {
-        base.rx.contentOffset.asDriver().flatMap { _ in
-            self.base.isNearBottomEdge() ? Signal.just(()) : Signal.empty()
+        base.rx.contentOffset.asDriver().flatMap { [weak view = self.base] _ in
+            guard let view = view else { return Signal.empty() }
+            return view.isNearBottomEdge() ? Signal.just(()) : Signal.empty()
         }
     }
 }
